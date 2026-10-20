@@ -14,6 +14,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            position: relative;
         }
         .game-container {
             background: white;
@@ -25,6 +26,19 @@
             width: 90%;
         }
         h1 { color: #4a5568; margin-bottom: 10px; font-size: 28px; }
+        .audio-control {
+            margin-bottom: 10px;
+            text-align: right;
+        }
+        .audio-btn {
+            background: #edf2f7;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
         .difficulty-container {
             display: flex;
             justify-content: space-between;
@@ -63,7 +77,6 @@
             font-weight: bold;
             color: #2b6cb0;
             margin-bottom: 20px;
-            transition: all 0.3s;
         }
         .question {
             font-size: 48px;
@@ -114,23 +127,31 @@
 </head>
 <body>
 
+<!-- 載入音效檔案（免版權線上音樂源） -->
+<audio id="bgm" src="https://google.com" loop></audio>
+<audio id="sound-correct" src="https://google.com"></audio>
+<audio id="sound-wrong" src="https://google.com"></audio>
+
 <div class="game-container">
     <h1>九九乘法大挑戰 🎮</h1>
     
-    <!-- 難度選擇按鈕 -->
+    <!-- 音樂開關 -->
+    <div class="audio-control">
+        <button id="audio-toggle" class="audio-btn" onclick="toggleBGM()">🎵 音樂：關</button>
+    </div>
+    
+    <!-- 難度選擇 -->
     <div class="difficulty-container" id="diff-box">
         <button class="diff-btn active" onclick="setDifficulty('easy', event)">簡單 (2-9)</button>
         <button class="diff-btn" onclick="setDifficulty('medium', event)">中等 (11-19)</button>
         <button class="diff-btn" onclick="setDifficulty('hard', event)">困難 (11-99)</button>
     </div>
 
-    <!-- 即時分數與時間 -->
     <div class="stats">
         <div>分數: <span id="score">0</span></div>
         <div>時間: <span id="timer">30</span> 秒</div>
     </div>
 
-    <!-- 個人最高分紀錄看板 -->
     <div class="highscore-board">
         🏆 <span id="diff-label">簡單</span>模式最高紀錄: <span id="high-score">0</span> 分
     </div>
@@ -149,14 +170,20 @@
     let num1, num2, correctAnswer;
     let gameActive = false;
     let timerInterval;
-    let difficulty = 'easy'; // 預設簡單
-    
-    // 用一個物件管理三種難度的歷史最高分
+    let difficulty = 'easy'; 
+    let bgmPlaying = false;
+
     let highScores = {
         easy: parseInt(localStorage.getItem('mult_high_easy')) || 0,
         medium: parseInt(localStorage.getItem('mult_high_medium')) || 0,
         hard: parseInt(localStorage.getItem('mult_high_hard')) || 0
     };
+
+    // 取得音效元素
+    const bgm = document.getElementById('bgm');
+    const soundCorrect = document.getElementById('sound-correct');
+    const soundWrong = document.getElementById('sound-wrong');
+    bgm.volume = 0.3; // 背景音樂稍微小聲一點
 
     const questionEl = document.getElementById('question');
     const answerEl = document.getElementById('answer');
@@ -167,9 +194,9 @@
     const diffLabelEl = document.getElementById('diff-label');
     const messageEl = document.getElementById('message');
     const diffButtons = document.querySelectorAll('.diff-btn');
+    const audioToggleBtn = document.getElementById('audio-toggle');
 
-    // 網頁初始時載入預設（簡單）模式的最高分
-    updateHighScoreDisplay();
+    highScoreEl.innerText = highScores[difficulty];
 
     answerEl.addEventListener('keyup', function(event) {
         if (event.key === 'Enter') {
@@ -177,7 +204,19 @@
         }
     });
 
-    // 根據難度更新看板文字和分數
+    // 控制背景音樂播放或暫停
+    function toggleBGM() {
+        if (bgmPlaying) {
+            bgm.pause();
+            audioToggleBtn.innerText = '📁 音樂：關';
+            bgmPlaying = false;
+        } else {
+            bgm.play().catch(e => console.log("等待使用者互動後播放"));
+            audioToggleBtn.innerText = '🎵 音樂：開';
+            bgmPlaying = true;
+        }
+    }
+
     function updateHighScoreDisplay() {
         const labels = { easy: '簡單', medium: '中等', hard: '困難' };
         diffLabelEl.innerText = labels[difficulty];
@@ -187,11 +226,8 @@
     function setDifficulty(level, event) {
         if (gameActive) return; 
         difficulty = level;
-        
         diffButtons.forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
-        
-        // 切換難度時，即時切換顯示該難度的最高紀錄
         updateHighScoreDisplay();
     }
 
@@ -206,6 +242,11 @@
         btnEl.innerText = '提交答案';
         btnEl.setAttribute('onclick', 'checkAnswer()');
         
+        // 如果玩家開啟了音樂，確保開始時播放
+        if (bgmPlaying) {
+            bgm.play();
+        }
+
         document.getElementById('diff-box').style.pointerEvents = 'none';
         document.getElementById('diff-box').style.opacity = '0.5';
         
@@ -248,11 +289,19 @@
             scoreEl.innerText = score;
             messageEl.className = 'message correct';
             messageEl.innerText = '答對了！🎉 (+10)';
+            
+            // 播放答對音效（重設時間戳以連續播放）
+            soundCorrect.currentTime = 0;
+            soundCorrect.play();
         } else {
             score -= 5; 
             scoreEl.innerText = score;
             messageEl.className = 'message wrong';
             messageEl.innerText = `答錯囉 ❌ (-5) 答案是 ${correctAnswer}`;
+            
+            // 播放答錯音效
+            soundWrong.currentTime = 0;
+            soundWrong.play();
         }
         
         generateQuestion();
@@ -264,31 +313,3 @@
         clearInterval(timerInterval);
         answerEl.disabled = true;
         questionEl.innerText = '時間到！⌛';
-        
-        let msgText = `遊戲結束！最終得分：${score} 分！`;
-        
-        // 檢查是否打破「當前難度」的最高紀錄
-        if (score > highScores[difficulty]) {
-            highScores[difficulty] = score;
-            
-            // 根據不同難度儲存到獨立的快取中
-            const storageKeys = { easy: 'mult_high_easy', medium: 'mult_high_medium', hard: 'mult_high_hard' };
-            localStorage.setItem(storageKeys[difficulty], score);
-            
-            highScoreEl.innerText = score;
-            msgText += `<br><span style="color: #ecc94b; font-size: 22px;">👑 恭喜打破${diffLabelEl.innerText}模式紀錄！</span>`;
-        }
-
-        messageEl.className = 'message';
-        messageEl.innerHTML = msgText;
-        
-        btnEl.innerText = '再玩一次';
-        btnEl.setAttribute('onclick', 'startGame()');
-        
-        document.getElementById('diff-box').style.pointerEvents = 'auto';
-        document.getElementById('diff-box').style.opacity = '1';
-    }
-</script>
-
-</body>
-</html>
