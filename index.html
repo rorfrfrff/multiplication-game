@@ -50,10 +50,20 @@
         .stats {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-size: 18px;
             font-weight: bold;
             color: #4a5568;
+        }
+        .highscore-board {
+            background-color: #edf2f7;
+            padding: 8px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-bottom: 20px;
+            transition: all 0.3s;
         }
         .question {
             font-size: 48px;
@@ -109,14 +119,20 @@
     
     <!-- 難度選擇按鈕 -->
     <div class="difficulty-container" id="diff-box">
-        <button class="diff-btn active" onclick="setDifficulty('easy')">簡單 (2-9)</button>
-        <button class="diff-btn" onclick="setDifficulty('medium')">中等 (11-19)</button>
-        <button class="diff-btn" onclick="setDifficulty('hard')">困難 (11-99)</button>
+        <button class="diff-btn active" onclick="setDifficulty('easy', event)">簡單 (2-9)</button>
+        <button class="diff-btn" onclick="setDifficulty('medium', event)">中等 (11-19)</button>
+        <button class="diff-btn" onclick="setDifficulty('hard', event)">困難 (11-99)</button>
     </div>
 
+    <!-- 即時分數與時間 -->
     <div class="stats">
         <div>分數: <span id="score">0</span></div>
         <div>時間: <span id="timer">30</span> 秒</div>
+    </div>
+
+    <!-- 個人最高分紀錄看板 -->
+    <div class="highscore-board">
+        🏆 <span id="diff-label">簡單</span>模式最高紀錄: <span id="high-score">0</span> 分
     </div>
     
     <div id="game-box">
@@ -134,14 +150,26 @@
     let gameActive = false;
     let timerInterval;
     let difficulty = 'easy'; // 預設簡單
+    
+    // 用一個物件管理三種難度的歷史最高分
+    let highScores = {
+        easy: parseInt(localStorage.getItem('mult_high_easy')) || 0,
+        medium: parseInt(localStorage.getItem('mult_high_medium')) || 0,
+        hard: parseInt(localStorage.getItem('mult_high_hard')) || 0
+    };
 
     const questionEl = document.getElementById('question');
     const answerEl = document.getElementById('answer');
     const btnEl = document.getElementById('btn');
     const scoreEl = document.getElementById('score');
     const timerEl = document.getElementById('timer');
+    const highScoreEl = document.getElementById('high-score');
+    const diffLabelEl = document.getElementById('diff-label');
     const messageEl = document.getElementById('message');
     const diffButtons = document.querySelectorAll('.diff-btn');
+
+    // 網頁初始時載入預設（簡單）模式的最高分
+    updateHighScoreDisplay();
 
     answerEl.addEventListener('keyup', function(event) {
         if (event.key === 'Enter') {
@@ -149,13 +177,22 @@
         }
     });
 
-    function setDifficulty(level) {
-        if (gameActive) return; // 遊戲進行中不能換難度
+    // 根據難度更新看板文字和分數
+    function updateHighScoreDisplay() {
+        const labels = { easy: '簡單', medium: '中等', hard: '困難' };
+        diffLabelEl.innerText = labels[difficulty];
+        highScoreEl.innerText = highScores[difficulty];
+    }
+
+    function setDifficulty(level, event) {
+        if (gameActive) return; 
         difficulty = level;
         
-        // 切換按鈕的選取狀態樣式
         diffButtons.forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
+        
+        // 切換難度時，即時切換顯示該難度的最高紀錄
+        updateHighScoreDisplay();
     }
 
     function startGame() {
@@ -169,7 +206,6 @@
         btnEl.innerText = '提交答案';
         btnEl.setAttribute('onclick', 'checkAnswer()');
         
-        // 隱藏難度選擇
         document.getElementById('diff-box').style.pointerEvents = 'none';
         document.getElementById('diff-box').style.opacity = '0.5';
         
@@ -187,15 +223,12 @@
 
     function generateQuestion() {
         if (difficulty === 'easy') {
-            // 2 到 9 的乘法
             num1 = Math.floor(Math.random() * 8) + 2;
             num2 = Math.floor(Math.random() * 8) + 2;
         } else if (difficulty === 'medium') {
-            // 11 到 19 的乘法
             num1 = Math.floor(Math.random() * 9) + 11;
             num2 = Math.floor(Math.random() * 9) + 11;
         } else if (difficulty === 'hard') {
-            // 11 到 99 的雙位數乘法
             num1 = Math.floor(Math.random() * 89) + 11;
             num2 = Math.floor(Math.random() * 89) + 11;
         }
@@ -216,7 +249,7 @@
             messageEl.className = 'message correct';
             messageEl.innerText = '答對了！🎉 (+10)';
         } else {
-            score -= 5; // 答錯扣 5 分
+            score -= 5; 
             scoreEl.innerText = score;
             messageEl.className = 'message wrong';
             messageEl.innerText = `答錯囉 ❌ (-5) 答案是 ${correctAnswer}`;
@@ -231,12 +264,27 @@
         clearInterval(timerInterval);
         answerEl.disabled = true;
         questionEl.innerText = '時間到！⌛';
+        
+        let msgText = `遊戲結束！最終得分：${score} 分！`;
+        
+        // 檢查是否打破「當前難度」的最高紀錄
+        if (score > highScores[difficulty]) {
+            highScores[difficulty] = score;
+            
+            // 根據不同難度儲存到獨立的快取中
+            const storageKeys = { easy: 'mult_high_easy', medium: 'mult_high_medium', hard: 'mult_high_hard' };
+            localStorage.setItem(storageKeys[difficulty], score);
+            
+            highScoreEl.innerText = score;
+            msgText += `<br><span style="color: #ecc94b; font-size: 22px;">👑 恭喜打破${diffLabelEl.innerText}模式紀錄！</span>`;
+        }
+
         messageEl.className = 'message';
-        messageEl.innerText = `遊戲結束！最終得分：${score} 分！`;
+        messageEl.innerHTML = msgText;
+        
         btnEl.innerText = '再玩一次';
         btnEl.setAttribute('onclick', 'startGame()');
         
-        // 恢復難度選擇
         document.getElementById('diff-box').style.pointerEvents = 'auto';
         document.getElementById('diff-box').style.opacity = '1';
     }
