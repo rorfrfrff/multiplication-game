@@ -127,17 +127,17 @@
 </head>
 <body>
 
-<!-- 載入音效檔案（免版權線上音樂源） -->
+<!-- 更換為超高穩定度的公共音訊連結 -->
 <audio id="bgm" src="https://mixkit.co" loop></audio>
-<audio id="sound-correct" src="https://mixkit.co"></audio>
-<audio id="sound-wrong" src="https://mixkit.co"></audio>
+<audio id="sound-correct" src="https://wikimedia.org"></audio>
+<audio id="sound-wrong" src="https://wikimedia.org"></audio>
 
 <div class="game-container">
     <h1>九九乘法大挑戰 🎮</h1>
     
     <!-- 音樂開關 -->
     <div class="audio-control">
-        <button id="audio-toggle" class="audio-btn" onclick="toggleBGM()">🎵 音樂：關</button>
+        <button id="audio-toggle" class="audio-btn" onclick="toggleBGM()">📁 音樂：關</button>
     </div>
     
     <!-- 難度選擇 -->
@@ -179,11 +179,10 @@
         hard: parseInt(localStorage.getItem('mult_high_hard')) || 0
     };
 
-    // 取得音效元素
     const bgm = document.getElementById('bgm');
     const soundCorrect = document.getElementById('sound-correct');
     const soundWrong = document.getElementById('sound-wrong');
-    bgm.volume = 0.3; // 背景音樂稍微小聲一點
+    bgm.volume = 0.2; // 背景音樂稍微小聲
 
     const questionEl = document.getElementById('question');
     const answerEl = document.getElementById('answer');
@@ -204,7 +203,6 @@
         }
     });
 
-    // 控制背景音樂播放或暫停
     function toggleBGM() {
         if (bgmPlaying) {
             bgm.pause();
@@ -242,16 +240,20 @@
         btnEl.innerText = '提交答案';
         btnEl.setAttribute('onclick', 'checkAnswer()');
         
-        // 如果玩家開啟了音樂，確保開始時播放
+        // 修正處：加入安全防護，只有在玩家開啟音樂時才進行 play()，避免程式碼卡死
         if (bgmPlaying) {
-            bgm.play();
+            bgm.play().catch(e => console.log("音樂播放被阻擋"));
         }
 
         document.getElementById('diff-box').style.pointerEvents = 'none';
         document.getElementById('diff-box').style.opacity = '0.5';
         
         generateQuestion();
-        answerEl.focus();
+        
+        // 延遲一下下讓輸入框聚焦
+        setTimeout(() => {
+            answerEl.focus();
+        }, 50);
 
         timerInterval = setInterval(() => {
             timeLeft--;
@@ -290,9 +292,9 @@
             messageEl.className = 'message correct';
             messageEl.innerText = '答對了！🎉 (+10)';
             
-            // 播放答對音效（重設時間戳以連續播放）
+            // 播放答對音效
             soundCorrect.currentTime = 0;
-            soundCorrect.play();
+            soundCorrect.play().catch(e => console.log("音效播放被阻擋"));
         } else {
             score -= 5; 
             scoreEl.innerText = score;
@@ -301,15 +303,6 @@
             
             // 播放答錯音效
             soundWrong.currentTime = 0;
-            soundWrong.play();
+            soundWrong.play().catch(e => console.log("音效播放被阻擋"));
         }
         
-        generateQuestion();
-        answerEl.focus();
-    }
-
-    function endGame() {
-        gameActive = false;
-        clearInterval(timerInterval);
-        answerEl.disabled = true;
-        questionEl.innerText = '時間到！⌛';
