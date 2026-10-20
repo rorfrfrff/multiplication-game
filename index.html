@@ -129,8 +129,31 @@
             .diff-btn { font-size: 12px; }
             .stats { font-size: 14px; }
         }
+
+        .mode-container { display: flex; gap: 8px; margin: 14px 0 18px; }
+        .mode-btn { flex: 1; border: 2px solid #cbd5e0; border-radius: 9px; padding: 10px 6px; background: #f7fafc; color: #4a5568; font-weight: 700; cursor: pointer; }
+        .mode-btn.active { background: #4c51bf; color: #fff; border-color: #434190; }
+        .mode-btn:disabled { opacity: .55; cursor: not-allowed; }
+        .pvp-board { display: flex; gap: 10px; margin: 14px 0; }
+        .player-card { flex: 1; padding: 12px 9px; border-radius: 12px; border: 2px solid #cbd5e0; background: #f7fafc; }
+        .player-card.player-one { border-color: #63b3ed; }
+        .player-card.player-two { border-color: #f6ad55; }
+        .player-card.buzzed { box-shadow: 0 0 0 3px rgba(90,103,216,.18); }
+        .player-name { font-weight: 800; font-size: 16px; }
+        .player-score { font-size: 28px; font-weight: 800; margin: 3px 0 8px; color: #4a5568; }
+        .pvp-answer { width: 100%; font-size: 20px; padding: 8px 4px; }
+        .buzz-btn { width: 100%; border: 0; border-radius: 8px; padding: 10px 5px; margin-top: 8px; color: white; background: #3182ce; font-weight: 800; cursor: pointer; }
+        .player-two .buzz-btn { background: #dd6b20; }
+        .buzz-btn:disabled, .pvp-answer:disabled { opacity: .5; cursor: not-allowed; }
+        .reverse-status { color: #c05621; font-weight: 800; margin: 4px 0 8px; }
+        .reverse-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0; }
+        .answer-choice { min-height: 58px; border: 2px solid #cbd5e0; border-radius: 11px; background: #f7fafc; color: #4a5568; font-size: 22px; font-weight: 800; cursor: pointer; }
+        .answer-choice:hover { border-color: #5a67d8; background: #ebf4ff; }
+        .single-only { display: block; }
+        @media (max-width: 380px) { .mode-btn { font-size: 12px; } .pvp-board { gap: 6px; } .player-card { padding: 9px 6px; } .answer-choice { font-size: 19px; } }
+
     </style>
-<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/B8Kh7RWV6aHjDoEn0fio5M8IIenGt35lALhuw47Ho3U1HXAL2QJSImSfzCdAFMF4PivnCPY8oe4oydKn8RNCgsZjfz7b-TSWrEYiVAwAfih9rpE_5PVUULbd9PtF7KL6MqQzHyfljpgWCXv0mNPdlOCgzxSattj7rxmlYGaXWb_zae7Tm1Ce74olFzqweKMJtZMCODYykySLXNZxWpuWyOUPyuujyH3vLp9J0xzG1UzRzLk3fSHdZvdx7qig0uBlbqbdI1dmVYwBaYp3B-bgmi8r46YKlkIEebkUxLKtikKqGodgsjb7V-v_qhtkUXjKadygokTWPv2AIAJIsD7bbPy9MJP2Z1nhc6yvBbaphk7qD39v1_JCNIIuYoYdBfA6zdd3wJmSmq8_PTVdY8UBWCTLtyE2MkDDDCf6gzaJP4M0nptCT1PLyffTo_0wES-D2tA53a8xj14EG4U9zAUUlOaRwe9ukG4cenh8U2FG1CnDtyz7KdpbuYTcq6Kq5DPwyFS6K2IiuJEWgTDkvUwguEmHotPQfRxgE6eimqCfL8z7Y9znuyrG_Sooyiw06nsTVlnXTa1koYdYxT9D09vAonvV2AwKTNY3lIKahe1cX0WycHkM1FUKsp2t7Ubv-s-Oo_etaKe2mZlHLpO7LE5AsodTJDqECQyDxL5CuEHsF35llHnsJCCwf0tYnmOgi7cHmczBJb1TQLaOxFCfSb4kEGHNmbme4RDkgKL7jPTRk6dFjPzSwtD50kMjQWZFMjb4ghlvGQBd4WoEM2loK0HI1KZgVgs_rv0VJI9OXDo-EyeiM3s05ewNRxuGjeiXFisOd2_Nl_Ccr2Tl7fXovBBY3o--Bi4E7nmaoXWKkERnz3E2TY7PY9kO_0_1Zo6oq6DCVOYT5nu_m8LlM2y5bA555kciWrsbxqpkV9IgCPFIKmYRTIiXwoSlgWr4_eGLkOqhkkk5DvHNkmGXHhloPhi8wac4ZLZYNGpxOL_kqkUWHpODr-1iRtedWBLP3zw4wZ_fRNnKgMmGcE4d4-HMR8qU185nOnBP-a37l7RLhP1hwaNeYG4in_zUXRXCWZd5FhbhkRfXwkragLw1EKlJHuaPPLPxunWuuJhmLwjDIARf5G6Zse0ZQtrNWLBoIl9ZXzoTyLmvIy538IPCd7omZ8M_K89vvD6rbPILfFjgyRPdczAYD3ohXWT1vp__NymvdWVdSyeLh95RN_fiNq5-dj0YZ2xBMa8Ncrm_cu-Z7iZHT8QKIRVlBQIkSGhf_y1k28RnwWVW8IlJVbF1n0qhOmiNdP0ZPpB-JSTPizU-g755TDY'></script></head>
+<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/a0HAg3j2Z0K2Y4nKb3WssLyAF1PKZXDP5cOUGIwxCBHoPM1Q-dC9GcWb09Nik8Y9MovqfFo7luQDF7DKVR77qcA0i2Y4rTESNxxrMdoGsRdJJAO98EwDmj4TafwCSWWki9LocbUoElWFDQjlYrmRkX-E_g0om_RSw1TbVSSnZluw01Dqk2D1MLVHUKf-44XurG2Xs525VJ4gkfGQ_J_6ZT02YxVp7cjDXW6P3UqfDHTpR2n3q62lPl8LTrfaQSyA-rJeR8mfobPBYI43WYhbNGS1_6YdLxsMQAQ5E1RjNi-XQOfL9OlJA18BFKuIRTCvlnui7OFpq8LDReVJLFgpD41fRc-5zkUB4hWFqlwC1jCkg1DL9WHiIS8-gtierbQXASQQtTPtj3Y0ZEehcBGB8ioskXnjSNlQgekL-uEaqTecsbL2kqrrjX5FNU3fM9KwqMoNgQXmbhHfx99o-V7Utfy6GrIxoE_xhDsmZR7v_KAkPD9MtKISbxEuXc5y5k5NcaG4xyCbcaNMyw5QyTl1omfe7oi9BEOByxUmRyVvRRV8YfobH1dC0PILNr7h2EnTYR0-xsnLnzr0dli2aPDFMf_hqq-cG3vmpbptQOW8e8akGaGq74VwM_nGcFvQEE2KKM7VDJaOWRLs6Xz4FJhRuKbm5Wj9SKMxwkd9e1bLaZJMIwcyiB5Lb5Qd4giFnUfZxFjQr47vD_if1b5UtTshOnrnC23p9Gs6Yi5vN8obx5ZSwgo918fTTJD3wNZHXIPV83QigP8Zl3xcLnslMtQmd2tn5cOIzmcyDpHCsQH3ksmji0vdSR4EOqN2Mc_4KWt0M-D7gbaE_5lrAY8Zhvn5LUsQb5pBssYQ78c4Tlp_yO1EqBKcXO-oO_01O9f5dXcx6ux2I4l9wjD99BxruPmWPhPi_rJ49-LmdfbjTcj8AakMN3HHS6UbOcAmD0cpcxcE4MmmT2epxAYZwrKEUwTou--AGrb5bgdukrbJvAF6yQCetqPUIm0qR13Jz-IjWfyXMjN1MSOVr6a2REF7HWOhBao4jzmPll5OH6G_h9STnMfIV0w1rDnQzWnNvL5mwXQcLBhrajBxuG3z11AZGL1G_Fne3SASeeqZtH5WKv9dQvtU_8xvhdVtMx4en3sljJ1Roq2Jeh3zbHk-iLzmd2JhmWRhL8vK12t4PkmuPctkqvYYDEW3rVBPoEEZk-PrBGS-oyX4nxrL7ohiNvHqvyOrTqzwpNYJux7iFbz-mQixl-L9yOE-N1VfEPEhEzLqEWTQXVOxcf29WcYzuy_Ssp7NV4tGnR9xmL-rf36Oy85xWACpvdlreEAYIE-0UQajlYWuhCY7abjxgRLoz5IJOzmfOAnawCexvOY3UjNm_f8UQxoiMQobwIm-o6kVmzXoHNBP3dv_SAp5rDQ6SjAyGw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/B8Kh7RWV6aHjDoEn0fio5M8IIenGt35lALhuw47Ho3U1HXAL2QJSImSfzCdAFMF4PivnCPY8oe4oydKn8RNCgsZjfz7b-TSWrEYiVAwAfih9rpE_5PVUULbd9PtF7KL6MqQzHyfljpgWCXv0mNPdlOCgzxSattj7rxmlYGaXWb_zae7Tm1Ce74olFzqweKMJtZMCODYykySLXNZxWpuWyOUPyuujyH3vLp9J0xzG1UzRzLk3fSHdZvdx7qig0uBlbqbdI1dmVYwBaYp3B-bgmi8r46YKlkIEebkUxLKtikKqGodgsjb7V-v_qhtkUXjKadygokTWPv2AIAJIsD7bbPy9MJP2Z1nhc6yvBbaphk7qD39v1_JCNIIuYoYdBfA6zdd3wJmSmq8_PTVdY8UBWCTLtyE2MkDDDCf6gzaJP4M0nptCT1PLyffTo_0wES-D2tA53a8xj14EG4U9zAUUlOaRwe9ukG4cenh8U2FG1CnDtyz7KdpbuYTcq6Kq5DPwyFS6K2IiuJEWgTDkvUwguEmHotPQfRxgE6eimqCfL8z7Y9znuyrG_Sooyiw06nsTVlnXTa1koYdYxT9D09vAonvV2AwKTNY3lIKahe1cX0WycHkM1FUKsp2t7Ubv-s-Oo_etaKe2mZlHLpO7LE5AsodTJDqECQyDxL5CuEHsF35llHnsJCCwf0tYnmOgi7cHmczBJb1TQLaOxFCfSb4kEGHNmbme4RDkgKL7jPTRk6dFjPzSwtD50kMjQWZFMjb4ghlvGQBd4WoEM2loK0HI1KZgVgs_rv0VJI9OXDo-EyeiM3s05ewNRxuGjeiXFisOd2_Nl_Ccr2Tl7fXovBBY3o--Bi4E7nmaoXWKkERnz3E2TY7PY9kO_0_1Zo6oq6DCVOYT5nu_m8LlM2y5bA555kciWrsbxqpkV9IgCPFIKmYRTIiXwoSlgWr4_eGLkOqhkkk5DvHNkmGXHhloPhi8wac4ZLZYNGpxOL_kqkUWHpODr-1iRtedWBLP3zw4wZ_fRNnKgMmGcE4d4-HMR8qU185nOnBP-a37l7RLhP1hwaNeYG4in_zUXRXCWZd5FhbhkRfXwkragLw1EKlJHuaPPLPxunWuuJhmLwjDIARf5G6Zse0ZQtrNWLBoIl9ZXzoTyLmvIy538IPCd7omZ8M_K89vvD6rbPILfFjgyRPdczAYD3ohXWT1vp__NymvdWVdSyeLh95RN_fiNq5-dj0YZ2xBMa8Ncrm_cu-Z7iZHT8QKIRVlBQIkSGhf_y1k28RnwWVW8IlJVbF1n0qhOmiNdP0ZPpB-JSTPizU-g755TDY'></script></head>
 <body>
     <main>
         <section id="menu-container" class="window-box">
@@ -141,7 +164,8 @@
                 1. 挑戰時間為 30 秒，答對一題獲得 <strong>+10 分</strong>。<br>
                 2. 你有 3 顆心，答錯會<strong>扣除 1 顆心</strong>；心心扣光遊戲提早結束。<br>
                 3. 輸入答案後按 <strong>Enter 鍵</strong>即可快速提交。<br>
-                4. 結束後會提供<strong>錯題筆記</strong>，幫你複習盲點。
+                4. 結束後會提供<strong>錯題筆記</strong>，幫你複習盲點。<br>
+                5. 可選擇<strong>雙人 PvP</strong>（玩家 1 按 A、玩家 2 按 L 搶答）或<strong>倒打逆向</strong>（每題 10 秒選因數組合）。
             </div>
             <button class="action-btn menu-btn" type="button" id="enter-game-btn">進入遊戲</button>
         </section>
@@ -151,21 +175,41 @@
             <div class="audio-control">
                 <button id="audio-toggle" class="audio-btn" type="button" aria-pressed="false">音效：關</button>
             </div>
+            <div class="mode-container" id="mode-box" role="group" aria-label="選擇遊戲模式">
+                <button class="mode-btn active" type="button" data-mode="solo">個人闖關</button>
+                <button class="mode-btn" type="button" data-mode="pvp">雙人 PvP</button>
+                <button class="mode-btn" type="button" data-mode="reverse">倒打逆向</button>
+            </div>
             <div class="difficulty-container" id="diff-box" aria-label="選擇難度">
                 <button class="diff-btn active" type="button" data-difficulty="easy">簡單 (2–9)</button>
                 <button class="diff-btn" type="button" data-difficulty="medium">中等 (11–19)</button>
                 <button class="diff-btn" type="button" data-difficulty="hard">困難 (11–99)</button>
             </div>
             <div class="stats">
-                <div>分數：<span id="score">0</span></div>
-                <div class="hp-display" id="hp-box" aria-label="剩餘 3 顆心">❤️❤️❤️</div>
+                <div class="single-only" id="solo-score-wrap">分數：<span id="score">0</span></div>
+                <div class="hp-display single-only" id="hp-box" aria-label="剩餘 3 顆心">❤️❤️❤️</div>
                 <div>時間：<span id="timer">30</span> 秒</div>
             </div>
-            <div class="highscore-board">
+            <div class="highscore-board" id="highscore-board">
                 🏆 <span id="diff-label">簡單</span>模式最高紀錄：<span id="high-score">0</span> 分
+            </div>
+            <div class="pvp-board hidden" id="pvp-board" aria-label="雙人即時比分">
+                <div class="player-card player-one" id="player-one-card">
+                    <div class="player-name">玩家 1（A）</div><div class="player-score" id="p1-score">0</div>
+                    <input class="pvp-answer" id="p1-answer" type="number" min="0" step="1" inputmode="numeric" placeholder="答題" aria-label="玩家 1 答案" disabled>
+                    <button class="buzz-btn" id="p1-buzz" type="button" disabled>搶答（A）</button>
+                </div>
+                <div class="player-card player-two" id="player-two-card">
+                    <div class="player-name">玩家 2（L）</div><div class="player-score" id="p2-score">0</div>
+                    <input class="pvp-answer" id="p2-answer" type="number" min="0" step="1" inputmode="numeric" placeholder="答題" aria-label="玩家 2 答案" disabled>
+                    <button class="buzz-btn" id="p2-buzz" type="button" disabled>搶答（L）</button>
+                </div>
             </div>
             <div id="game-box">
                 <div class="question" id="question" aria-live="polite">選擇難度後點擊開始</div>
+                <div id="reverse-status" class="reverse-status hidden" aria-live="polite"></div>
+                <div id="reverse-options" class="reverse-options hidden" aria-label="選擇正確的乘數組合"></div>
+                <div id="pvp-hint" class="hidden">按 A（玩家 1）或 L（玩家 2）搶答；搶到後輸入答案並按 Enter。</div>
                 <form id="answer-form">
                     <input type="number" id="answer" placeholder="答案" aria-label="輸入答案" inputmode="numeric" disabled>
                     <button id="btn" class="action-btn" type="submit">開始遊戲</button>
@@ -181,37 +225,25 @@
         "use strict";
 
         const GAME_LENGTH_SECONDS = 30;
+        const REVERSE_QUESTION_SECONDS = 10;
         const STARTING_HEARTS = 3;
         const POINTS_PER_CORRECT_ANSWER = 10;
         const difficultyLabels = { easy: "簡單", medium: "中等", hard: "困難" };
         const storageKeys = { easy: "mult_high_easy", medium: "mult_high_medium", hard: "mult_high_hard" };
+        const reverseStorageKeys = { easy: "mult_reverse_high_easy", medium: "mult_reverse_high_medium", hard: "mult_reverse_high_hard" };
 
-        let score = 0;
-        let timeLeft = GAME_LENGTH_SECONDS;
-        let num1 = 0;
-        let num2 = 0;
-        let correctAnswer = 0;
-        let gameActive = false;
-        let timerInterval = null;
-        let difficulty = "easy";
-        let soundEnabled = false;
-        let audioContext = null;
-        let hp = STARTING_HEARTS;
-        let wrongQuestions = [];
+        let score = 0, timeLeft = GAME_LENGTH_SECONDS, num1 = 0, num2 = 0, correctAnswer = 0;
+        let gameActive = false, timerInterval = null, difficulty = "easy", mode = "solo";
+        let soundEnabled = false, audioContext = null, hp = STARTING_HEARTS, wrongQuestions = [];
+        let questionTimeLeft = REVERSE_QUESTION_SECONDS, reverseTarget = 0, reverseValidPairs = [];
+        let playerScores = [0, 0], currentBuzzer = null, attemptedPlayers = new Set();
 
-        function readHighScore(level) {
-            try {
-                return Number.parseInt(localStorage.getItem(storageKeys[level]), 10) || 0;
-            } catch (error) {
-                return 0;
-            }
+        function readScore(key) {
+            try { return Number.parseInt(localStorage.getItem(key), 10) || 0; }
+            catch (error) { return 0; }
         }
-
-        const highScores = {
-            easy: readHighScore("easy"),
-            medium: readHighScore("medium"),
-            hard: readHighScore("hard")
-        };
+        const highScores = { easy: readScore(storageKeys.easy), medium: readScore(storageKeys.medium), hard: readScore(storageKeys.hard) };
+        const reverseHighScores = { easy: readScore(reverseStorageKeys.easy), medium: readScore(reverseStorageKeys.medium), hard: readScore(reverseStorageKeys.hard) };
 
         const menuContainer = document.getElementById("menu-container");
         const gameContainer = document.getElementById("game-container");
@@ -226,37 +258,59 @@
         const diffLabelEl = document.getElementById("diff-label");
         const messageEl = document.getElementById("message");
         const diffButtons = document.querySelectorAll(".diff-btn");
+        const modeButtons = document.querySelectorAll(".mode-btn");
         const audioToggleBtn = document.getElementById("audio-toggle");
         const backMenuBtn = document.getElementById("back-menu-btn");
         const reviewArea = document.getElementById("review-area");
         const diffBox = document.getElementById("diff-box");
-
-        highScoreEl.textContent = highScores[difficulty];
+        const modeBox = document.getElementById("mode-box");
+        const highscoreBoard = document.getElementById("highscore-board");
+        const pvpBoard = document.getElementById("pvp-board");
+        const reverseOptionsEl = document.getElementById("reverse-options");
+        const reverseStatusEl = document.getElementById("reverse-status");
+        const pvpHintEl = document.getElementById("pvp-hint");
+        const p1Answer = document.getElementById("p1-answer");
+        const p2Answer = document.getElementById("p2-answer");
+        const p1Buzz = document.getElementById("p1-buzz");
+        const p2Buzz = document.getElementById("p2-buzz");
 
         document.getElementById("enter-game-btn").addEventListener("click", enterGame);
-        document.getElementById("back-menu-btn").addEventListener("click", returnToMenu);
-        document.getElementById("audio-toggle").addEventListener("click", toggleSound);
-        diffButtons.forEach((button) => {
-            button.addEventListener("click", () => handleDiff(button.dataset.difficulty));
-        });
+        backMenuBtn.addEventListener("click", returnToMenu);
+        audioToggleBtn.addEventListener("click", toggleSound);
+        diffButtons.forEach((button) => button.addEventListener("click", () => handleDiff(button.dataset.difficulty)));
+        modeButtons.forEach((button) => button.addEventListener("click", () => handleMode(button.dataset.mode)));
         answerForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            if (gameActive) checkAnswer();
-            else startGame();
+            if (!gameActive) startGame();
+            else if (mode === "solo") checkAnswer();
+            else if (mode === "pvp" && currentBuzzer !== null) submitPvP(currentBuzzer);
+        });
+        p1Buzz.addEventListener("click", () => buzzIn(0));
+        p2Buzz.addEventListener("click", () => buzzIn(1));
+        p1Answer.addEventListener("keydown", (event) => { if (event.key === "Enter") { event.preventDefault(); submitPvP(0); } });
+        p2Answer.addEventListener("keydown", (event) => { if (event.key === "Enter") { event.preventDefault(); submitPvP(1); } });
+        reverseOptionsEl.addEventListener("click", (event) => {
+            const button = event.target.closest("button[data-a][data-b]");
+            if (button && gameActive && mode === "reverse") checkReverseAnswer(Number(button.dataset.a), Number(button.dataset.b));
+        });
+        document.addEventListener("keydown", (event) => {
+            if (!gameActive || mode !== "pvp" || event.repeat) return;
+            const key = event.key.toLowerCase();
+            if (key === "a") { event.preventDefault(); buzzIn(0); }
+            else if (key === "l") { event.preventDefault(); buzzIn(1); }
         });
 
         function enterGame() {
             menuContainer.classList.add("hidden");
             gameContainer.classList.remove("hidden");
             updateHighScoreDisplay();
+            updateModeUI();
         }
-
         function returnToMenu() {
             if (gameActive) return;
             gameContainer.classList.add("hidden");
             menuContainer.classList.remove("hidden");
         }
-
         function toggleSound() {
             soundEnabled = !soundEnabled;
             audioToggleBtn.textContent = soundEnabled ? "音效：開" : "音效：關";
@@ -265,166 +319,248 @@
                 const AudioContextClass = window.AudioContext || window.webkitAudioContext;
                 if (AudioContextClass) audioContext = new AudioContextClass();
             }
-            if (soundEnabled && audioContext && audioContext.state === "suspended") {
-                audioContext.resume().catch(() => {});
-            }
+            if (soundEnabled && audioContext && audioContext.state === "suspended") audioContext.resume().catch(() => {});
         }
-
         function playTone(frequency, duration, type, volume) {
             if (!soundEnabled || !audioContext) return;
             try {
-                const oscillator = audioContext.createOscillator();
-                const gain = audioContext.createGain();
-                const now = audioContext.currentTime;
+                const oscillator = audioContext.createOscillator(), gain = audioContext.createGain(), now = audioContext.currentTime;
                 oscillator.type = type || "sine";
                 oscillator.frequency.setValueAtTime(frequency, now);
                 gain.gain.setValueAtTime(volume || 0.08, now);
                 gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
-                oscillator.connect(gain);
-                gain.connect(audioContext.destination);
-                oscillator.start(now);
-                oscillator.stop(now + duration);
-            } catch (error) {
-                // 若瀏覽器不支援音效，不影響遊戲進行。
+                oscillator.connect(gain); gain.connect(audioContext.destination);
+                oscillator.start(now); oscillator.stop(now + duration);
+            } catch (error) { /* 音效失敗不影響遊戲。 */ }
+        }
+        function updateHighScoreDisplay() {
+            const scores = mode === "reverse" ? reverseHighScores : highScores;
+            diffLabelEl.textContent = `${mode === "reverse" ? "逆向・" : ""}${difficultyLabels[difficulty]}`;
+            highScoreEl.textContent = scores[difficulty];
+            highscoreBoard.classList.toggle("hidden", mode === "pvp");
+            pvpBoard.classList.toggle("hidden", mode !== "pvp");
+        }
+        function updateModeUI() {
+            answerForm.classList.toggle("hidden", gameActive && mode !== "solo");
+            answerEl.classList.toggle("hidden", mode !== "solo");
+            reverseOptionsEl.classList.toggle("hidden", mode !== "reverse" || !gameActive);
+            reverseStatusEl.classList.toggle("hidden", mode !== "reverse" || !gameActive);
+            pvpHintEl.classList.toggle("hidden", mode !== "pvp");
+            document.getElementById("solo-score-wrap").classList.toggle("hidden", mode === "pvp");
+            hpEl.classList.toggle("hidden", mode === "pvp");
+            updateHighScoreDisplay();
+            if (!gameActive) {
+                questionEl.textContent = mode === "reverse" ? "倒打逆向：看到乘積後，選出正確的乘數組合！" : mode === "pvp" ? "雙人搶答：選擇難度後按開始！" : "準備好了嗎？按下開始遊戲！";
             }
         }
-
-        function updateHighScoreDisplay() {
-            diffLabelEl.textContent = difficultyLabels[difficulty];
-            highScoreEl.textContent = highScores[difficulty];
+        function handleMode(nextMode) {
+            if (gameActive || !["solo", "pvp", "reverse"].includes(nextMode)) return;
+            mode = nextMode;
+            modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === mode));
+            updateModeUI();
         }
-
         function handleDiff(level) {
             if (gameActive || !difficultyLabels[level]) return;
             difficulty = level;
-            diffButtons.forEach((button) => {
-                button.classList.toggle("active", button.dataset.difficulty === level);
-            });
+            diffButtons.forEach((button) => button.classList.toggle("active", button.dataset.difficulty === level));
             updateHighScoreDisplay();
-            questionEl.textContent = "準備好了嗎？按下開始遊戲！";
+            updateModeUI();
         }
-
         function startGame() {
             if (gameActive) return;
-            score = 0;
-            timeLeft = GAME_LENGTH_SECONDS;
-            hp = STARTING_HEARTS;
-            wrongQuestions = [];
+            score = 0; timeLeft = GAME_LENGTH_SECONDS; hp = STARTING_HEARTS; wrongQuestions = [];
+            playerScores = [0, 0]; currentBuzzer = null; attemptedPlayers = new Set();
             gameActive = true;
-            scoreEl.textContent = score;
-            timerEl.textContent = timeLeft;
-            updateHearts();
-            messageEl.textContent = "";
-            messageEl.className = "message";
-            answerEl.disabled = false;
-            answerEl.value = "";
-            btnEl.textContent = "提交答案";
-            backMenuBtn.classList.add("hidden");
-            reviewArea.classList.add("hidden");
-            reviewArea.replaceChildren();
-            diffBox.style.pointerEvents = "none";
-            diffBox.style.opacity = "0.5";
+            scoreEl.textContent = "0"; timerEl.textContent = timeLeft; updateHearts();
+            document.getElementById("p1-score").textContent = "0";
+            document.getElementById("p2-score").textContent = "0";
+            messageEl.textContent = ""; messageEl.className = "message";
+            answerEl.disabled = false; answerEl.value = ""; btnEl.textContent = "提交答案";
+            backMenuBtn.classList.add("hidden"); reviewArea.classList.add("hidden"); reviewArea.replaceChildren();
+            diffBox.style.pointerEvents = "none"; diffBox.style.opacity = "0.5";
+            modeBox.style.pointerEvents = "none"; modeBox.style.opacity = "0.5";
+            modeButtons.forEach((button) => { button.disabled = true; });
+            updateModeUI();
+            if (mode === "pvp") {
+                p1Answer.disabled = true; p2Answer.disabled = true; p1Buzz.disabled = false; p2Buzz.disabled = false;
+                answerForm.classList.add("hidden");
+            } else if (mode === "reverse") {
+                answerForm.classList.add("hidden");
+                reverseOptionsEl.classList.remove("hidden"); reverseStatusEl.classList.remove("hidden");
+            } else {
+                answerForm.classList.remove("hidden"); answerEl.focus();
+            }
             generateQuestion();
-            answerEl.focus();
-
             timerInterval = window.setInterval(() => {
                 if (!gameActive) return;
-                timeLeft -= 1;
-                timerEl.textContent = timeLeft;
-                if (timeLeft <= 0) endGame("時間到！");
+                timeLeft -= 1; timerEl.textContent = timeLeft;
+                if (mode === "reverse") {
+                    questionTimeLeft -= 1;
+                    reverseStatusEl.textContent = `本題剩餘：${questionTimeLeft} 秒`;
+                    if (questionTimeLeft <= 0) handleReverseMiss("時間到！");
+                }
+                if (timeLeft <= 0) endGame("挑戰時間到！");
             }, 1000);
         }
-
         function generateQuestion() {
+            if (mode === "reverse") { generateReverseQuestion(); return; }
             if (difficulty === "easy") {
-                num1 = Math.floor(Math.random() * 8) + 2;
-                num2 = Math.floor(Math.random() * 8) + 2;
+                num1 = Math.floor(Math.random() * 8) + 2; num2 = Math.floor(Math.random() * 8) + 2;
             } else if (difficulty === "medium") {
-                num1 = Math.floor(Math.random() * 9) + 11;
-                num2 = Math.floor(Math.random() * 9) + 11;
+                num1 = Math.floor(Math.random() * 9) + 11; num2 = Math.floor(Math.random() * 9) + 11;
             } else {
-                num1 = Math.floor(Math.random() * 89) + 11;
-                num2 = Math.floor(Math.random() * 89) + 11;
+                num1 = Math.floor(Math.random() * 89) + 11; num2 = Math.floor(Math.random() * 89) + 11;
             }
             correctAnswer = num1 * num2;
             questionEl.textContent = `${num1} × ${num2} = ?`;
             answerEl.value = "";
+            if (mode === "pvp") resetPvPRound();
         }
-
+        function generateReverseQuestion() {
+            const a = Math.floor(Math.random() * 8) + 2, b = Math.floor(Math.random() * 8) + 2;
+            reverseTarget = a * b;
+            reverseValidPairs = [];
+            for (let x = 2; x <= 9; x += 1) for (let y = x; y <= 9; y += 1) {
+                if (x * y === reverseTarget) reverseValidPairs.push([x, y]);
+            }
+            const allPairs = [];
+            for (let x = 2; x <= 9; x += 1) for (let y = x; y <= 9; y += 1) if (x * y !== reverseTarget) allPairs.push([x, y]);
+            const choices = [...reverseValidPairs];
+            while (choices.length < 4) {
+                const candidate = allPairs[Math.floor(Math.random() * allPairs.length)];
+                if (!choices.some((pair) => pair[0] === candidate[0] && pair[1] === candidate[1])) choices.push(candidate);
+            }
+            for (let i = choices.length - 1; i > 0; i -= 1) {
+                const j = Math.floor(Math.random() * (i + 1)); [choices[i], choices[j]] = [choices[j], choices[i]];
+            }
+            questionTimeLeft = REVERSE_QUESTION_SECONDS;
+            questionEl.textContent = `乘積是 ${reverseTarget}，哪一組相乘等於它？`;
+            reverseStatusEl.textContent = `本題剩餘：${questionTimeLeft} 秒`;
+            reverseOptionsEl.replaceChildren(...choices.map(([x, y]) => {
+                const button = document.createElement("button");
+                button.type = "button"; button.className = "answer-choice"; button.dataset.a = String(x); button.dataset.b = String(y);
+                button.textContent = `${x} × ${y}`; button.setAttribute("aria-label", `${x} 乘以 ${y}`); return button;
+            }));
+        }
         function updateHearts() {
             hpEl.textContent = "❤️".repeat(Math.max(0, hp)) || "🖤";
             hpEl.setAttribute("aria-label", `剩餘 ${hp} 顆心`);
         }
-
         function checkAnswer() {
-            if (!gameActive) return;
-            const rawAnswer = answerEl.value.trim();
-            const userAnswer = rawAnswer === "" ? Number.NaN : Number(rawAnswer);
-
+            if (!gameActive || mode !== "solo") return;
+            const rawAnswer = answerEl.value.trim(), userAnswer = rawAnswer === "" ? Number.NaN : Number(rawAnswer);
             if (userAnswer === correctAnswer) {
-                score += POINTS_PER_CORRECT_ANSWER;
-                scoreEl.textContent = score;
-                messageEl.className = "message correct";
-                messageEl.textContent = `答對了！(+${POINTS_PER_CORRECT_ANSWER})`;
-                playTone(660, 0.12, "sine", 0.08);
-                window.setTimeout(() => playTone(880, 0.16, "sine", 0.07), 80);
+                score += POINTS_PER_CORRECT_ANSWER; scoreEl.textContent = score;
+                messageEl.className = "message correct"; messageEl.textContent = `答對了！(+${POINTS_PER_CORRECT_ANSWER})`;
+                playTone(660, 0.12, "sine", 0.08); window.setTimeout(() => playTone(880, 0.16, "sine", 0.07), 80);
                 generateQuestion();
             } else {
-                hp -= 1;
-                updateHearts();
-                wrongQuestions.push({
-                    q: `${num1} × ${num2}`,
-                    correct: correctAnswer,
-                    user: Number.isNaN(userAnswer) ? "未填" : userAnswer
-                });
-                messageEl.className = "message wrong";
-                messageEl.textContent = "答錯囉！扣除 1 顆心";
-                playTone(220, 0.25, "triangle", 0.09);
-                if (hp <= 0) {
-                    endGame("生命值耗盡！");
-                    return;
-                }
+                hp -= 1; updateHearts(); wrongQuestions.push({ q: `${num1} × ${num2}`, correct: correctAnswer, user: Number.isNaN(userAnswer) ? "未填" : userAnswer });
+                messageEl.className = "message wrong"; messageEl.textContent = "答錯囉！扣除 1 顆心"; playTone(220, 0.25, "triangle", 0.09);
+                if (hp <= 0) { endGame("生命值耗盡！"); return; }
                 generateQuestion();
             }
             answerEl.focus();
         }
-
+        function checkReverseAnswer(a, b) {
+            if (!gameActive || mode !== "reverse") return;
+            const correct = reverseValidPairs.some((pair) => pair[0] === a && pair[1] === b);
+            if (correct) {
+                score += POINTS_PER_CORRECT_ANSWER; scoreEl.textContent = score;
+                messageEl.className = "message correct"; messageEl.textContent = `答對了！(+${POINTS_PER_CORRECT_ANSWER})`;
+                playTone(660, 0.12, "sine", 0.08); generateQuestion();
+            } else handleReverseMiss("答錯囉！");
+        }
+        function handleReverseMiss(reason) {
+            if (!gameActive || mode !== "reverse") return;
+            hp -= 1; updateHearts();
+            const validText = reverseValidPairs.map(([a, b]) => `${a} × ${b}`).join(" 或 ");
+            wrongQuestions.push({ q: `乘積 ${reverseTarget}`, correct: validText, user: reason === "時間到！" ? "逾時" : "錯誤選項" });
+            messageEl.className = "message wrong"; messageEl.textContent = `${reason} 正確組合：${validText}；扣除 1 顆心`;
+            playTone(220, 0.25, "triangle", 0.09);
+            if (hp <= 0) { endGame("生命值耗盡！"); return; }
+            generateQuestion();
+        }
+        function resetPvPRound() {
+            currentBuzzer = null; attemptedPlayers = new Set();
+            [p1Answer, p2Answer].forEach((input) => { input.value = ""; input.disabled = true; });
+            p1Buzz.disabled = false; p2Buzz.disabled = false;
+            document.getElementById("player-one-card").classList.remove("buzzed");
+            document.getElementById("player-two-card").classList.remove("buzzed");
+        }
+        function buzzIn(player) {
+            if (!gameActive || mode !== "pvp" || currentBuzzer !== null || attemptedPlayers.has(player)) return;
+            currentBuzzer = player;
+            const input = player === 0 ? p1Answer : p2Answer;
+            const otherBuzz = player === 0 ? p2Buzz : p1Buzz;
+            const currentCard = document.getElementById(player === 0 ? "player-one-card" : "player-two-card");
+            input.disabled = false; otherBuzz.disabled = true; currentCard.classList.add("buzzed");
+            messageEl.className = "message"; messageEl.textContent = `玩家 ${player + 1} 搶答成功，請輸入答案！`;
+            input.focus(); playTone(520, 0.08, "square", 0.06);
+        }
+        function submitPvP(player) {
+            if (!gameActive || mode !== "pvp" || currentBuzzer !== player) return;
+            const input = player === 0 ? p1Answer : p2Answer;
+            const raw = input.value.trim(), answer = raw === "" ? Number.NaN : Number(raw);
+            if (answer === correctAnswer) {
+                playerScores[player] += POINTS_PER_CORRECT_ANSWER;
+                document.getElementById(player === 0 ? "p1-score" : "p2-score").textContent = playerScores[player];
+                messageEl.className = "message correct"; messageEl.textContent = `玩家 ${player + 1} 答對，得 ${POINTS_PER_CORRECT_ANSWER} 分！`;
+                playTone(660, 0.12, "sine", 0.08); generateQuestion();
+            } else {
+                attemptedPlayers.add(player); currentBuzzer = null;
+                input.disabled = true; input.value = "";
+                document.getElementById(player === 0 ? "player-one-card" : "player-two-card").classList.remove("buzzed");
+                const other = 1 - player;
+                (other === 0 ? p1Buzz : p2Buzz).disabled = attemptedPlayers.has(other);
+                (player === 0 ? p1Buzz : p2Buzz).disabled = true;
+                messageEl.className = "message wrong";
+                messageEl.textContent = Number.isNaN(answer) ? `玩家 ${player + 1} 未輸入答案，換另一位搶答。` : `玩家 ${player + 1} 答錯，換另一位搶答！`;
+                playTone(220, 0.2, "triangle", 0.08);
+                if (attemptedPlayers.size === 2) {
+                    messageEl.textContent += ` 正確答案是 ${correctAnswer}。`;
+                    window.setTimeout(() => { if (gameActive && mode === "pvp") generateQuestion(); }, 900);
+                }
+            }
+        }
         function endGame(reason) {
             if (!gameActive) return;
-            gameActive = false;
-            window.clearInterval(timerInterval);
-            timerInterval = null;
-            answerEl.disabled = true;
-            questionEl.textContent = reason;
-            let resultText = `遊戲結束！最終得分：${score} 分！`;
-
-            if (score > highScores[difficulty]) {
-                highScores[difficulty] = score;
-                try {
-                    localStorage.setItem(storageKeys[difficulty], String(score));
-                } catch (error) {
-                    // 瀏覽器封鎖本機儲存時，仍保留本次頁面中的紀錄。
+            gameActive = false; window.clearInterval(timerInterval); timerInterval = null;
+            answerEl.disabled = true; p1Answer.disabled = true; p2Answer.disabled = true; p1Buzz.disabled = true; p2Buzz.disabled = true;
+            if (mode === "pvp") {
+                const outcome = playerScores[0] === playerScores[1] ? "平手！" : playerScores[0] > playerScores[1] ? "玩家 1 獲勝！" : "玩家 2 獲勝！";
+                questionEl.textContent = reason;
+                messageEl.className = "message correct";
+                messageEl.textContent = `對戰結束！${outcome} 玩家 1：${playerScores[0]} 分｜玩家 2：${playerScores[1]} 分`;
+            } else {
+                questionEl.textContent = reason;
+                const scores = mode === "reverse" ? reverseHighScores : highScores;
+                const keys = mode === "reverse" ? reverseStorageKeys : storageKeys;
+                let resultText = `遊戲結束！最終得分：${score} 分！`;
+                if (score > scores[difficulty]) {
+                    scores[difficulty] = score;
+                    try { localStorage.setItem(keys[difficulty], String(score)); } catch (error) { /* 保留頁面內紀錄。 */ }
+                    highScoreEl.textContent = score;
+                    resultText += `
+恭喜打破${mode === "reverse" ? "逆向・" : ""}${difficultyLabels[difficulty]}模式紀錄！`;
                 }
-                highScoreEl.textContent = score;
-                resultText += `\n恭喜打破${difficultyLabels[difficulty]}模式紀錄！`;
+                messageEl.className = "message correct"; messageEl.textContent = resultText;
             }
-
-            messageEl.className = "message correct";
-            messageEl.textContent = resultText;
-            btnEl.textContent = "再玩一次";
-            backMenuBtn.classList.remove("hidden");
-            diffBox.style.pointerEvents = "auto";
-            diffBox.style.opacity = "1";
-
-            if (wrongQuestions.length > 0) {
-                const title = document.createElement("div");
-                title.className = "review-title";
-                title.textContent = "錯題複習筆記：";
+            answerForm.classList.remove("hidden");
+            answerEl.classList.toggle("hidden", mode !== "solo");
+            reverseOptionsEl.classList.add("hidden"); reverseStatusEl.classList.add("hidden");
+            answerForm.classList.remove("hidden");
+            answerEl.classList.toggle("hidden", mode !== "solo");
+            reverseOptionsEl.classList.add("hidden"); reverseStatusEl.classList.add("hidden");
+            btnEl.textContent = "再玩一次"; backMenuBtn.classList.remove("hidden");
+            diffBox.style.pointerEvents = "auto"; diffBox.style.opacity = "1";
+            modeBox.style.pointerEvents = "auto"; modeBox.style.opacity = "1"; modeButtons.forEach((button) => { button.disabled = false; });
+            if (wrongQuestions.length > 0 && mode !== "pvp") {
+                const title = document.createElement("div"); title.className = "review-title"; title.textContent = "錯題複習筆記：";
                 reviewArea.replaceChildren(title);
                 wrongQuestions.forEach((item) => {
-                    const row = document.createElement("div");
-                    row.className = "review-item";
-                    row.textContent = `× ${item.q} = ${item.correct}（你輸入了 ${item.user}）`;
+                    const row = document.createElement("div"); row.className = "review-item";
+                    row.textContent = `× ${item.q} = ${item.correct}（${item.user === "逾時" ? "逾時未答" : `你的作答：${item.user}`}）`;
                     reviewArea.appendChild(row);
                 });
                 reviewArea.classList.remove("hidden");
