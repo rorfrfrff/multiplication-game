@@ -6,7 +6,7 @@
     <title>九九乘法大挑戰 🎮</title>
     <style>
         body {
-           font-family: "Segoe UI", sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             display: flex;
@@ -15,8 +15,7 @@
             height: 100vh;
             margin: 0;
         }
-        /* 主選單與遊戲外殼 */
-        .window-box {
+        .game-container {
             background: white;
             padding: 30px;
             border-radius: 20px;
@@ -24,83 +23,32 @@
             text-align: center;
             max-width: 400px;
             width: 90%;
-            transition: all 0.3s ease;
         }
         h1 { color: #4a5568; margin-bottom: 10px; font-size: 28px; }
-        .subtitle { color: #718096; font-size: 16px; margin-bottom: 25px; }
-        
-        /* 玩法說明框 */
-        .instructions {
-            background-color: #f7fafc;
-            border-left: 4px solid #5a67d8;
-            padding: 15px;
-            text-align: left;
-            font-size: 14px;
-            color: #4a5568;
-            margin-bottom: 25px;
-            border-radius: 0 10px 10px 0;
-            line-height: 1.6;
-        }
-
-        /* 音樂開關 */
         .audio-control { text-align: right; margin-bottom: 10px; }
         .audio-btn { background: #edf2f7; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        
-        /* 難度選擇 */
         .difficulty-container { display: flex; justify-content: space-between; margin: 15px 0; gap: 10px; }
         .diff-btn { flex: 1; padding: 8px; font-size: 14px; border: 2px solid #cbd5e0; border-radius: 8px; background-color: #f7fafc; cursor: pointer; font-weight: bold; }
         .diff-btn.active { background-color: #5a67d8; color: white; border-color: #4c51bf; }
-        
-        /* 即時數據與最高分看板 */
         .stats { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 18px; font-weight: bold; color: #4a5568; }
         .highscore-board { background-color: #edf2f7; padding: 8px; border-radius: 10px; font-size: 16px; font-weight: bold; color: #2b6cb0; margin-bottom: 20px; }
-        
-        /* 題目與輸入框 */
         .question { font-size: 48px; font-weight: bold; color: #5a67d8; margin: 20px 0; }
         input { font-size: 24px; width: 120px; padding: 10px; text-align: center; border: 3px solid #cbd5e0; border-radius: 10px; outline: none; }
         input:focus { border-color: #5a67d8; }
-        
-        /* 按鈕樣式 */
-        .action-btn { font-size: 20px; padding: 12px 25px; background-color: #48bb78; color: white; border: none; border-radius: 10px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background 0.2s; }
+        .action-btn { font-size: 20px; padding: 10px 25px; background-color: #48bb78; color: white; border: none; border-radius: 10px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; }
         .action-btn:hover { background-color: #38a169; }
-        .menu-btn { background-color: #5a67d8; }
-        .menu-btn:hover { background-color: #4c51bf; }
-        .back-btn { background-color: #e2e8f0; color: #4a5568; box-shadow: none; margin-top: 10px; font-size: 16px; padding: 8px; }
-        .back-btn:hover { background-color: #cbd5e0; }
-        
         .message { font-size: 20px; font-weight: bold; margin-top: 15px; min-height: 30px; }
         .correct { color: #38a169; }
         .wrong { color: #e53e3e; }
-        
-        /* 隱藏區塊用的 class */
-        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-<!-- 音訊連結 -->
 <audio id="bgm" src="https://mixkit.co" loop></audio>
 <audio id="sound-correct" src="https://wikimedia.org"></audio>
 <audio id="sound-wrong" src="https://wikimedia.org"></audio>
 
-<!-- 1. 遊戲主選單畫面 -->
-<div id="menu-container" class="window-box">
-    <h1>九九乘法大挑戰 🎮</h1>
-    <div class="subtitle">鍛鍊你的大腦速算極限！</div>
-    
-    <div class="instructions">
-        <strong>📜 遊戲規則說明：</strong><br>
-        1. 點擊開始後將有 30 秒的挑戰時間。<br>
-        2. 答對一題可獲得 <strong>+10 分</strong>。<br>
-        3. 答錯一題將會無情 <strong>-5 分</strong>！<br>
-        4. 切換上方難度可挑戰更高級的乘法！
-    </div>
-
-    <button class="action-btn menu-btn" onclick="enterGame()">進入遊戲 🚀</button>
-</div>
-
-<!-- 2. 遊戲主體畫面 (預設隱藏) -->
-<div id="game-container" class="window-box hidden">
+<div class="game-container">
     <h1>九九乘法大挑戰 🎮</h1>
     
     <div class="audio-control">
@@ -128,8 +76,6 @@
         <button id="btn" class="action-btn" onclick="startGame()">開始遊戲</button>
         <div class="message" id="message"></div>
     </div>
-
-    <button id="back-menu-btn" class="action-btn back-btn" onclick="returnToMenu()">返回主選單 🏠</button>
 </div>
 
 <script>
@@ -152,8 +98,6 @@
     var soundWrong = document.getElementById('sound-wrong');
     bgm.volume = 0.2;
 
-    var menuContainer = document.getElementById('menu-container');
-    var gameContainer = document.getElementById('game-container');
     var questionEl = document.getElementById('question');
     var answerEl = document.getElementById('answer');
     var btnEl = document.getElementById('btn');
@@ -164,7 +108,6 @@
     var messageEl = document.getElementById('message');
     var diffButtons = document.querySelectorAll('.diff-btn');
     var audioToggleBtn = document.getElementById('audio-toggle');
-    var backMenuBtn = document.getElementById('back-menu-btn');
 
     highScoreEl.innerText = highScores[difficulty];
 
@@ -174,26 +117,13 @@
         }
     });
 
-    /* --- 畫面切換邏輯 --- */
-    function enterGame() {
-        menuContainer.classList.add('hidden');
-        gameContainer.classList.remove('hidden');
-        updateHighScoreDisplay();
-    }
-
-    function returnToMenu() {
-        if (gameActive) return; // 遊戲進行中不能退回主選單
-        gameContainer.classList.add('hidden');
-        menuContainer.classList.remove('hidden');
-    }
-
     function toggleBGM() {
         if (bgmPlaying) {
             bgm.pause();
             audioToggleBtn.innerText = '📁 音樂：關';
             bgmPlaying = false;
         } else {
-            bgm.play().catch(function(e){});
+            bgm.play().catch(function(e){ console.log("互動後播放"); });
             audioToggleBtn.innerText = '🎵 音樂：開';
             bgmPlaying = true;
         }
@@ -224,15 +154,13 @@
         btnEl.innerText = '提交答案';
         btnEl.setAttribute('onclick', 'checkAnswer()');
         
-        // 開始遊戲時隱藏返回按鈕與難度按鈕
-        backMenuBtn.classList.add('hidden');
-        document.getElementById('diff-box').style.pointerEvents = 'none';
-        document.getElementById('diff-box').style.opacity = '0.5';
-        
         if (bgmPlaying) {
             bgm.play().catch(function(e){});
         }
 
+        document.getElementById('diff-box').style.pointerEvents = 'none';
+        document.getElementById('diff-box').style.opacity = '0.5';
+        
         generateQuestion();
         
         setTimeout(function() {
@@ -261,51 +189,64 @@
         }
         
         correctAnswer = num1 * num2;
-questionEl.innerText = num1 + ' × ' + num2 + ' = ?';
-answerEl.value = '';
-}
-function checkAnswer() {
-if (!gameActive) return;
-var userAnswer = parseInt(answerEl.value);
-if (userAnswer === correctAnswer) {
-score += 10;
-scoreEl.innerText = score;
-messageEl.className = 'message correct';
-messageEl.innerText = '答對了！🎉 (+10)';
-soundCorrect.currentTime = 0;
-soundCorrect.play().catch(function(e){});
-} else {
-score -= 5;
-scoreEl.innerText = score;
-messageEl.className = 'message wrong';
-messageEl.innerText = '答錯囉 ❌ (-5) 答案是 ' + correctAnswer;
-soundWrong.currentTime = 0;
-soundWrong.play().catch(function(e){});
-}
-generateQuestion();
-answerEl.focus();
-}
-function endGame() {
-gameActive = false;
-clearInterval(timerInterval);
-answerEl.disabled = true;
-questionEl.innerText = '時間到！⌛';
-bgm.pause();
-bgm.currentTime = 0;
-var msgText = '遊戲結束！最終得分：' + score + ' 分！';
-if (score > highScores[difficulty]) {
-highScores[difficulty] = score;
-var storageKeys = { easy: 'mult_high_easy', medium: 'mult_high_medium', hard: 'mult_high_hard' };
-localStorage.setItem(storageKeys[difficulty], score);
-highScoreEl.innerText = score;
-msgText += '
-👑 恭喜打破' + diffLabelEl.innerText + '模式紀錄！';
-}
-messageEl.innerHTML = msgText;
-btnEl.innerText = '再玩一次';
-btnEl.setAttribute('onclick', 'startGame()');
-// 遊戲結束後恢復難度選擇與返回按鈕
-backMenuBtn.classList.remove('hidden');
-document.getElementById('diff-box').style.pointerEvents = 'auto';
-document.getElementById('diff-box').style.opacity = '1';
-}
+        questionEl.innerText = num1 + ' × ' + num2 + ' = ?';
+        answerEl.value = '';
+    }
+
+    function checkAnswer() {
+        if (!gameActive) return;
+        
+        var userAnswer = parseInt(answerEl.value);
+        
+        if (userAnswer === correctAnswer) {
+            score += 10;
+            scoreEl.innerText = score;
+            messageEl.className = 'message correct';
+            messageEl.innerText = '答對了！🎉 (+10)';
+            
+            soundCorrect.currentTime = 0;
+            soundCorrect.play().catch(function(e){});
+        } else {
+            score -= 5; 
+            scoreEl.innerText = score;
+            messageEl.className = 'message wrong';
+            messageEl.innerText = '答錯囉 ❌ (-5) 答案是 ' + correctAnswer;
+            
+            soundWrong.currentTime = 0;
+            soundWrong.play().catch(function(e){});
+        }
+        
+        generateQuestion();
+        answerEl.focus();
+    }
+
+    function endGame() {
+        gameActive = false;
+        clearInterval(timerInterval);
+        answerEl.disabled = true;
+        questionEl.innerText = '時間到！⌛';
+        
+        bgm.pause();
+        bgm.currentTime = 0;
+
+        var msgText = '遊戲結束！最終得分：' + score + ' 分！';
+        
+        if (score > highScores[difficulty]) {
+            highScores[difficulty] = score;
+            var storageKeys = { easy: 'mult_high_easy', medium: 'mult_high_medium', hard: 'mult_high_hard' };
+            localStorage.setItem(storageKeys[difficulty], score);
+            highScoreEl.innerText = score;
+            msgText += '<br><span style="color: #ecc94b; font-size: 22px;">👑 恭喜打破' + diffLabelEl.innerText + '模式紀錄！</span>';
+        }
+
+        messageEl.innerHTML = msgText;
+        btnEl.innerText = '再玩一次';
+        btnEl.setAttribute('onclick', 'startGame()');
+        
+        document.getElementById('diff-box').style.pointerEvents = 'auto';
+        document.getElementById('diff-box').style.opacity = '1';
+    }
+</script>
+
+</body>
+</html>
