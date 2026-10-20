@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九九乘法大挑戰 🎮</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .game-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 { color: #4a5568; margin-bottom: 10px; font-size: 28px; }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a5568;
+        }
+        .question {
+            font-size: 48px;
+            font-weight: bold;
+            color: #5a67d8;
+            margin: 20px 0;
+            animation: bounce 0.5s ease;
+        }
+        input {
+            font-size: 24px;
+            width: 120px;
+            padding: 10px;
+            text-align: center;
+            border: 3px solid #cbd5e0;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus { border-color: #5a67d8; }
+        button {
+            font-size: 20px;
+            padding: 10px 25px;
+            background-color: #48bb78;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover { background-color: #38a169; }
+        .message {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            min-height: 30px;
+        }
+        .correct { color: #38a169; }
+        .wrong { color: #e53e3e; }
+        @keyframes bounce {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>九九乘法大挑戰 🎮</h1>
+    <div class="stats">
+        <div>分數: <span id="score">0</span></div>
+        <div>時間: <span id="timer">30</span> 秒</div>
+    </div>
+    
+    <div id="game-box">
+        <div class="question" id="question">準備好了嗎？</div>
+        <input type="number" id="answer" placeholder="答案" disabled>
+        <button id="btn" onclick="startGame()">開始遊戲</button>
+        <div class="message" id="message"></div>
+    </div>
+</div>
+
+<script>
+    let score = 0;
+    let timeLeft = 30;
+    let num1, num2, correctAnswer;
+    let gameActive = false;
+    let timerInterval;
+
+    const questionEl = document.getElementById('question');
+    const answerEl = document.getElementById('answer');
+    const btnEl = document.getElementById('btn');
+    const scoreEl = document.getElementById('score');
+    const timerEl = document.getElementById('timer');
+    const messageEl = document.getElementById('message');
+
+    // 當在輸入框按下 Enter 鍵時自動送出答案
+    answerEl.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+    function startGame() {
+        score = 0;
+        timeLeft = 30;
+        gameActive = true;
+        scoreEl.innerText = score;
+        timerEl.innerText = timeLeft;
+        messageEl.innerText = '';
+        answerEl.disabled = false;
+        btnEl.innerText = '提交答案';
+        btnEl.setAttribute('onclick', 'checkAnswer()');
+        
+        generateQuestion();
+        answerEl.focus();
+
+        // 倒數計時器
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerEl.innerText = timeLeft;
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }, 1000);
+    }
+
+    function generateQuestion() {
+        // 隨機產生 2 到 9 的數字
+        num1 = Math.floor(Math.random() * 8) + 2;
+        num2 = Math.floor(Math.random() * 8) + 2;
+        correctAnswer = num1 * num2;
+        questionEl.innerText = `${num1} × ${num2} = ?`;
+        answerEl.value = '';
+    }
+
+    function checkAnswer() {
+        if (!gameActive) return;
+        
+        const userAnswer = parseInt(answerEl.value);
+        
+        if (userAnswer === correctAnswer) {
+            score += 10;
+            scoreEl.innerText = score;
+            messageEl.className = 'message correct';
+            messageEl.innerText = '答對了！🎉';
+        } else {
+            messageEl.className = 'message wrong';
+            messageEl.innerText = `答錯囉 ❌（答案是 ${correctAnswer}）`;
+        }
+        
+        generateQuestion();
+        answerEl.focus();
+    }
+
+    function endGame() {
+        gameActive = false;
+        clearInterval(timerInterval);
+        answerEl.disabled = true;
+        questionEl.innerText = '時間到！⌛';
+        messageEl.className = 'message';
+        messageEl.innerText = `遊戲結束！你的最終得分是 ${score} 分！`;
+        btnEl.innerText = '再玩一次';
+        btnEl.setAttribute('onclick', 'startGame()');
+    }
+</script>
+
+</body>
+</html>
