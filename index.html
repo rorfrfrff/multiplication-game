@@ -6,7 +6,7 @@
     <title>九九乘法大挑戰 🎮</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             display: flex;
@@ -14,7 +14,6 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            position: relative;
         }
         .game-container {
             background: white;
@@ -26,108 +25,25 @@
             width: 90%;
         }
         h1 { color: #4a5568; margin-bottom: 10px; font-size: 28px; }
-        .audio-control {
-            margin-bottom: 10px;
-            text-align: right;
-        }
-        .audio-btn {
-            background: #edf2f7;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .difficulty-container {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-            gap: 10px;
-        }
-        .diff-btn {
-            flex: 1;
-            padding: 8px;
-            font-size: 14px;
-            border: 2px solid #cbd5e0;
-            border-radius: 8px;
-            background-color: #f7fafc;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.2s;
-        }
-        .diff-btn.active {
-            background-color: #5a67d8;
-            color: white;
-            border-color: #4c51bf;
-        }
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #4a5568;
-        }
-        .highscore-board {
-            background-color: #edf2f7;
-            padding: 8px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #2b6cb0;
-            margin-bottom: 20px;
-        }
-        .question {
-            font-size: 48px;
-            font-weight: bold;
-            color: #5a67d8;
-            margin: 20px 0;
-            animation: bounce 0.5s ease;
-        }
-        input {
-            font-size: 24px;
-            width: 120px;
-            padding: 10px;
-            text-align: center;
-            border: 3px solid #cbd5e0;
-            border-radius: 10px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
+        .audio-control { text-align: right; margin-bottom: 10px; }
+        .audio-btn { background: #edf2f7; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .difficulty-container { display: flex; justify-content: space-between; margin: 15px 0; gap: 10px; }
+        .diff-btn { flex: 1; padding: 8px; font-size: 14px; border: 2px solid #cbd5e0; border-radius: 8px; background-color: #f7fafc; cursor: pointer; font-weight: bold; }
+        .diff-btn.active { background-color: #5a67d8; color: white; border-color: #4c51bf; }
+        .stats { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 18px; font-weight: bold; color: #4a5568; }
+        .highscore-board { background-color: #edf2f7; padding: 8px; border-radius: 10px; font-size: 16px; font-weight: bold; color: #2b6cb0; margin-bottom: 20px; }
+        .question { font-size: 48px; font-weight: bold; color: #5a67d8; margin: 20px 0; }
+        input { font-size: 24px; width: 120px; padding: 10px; text-align: center; border: 3px solid #cbd5e0; border-radius: 10px; outline: none; }
         input:focus { border-color: #5a67d8; }
-        .action-btn {
-            font-size: 20px;
-            padding: 10px 25px;
-            background-color: #48bb78;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 15px;
-            width: 100%;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+        .action-btn { font-size: 20px; padding: 10px 25px; background-color: #48bb78; color: white; border: none; border-radius: 10px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold; }
         .action-btn:hover { background-color: #38a169; }
-        .message {
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 15px;
-            min-height: 30px;
-        }
+        .message { font-size: 20px; font-weight: bold; margin-top: 15px; min-height: 30px; }
         .correct { color: #38a169; }
         .wrong { color: #e53e3e; }
-        @keyframes bounce {
-            0% { transform: scale(0.8); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
     </style>
 </head>
 <body>
 
-<!-- 更換為超高穩定度的公共音訊連結 -->
 <audio id="bgm" src="https://mixkit.co" loop></audio>
 <audio id="sound-correct" src="https://wikimedia.org"></audio>
 <audio id="sound-wrong" src="https://wikimedia.org"></audio>
@@ -135,12 +51,10 @@
 <div class="game-container">
     <h1>九九乘法大挑戰 🎮</h1>
     
-    <!-- 音樂開關 -->
     <div class="audio-control">
         <button id="audio-toggle" class="audio-btn" onclick="toggleBGM()">📁 音樂：關</button>
     </div>
     
-    <!-- 難度選擇 -->
     <div class="difficulty-container" id="diff-box">
         <button class="diff-btn active" onclick="setDifficulty('easy', event)">簡單 (2-9)</button>
         <button class="diff-btn" onclick="setDifficulty('medium', event)">中等 (11-19)</button>
@@ -165,35 +79,35 @@
 </div>
 
 <script>
-    let score = 0;
-    let timeLeft = 30;
-    let num1, num2, correctAnswer;
-    let gameActive = false;
-    let timerInterval;
-    let difficulty = 'easy'; 
-    let bgmPlaying = false;
+    var score = 0;
+    var timeLeft = 30;
+    var num1, num2, correctAnswer;
+    var gameActive = false;
+    var timerInterval;
+    var difficulty = 'easy'; 
+    var bgmPlaying = false;
 
-    let highScores = {
+    var highScores = {
         easy: parseInt(localStorage.getItem('mult_high_easy')) || 0,
         medium: parseInt(localStorage.getItem('mult_high_medium')) || 0,
         hard: parseInt(localStorage.getItem('mult_high_hard')) || 0
     };
 
-    const bgm = document.getElementById('bgm');
-    const soundCorrect = document.getElementById('sound-correct');
-    const soundWrong = document.getElementById('sound-wrong');
-    bgm.volume = 0.2; // 背景音樂稍微小聲
+    var bgm = document.getElementById('bgm');
+    var soundCorrect = document.getElementById('sound-correct');
+    var soundWrong = document.getElementById('sound-wrong');
+    bgm.volume = 0.2;
 
-    const questionEl = document.getElementById('question');
-    const answerEl = document.getElementById('answer');
-    const btnEl = document.getElementById('btn');
-    const scoreEl = document.getElementById('score');
-    const timerEl = document.getElementById('timer');
-    const highScoreEl = document.getElementById('high-score');
-    const diffLabelEl = document.getElementById('diff-label');
-    const messageEl = document.getElementById('message');
-    const diffButtons = document.querySelectorAll('.diff-btn');
-    const audioToggleBtn = document.getElementById('audio-toggle');
+    var questionEl = document.getElementById('question');
+    var answerEl = document.getElementById('answer');
+    var btnEl = document.getElementById('btn');
+    var scoreEl = document.getElementById('score');
+    var timerEl = document.getElementById('timer');
+    var highScoreEl = document.getElementById('high-score');
+    var diffLabelEl = document.getElementById('diff-label');
+    var messageEl = document.getElementById('message');
+    var diffButtons = document.querySelectorAll('.diff-btn');
+    var audioToggleBtn = document.getElementById('audio-toggle');
 
     highScoreEl.innerText = highScores[difficulty];
 
@@ -209,14 +123,14 @@
             audioToggleBtn.innerText = '📁 音樂：關';
             bgmPlaying = false;
         } else {
-            bgm.play().catch(e => console.log("等待使用者互動後播放"));
+            bgm.play().catch(function(e){ console.log("互動後播放"); });
             audioToggleBtn.innerText = '🎵 音樂：開';
             bgmPlaying = true;
         }
     }
 
     function updateHighScoreDisplay() {
-        const labels = { easy: '簡單', medium: '中等', hard: '困難' };
+        var labels = { easy: '簡單', medium: '中等', hard: '困難' };
         diffLabelEl.innerText = labels[difficulty];
         highScoreEl.innerText = highScores[difficulty];
     }
@@ -224,7 +138,7 @@
     function setDifficulty(level, event) {
         if (gameActive) return; 
         difficulty = level;
-        diffButtons.forEach(btn => btn.classList.remove('active'));
+        diffButtons.forEach(function(btn) { btn.classList.remove('active'); });
         event.target.classList.add('active');
         updateHighScoreDisplay();
     }
@@ -240,9 +154,8 @@
         btnEl.innerText = '提交答案';
         btnEl.setAttribute('onclick', 'checkAnswer()');
         
-        // 修正處：加入安全防護，只有在玩家開啟音樂時才進行 play()，避免程式碼卡死
         if (bgmPlaying) {
-            bgm.play().catch(e => console.log("音樂播放被阻擋"));
+            bgm.play().catch(function(e){});
         }
 
         document.getElementById('diff-box').style.pointerEvents = 'none';
@@ -250,12 +163,11 @@
         
         generateQuestion();
         
-        // 延遲一下下讓輸入框聚焦
-        setTimeout(() => {
+        setTimeout(function() {
             answerEl.focus();
         }, 50);
 
-        timerInterval = setInterval(() => {
+        timerInterval = setInterval(function() {
             timeLeft--;
             timerEl.innerText = timeLeft;
             if (timeLeft <= 0) {
@@ -277,14 +189,14 @@
         }
         
         correctAnswer = num1 * num2;
-        questionEl.innerText = `${num1} × ${num2} = ?`;
+        questionEl.innerText = num1 + ' × ' + num2 + ' = ?';
         answerEl.value = '';
     }
 
     function checkAnswer() {
         if (!gameActive) return;
         
-        const userAnswer = parseInt(answerEl.value);
+        var userAnswer = parseInt(answerEl.value);
         
         if (userAnswer === correctAnswer) {
             score += 10;
@@ -292,17 +204,49 @@
             messageEl.className = 'message correct';
             messageEl.innerText = '答對了！🎉 (+10)';
             
-            // 播放答對音效
             soundCorrect.currentTime = 0;
-            soundCorrect.play().catch(e => console.log("音效播放被阻擋"));
+            soundCorrect.play().catch(function(e){});
         } else {
             score -= 5; 
             scoreEl.innerText = score;
             messageEl.className = 'message wrong';
-            messageEl.innerText = `答錯囉 ❌ (-5) 答案是 ${correctAnswer}`;
+            messageEl.innerText = '答錯囉 ❌ (-5) 答案是 ' + correctAnswer;
             
-            // 播放答錯音效
             soundWrong.currentTime = 0;
-            soundWrong.play().catch(e => console.log("音效播放被阻擋"));
+            soundWrong.play().catch(function(e){});
         }
         
+        generateQuestion();
+        answerEl.focus();
+    }
+
+    function endGame() {
+        gameActive = false;
+        clearInterval(timerInterval);
+        answerEl.disabled = true;
+        questionEl.innerText = '時間到！⌛';
+        
+        bgm.pause();
+        bgm.currentTime = 0;
+
+        var msgText = '遊戲結束！最終得分：' + score + ' 分！';
+        
+        if (score > highScores[difficulty]) {
+            highScores[difficulty] = score;
+            var storageKeys = { easy: 'mult_high_easy', medium: 'mult_high_medium', hard: 'mult_high_hard' };
+            localStorage.setItem(storageKeys[difficulty], score);
+            highScoreEl.innerText = score;
+            msgText += '<br><span style="color: #ecc94b; font-size: 22px;">👑 恭喜打破' + diffLabelEl.innerText + '模式紀錄！</span>';
+        }
+
+        messageEl.innerHTML = msgText;
+        btnEl.innerText = '再玩一次';
+        btnEl.setAttribute('onclick', 'startGame()');
+        
+        document.getElementById('diff-box').style.pointerEvents = 'auto';
+        document.getElementById('diff-box').style.opacity = '1';
+    }
+</script>
+
+</body>
+</html>
