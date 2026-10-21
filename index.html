@@ -40,7 +40,12 @@
             border-radius: 0 10px 10px 0;
             line-height: 1.7;
         }
-        .audio-control { text-align: right; margin-bottom: 10px; }
+        .audio-control { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+        .exit-btn { background: #fed7d7; color: #9b2c2c; border: 0; padding: 8px 11px; border-radius: 7px; cursor: pointer; font-weight: 800; }
+        .exit-btn:hover { background: #feb2b2; }
+        .music-volume { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; padding: 9px 12px; border-radius: 9px; background: #f7fafc; color: #4a5568; font-size: 14px; font-weight: 700; }
+        .music-volume input[type="range"] { flex: 1; min-width: 60px; width: auto; padding: 0; border: 0; border-radius: 999px; font-size: 14px; text-align: initial; accent-color: #5a67d8; cursor: pointer; }
+        .music-volume output { min-width: 42px; text-align: right; color: #4c51bf; }
         .audio-btn {
             background: #edf2f7;
             border: none;
@@ -153,7 +158,7 @@
         @media (max-width: 380px) { .mode-btn { font-size: 12px; } .pvp-board { gap: 6px; } .player-card { padding: 9px 6px; } .answer-choice { font-size: 19px; } }
 
     </style>
-<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/a0HAg3j2Z0K2Y4nKb3WssLyAF1PKZXDP5cOUGIwxCBHoPM1Q-dC9GcWb09Nik8Y9MovqfFo7luQDF7DKVR77qcA0i2Y4rTESNxxrMdoGsRdJJAO98EwDmj4TafwCSWWki9LocbUoElWFDQjlYrmRkX-E_g0om_RSw1TbVSSnZluw01Dqk2D1MLVHUKf-44XurG2Xs525VJ4gkfGQ_J_6ZT02YxVp7cjDXW6P3UqfDHTpR2n3q62lPl8LTrfaQSyA-rJeR8mfobPBYI43WYhbNGS1_6YdLxsMQAQ5E1RjNi-XQOfL9OlJA18BFKuIRTCvlnui7OFpq8LDReVJLFgpD41fRc-5zkUB4hWFqlwC1jCkg1DL9WHiIS8-gtierbQXASQQtTPtj3Y0ZEehcBGB8ioskXnjSNlQgekL-uEaqTecsbL2kqrrjX5FNU3fM9KwqMoNgQXmbhHfx99o-V7Utfy6GrIxoE_xhDsmZR7v_KAkPD9MtKISbxEuXc5y5k5NcaG4xyCbcaNMyw5QyTl1omfe7oi9BEOByxUmRyVvRRV8YfobH1dC0PILNr7h2EnTYR0-xsnLnzr0dli2aPDFMf_hqq-cG3vmpbptQOW8e8akGaGq74VwM_nGcFvQEE2KKM7VDJaOWRLs6Xz4FJhRuKbm5Wj9SKMxwkd9e1bLaZJMIwcyiB5Lb5Qd4giFnUfZxFjQr47vD_if1b5UtTshOnrnC23p9Gs6Yi5vN8obx5ZSwgo918fTTJD3wNZHXIPV83QigP8Zl3xcLnslMtQmd2tn5cOIzmcyDpHCsQH3ksmji0vdSR4EOqN2Mc_4KWt0M-D7gbaE_5lrAY8Zhvn5LUsQb5pBssYQ78c4Tlp_yO1EqBKcXO-oO_01O9f5dXcx6ux2I4l9wjD99BxruPmWPhPi_rJ49-LmdfbjTcj8AakMN3HHS6UbOcAmD0cpcxcE4MmmT2epxAYZwrKEUwTou--AGrb5bgdukrbJvAF6yQCetqPUIm0qR13Jz-IjWfyXMjN1MSOVr6a2REF7HWOhBao4jzmPll5OH6G_h9STnMfIV0w1rDnQzWnNvL5mwXQcLBhrajBxuG3z11AZGL1G_Fne3SASeeqZtH5WKv9dQvtU_8xvhdVtMx4en3sljJ1Roq2Jeh3zbHk-iLzmd2JhmWRhL8vK12t4PkmuPctkqvYYDEW3rVBPoEEZk-PrBGS-oyX4nxrL7ohiNvHqvyOrTqzwpNYJux7iFbz-mQixl-L9yOE-N1VfEPEhEzLqEWTQXVOxcf29WcYzuy_Ssp7NV4tGnR9xmL-rf36Oy85xWACpvdlreEAYIE-0UQajlYWuhCY7abjxgRLoz5IJOzmfOAnawCexvOY3UjNm_f8UQxoiMQobwIm-o6kVmzXoHNBP3dv_SAp5rDQ6SjAyGw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/B8Kh7RWV6aHjDoEn0fio5M8IIenGt35lALhuw47Ho3U1HXAL2QJSImSfzCdAFMF4PivnCPY8oe4oydKn8RNCgsZjfz7b-TSWrEYiVAwAfih9rpE_5PVUULbd9PtF7KL6MqQzHyfljpgWCXv0mNPdlOCgzxSattj7rxmlYGaXWb_zae7Tm1Ce74olFzqweKMJtZMCODYykySLXNZxWpuWyOUPyuujyH3vLp9J0xzG1UzRzLk3fSHdZvdx7qig0uBlbqbdI1dmVYwBaYp3B-bgmi8r46YKlkIEebkUxLKtikKqGodgsjb7V-v_qhtkUXjKadygokTWPv2AIAJIsD7bbPy9MJP2Z1nhc6yvBbaphk7qD39v1_JCNIIuYoYdBfA6zdd3wJmSmq8_PTVdY8UBWCTLtyE2MkDDDCf6gzaJP4M0nptCT1PLyffTo_0wES-D2tA53a8xj14EG4U9zAUUlOaRwe9ukG4cenh8U2FG1CnDtyz7KdpbuYTcq6Kq5DPwyFS6K2IiuJEWgTDkvUwguEmHotPQfRxgE6eimqCfL8z7Y9znuyrG_Sooyiw06nsTVlnXTa1koYdYxT9D09vAonvV2AwKTNY3lIKahe1cX0WycHkM1FUKsp2t7Ubv-s-Oo_etaKe2mZlHLpO7LE5AsodTJDqECQyDxL5CuEHsF35llHnsJCCwf0tYnmOgi7cHmczBJb1TQLaOxFCfSb4kEGHNmbme4RDkgKL7jPTRk6dFjPzSwtD50kMjQWZFMjb4ghlvGQBd4WoEM2loK0HI1KZgVgs_rv0VJI9OXDo-EyeiM3s05ewNRxuGjeiXFisOd2_Nl_Ccr2Tl7fXovBBY3o--Bi4E7nmaoXWKkERnz3E2TY7PY9kO_0_1Zo6oq6DCVOYT5nu_m8LlM2y5bA555kciWrsbxqpkV9IgCPFIKmYRTIiXwoSlgWr4_eGLkOqhkkk5DvHNkmGXHhloPhi8wac4ZLZYNGpxOL_kqkUWHpODr-1iRtedWBLP3zw4wZ_fRNnKgMmGcE4d4-HMR8qU185nOnBP-a37l7RLhP1hwaNeYG4in_zUXRXCWZd5FhbhkRfXwkragLw1EKlJHuaPPLPxunWuuJhmLwjDIARf5G6Zse0ZQtrNWLBoIl9ZXzoTyLmvIy538IPCd7omZ8M_K89vvD6rbPILfFjgyRPdczAYD3ohXWT1vp__NymvdWVdSyeLh95RN_fiNq5-dj0YZ2xBMa8Ncrm_cu-Z7iZHT8QKIRVlBQIkSGhf_y1k28RnwWVW8IlJVbF1n0qhOmiNdP0ZPpB-JSTPizU-g755TDY'></script></head>
+<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/xENAgfvnZf0Crxx0n3ecnV9cM3t1adEa2wFnI02_jKR3p7nWHPn0YwiTcOg7ISQUWJdX0t14IdBcCwDp36YkoAnQaVdel4P7n3VuWmArz444vnsqiCZ_7f-Lmtagzj_5PUR-Fs6fZFr0gNICWMgnaQC05cvy-adXou-u612m3xVzNW8TFvA2OiI8X-dmMfafCZJeF3nWzOZ1PQGkeOnRp8Gam0A4fdWBgj-4BREWFEYlVfZ8FwIFSR_O1Mr_nVurI7llPmmf5EWr2GbsOHjM69jA8fbt5AsAnA0MMWHI7coVdE6GnRcmHGbEAfZ3pjekLyAW-8UHvHe85UaveyM-yVrj0hZ3RBRvLFmNcR3VJIp-h2XglDm0ZglZ9fjy3m_GoM3MXTu-frxfaEBZOH81h_7LfC_huK3OdTNgIil2ZwuLp9hcCUrCO5xn4WaiYL-SC0tu0X7XKzEjBfPMpazeS8JK05xo2YGtFRx51k07yJec9nCLYb1ZYPtdACab0sITJcaingDAaU5BJGtyfXz5OOP5rbim-Oo1J9tNXrZt9urcdO1dPW9PbIQxU0UbcoYKyvisbbVpp1tsfL3JHL6h64Zdc9KUpDA-rkG0FAqUo0eS2ZXvO4bpC-en21Q9fj9AaruoG2vMj8m_ODdBAWyaD6UkpZZDN8G5eHow69YM1OUaB7rBlGlnAYfoWzjYbrzNCFEFP6dRC00sQW-7R4BhV2CSjP79gw1x3EdOrBQQsSxlewdmiaVBNzCGspb_Pu6N6u_qdoQwU6dkC5LIAu88GecMd333omcYKia-gHtWOxwEatZY6Lqqtgnpp6wEo4ZKOQhAj07FKek5PI1bk4t6k1kYqjg5RjmvW52h3NFb7JnmBU963LdGFFYduP1Bu2BYqBG42YdoiG7wBqDlDZqt-IVbNNfYZQ36T3CzDjyCe0sXxhLYvvJPZCABkRWfQawsF2fh1kBcKPZBLKSlV00wbQFOXKYz1U9fxXEs3j9E1rFevpQYevBRfbG-mUHl0S6Bdvn0GxkB8OkTLgQIYEzjzZB6wbKtv5uWuwiKMjocB23_HqdiAPepKTmOxcbcU4E8d-zol3HJhHUiN4i8MOnsTPrcIrvlRMKZxAOVsu6ZiJJQikQZtT_xrDn2We8ArMWuIffUYB57oPLnbiCFOKq4iBsWdsb9wB6QQBFrebntxbHwB21qiIfYtFgTGL9EYfoKc3iBZ1aKIesPxkXZVJHtYsar7nvNcSZjLR1_coNrymA7KnTbn79E2tp6xjlOrHYCg3b7v0I88mT78FXDpJnQmIzywRZHt2JIT5qv6JzPghkZ4G5D7OlSn8DKZwbuhdMWqDGos21ovFh9e1YurnVlRLMOnuAewT7U6aQP6VpUgkEQEaD5p3sgZTI1pjCNVWQpg_DjfqYTNMT1HTdWMw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/a0HAg3j2Z0K2Y4nKb3WssLyAF1PKZXDP5cOUGIwxCBHoPM1Q-dC9GcWb09Nik8Y9MovqfFo7luQDF7DKVR77qcA0i2Y4rTESNxxrMdoGsRdJJAO98EwDmj4TafwCSWWki9LocbUoElWFDQjlYrmRkX-E_g0om_RSw1TbVSSnZluw01Dqk2D1MLVHUKf-44XurG2Xs525VJ4gkfGQ_J_6ZT02YxVp7cjDXW6P3UqfDHTpR2n3q62lPl8LTrfaQSyA-rJeR8mfobPBYI43WYhbNGS1_6YdLxsMQAQ5E1RjNi-XQOfL9OlJA18BFKuIRTCvlnui7OFpq8LDReVJLFgpD41fRc-5zkUB4hWFqlwC1jCkg1DL9WHiIS8-gtierbQXASQQtTPtj3Y0ZEehcBGB8ioskXnjSNlQgekL-uEaqTecsbL2kqrrjX5FNU3fM9KwqMoNgQXmbhHfx99o-V7Utfy6GrIxoE_xhDsmZR7v_KAkPD9MtKISbxEuXc5y5k5NcaG4xyCbcaNMyw5QyTl1omfe7oi9BEOByxUmRyVvRRV8YfobH1dC0PILNr7h2EnTYR0-xsnLnzr0dli2aPDFMf_hqq-cG3vmpbptQOW8e8akGaGq74VwM_nGcFvQEE2KKM7VDJaOWRLs6Xz4FJhRuKbm5Wj9SKMxwkd9e1bLaZJMIwcyiB5Lb5Qd4giFnUfZxFjQr47vD_if1b5UtTshOnrnC23p9Gs6Yi5vN8obx5ZSwgo918fTTJD3wNZHXIPV83QigP8Zl3xcLnslMtQmd2tn5cOIzmcyDpHCsQH3ksmji0vdSR4EOqN2Mc_4KWt0M-D7gbaE_5lrAY8Zhvn5LUsQb5pBssYQ78c4Tlp_yO1EqBKcXO-oO_01O9f5dXcx6ux2I4l9wjD99BxruPmWPhPi_rJ49-LmdfbjTcj8AakMN3HHS6UbOcAmD0cpcxcE4MmmT2epxAYZwrKEUwTou--AGrb5bgdukrbJvAF6yQCetqPUIm0qR13Jz-IjWfyXMjN1MSOVr6a2REF7HWOhBao4jzmPll5OH6G_h9STnMfIV0w1rDnQzWnNvL5mwXQcLBhrajBxuG3z11AZGL1G_Fne3SASeeqZtH5WKv9dQvtU_8xvhdVtMx4en3sljJ1Roq2Jeh3zbHk-iLzmd2JhmWRhL8vK12t4PkmuPctkqvYYDEW3rVBPoEEZk-PrBGS-oyX4nxrL7ohiNvHqvyOrTqzwpNYJux7iFbz-mQixl-L9yOE-N1VfEPEhEzLqEWTQXVOxcf29WcYzuy_Ssp7NV4tGnR9xmL-rf36Oy85xWACpvdlreEAYIE-0UQajlYWuhCY7abjxgRLoz5IJOzmfOAnawCexvOY3UjNm_f8UQxoiMQobwIm-o6kVmzXoHNBP3dv_SAp5rDQ6SjAyGw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/B8Kh7RWV6aHjDoEn0fio5M8IIenGt35lALhuw47Ho3U1HXAL2QJSImSfzCdAFMF4PivnCPY8oe4oydKn8RNCgsZjfz7b-TSWrEYiVAwAfih9rpE_5PVUULbd9PtF7KL6MqQzHyfljpgWCXv0mNPdlOCgzxSattj7rxmlYGaXWb_zae7Tm1Ce74olFzqweKMJtZMCODYykySLXNZxWpuWyOUPyuujyH3vLp9J0xzG1UzRzLk3fSHdZvdx7qig0uBlbqbdI1dmVYwBaYp3B-bgmi8r46YKlkIEebkUxLKtikKqGodgsjb7V-v_qhtkUXjKadygokTWPv2AIAJIsD7bbPy9MJP2Z1nhc6yvBbaphk7qD39v1_JCNIIuYoYdBfA6zdd3wJmSmq8_PTVdY8UBWCTLtyE2MkDDDCf6gzaJP4M0nptCT1PLyffTo_0wES-D2tA53a8xj14EG4U9zAUUlOaRwe9ukG4cenh8U2FG1CnDtyz7KdpbuYTcq6Kq5DPwyFS6K2IiuJEWgTDkvUwguEmHotPQfRxgE6eimqCfL8z7Y9znuyrG_Sooyiw06nsTVlnXTa1koYdYxT9D09vAonvV2AwKTNY3lIKahe1cX0WycHkM1FUKsp2t7Ubv-s-Oo_etaKe2mZlHLpO7LE5AsodTJDqECQyDxL5CuEHsF35llHnsJCCwf0tYnmOgi7cHmczBJb1TQLaOxFCfSb4kEGHNmbme4RDkgKL7jPTRk6dFjPzSwtD50kMjQWZFMjb4ghlvGQBd4WoEM2loK0HI1KZgVgs_rv0VJI9OXDo-EyeiM3s05ewNRxuGjeiXFisOd2_Nl_Ccr2Tl7fXovBBY3o--Bi4E7nmaoXWKkERnz3E2TY7PY9kO_0_1Zo6oq6DCVOYT5nu_m8LlM2y5bA555kciWrsbxqpkV9IgCPFIKmYRTIiXwoSlgWr4_eGLkOqhkkk5DvHNkmGXHhloPhi8wac4ZLZYNGpxOL_kqkUWHpODr-1iRtedWBLP3zw4wZ_fRNnKgMmGcE4d4-HMR8qU185nOnBP-a37l7RLhP1hwaNeYG4in_zUXRXCWZd5FhbhkRfXwkragLw1EKlJHuaPPLPxunWuuJhmLwjDIARf5G6Zse0ZQtrNWLBoIl9ZXzoTyLmvIy538IPCd7omZ8M_K89vvD6rbPILfFjgyRPdczAYD3ohXWT1vp__NymvdWVdSyeLh95RN_fiNq5-dj0YZ2xBMa8Ncrm_cu-Z7iZHT8QKIRVlBQIkSGhf_y1k28RnwWVW8IlJVbF1n0qhOmiNdP0ZPpB-JSTPizU-g755TDY'></script></head>
 <body>
     <main>
         <section id="menu-container" class="window-box">
@@ -173,7 +178,13 @@
         <section id="game-container" class="window-box hidden" aria-label="九九乘法遊戲">
             <h1>九九乘法大挑戰</h1>
             <div class="audio-control">
-                <button id="audio-toggle" class="audio-btn" type="button" aria-pressed="false">音效：關</button>
+                <button id="exit-game-btn" class="exit-btn" type="button" title="退出遊戲（Esc）">退出遊戲</button>
+                <button id="audio-toggle" class="audio-btn" type="button" aria-pressed="false">音樂與音效：關</button>
+            </div>
+            <div class="music-volume">
+                <label for="music-volume">背景音樂音量</label>
+                <input id="music-volume" type="range" min="0" max="100" step="1" value="70" aria-label="調整背景音樂音量">
+                <output id="music-volume-value" for="music-volume">70%</output>
             </div>
             <div class="mode-container" id="mode-box" role="group" aria-label="選擇遊戲模式">
                 <button class="mode-btn active" type="button" data-mode="solo">個人闖關</button>
@@ -234,13 +245,19 @@
 
         let score = 0, timeLeft = GAME_LENGTH_SECONDS, num1 = 0, num2 = 0, correctAnswer = 0;
         let gameActive = false, timerInterval = null, difficulty = "easy", mode = "solo";
-        let soundEnabled = false, audioContext = null, hp = STARTING_HEARTS, wrongQuestions = [];
+        let soundEnabled = false, audioContext = null, musicInterval = null, musicStep = 0, musicGainNode = null, musicVolume = readMusicVolume(), hp = STARTING_HEARTS, wrongQuestions = [];
         let questionTimeLeft = REVERSE_QUESTION_SECONDS, reverseTarget = 0, reverseValidPairs = [];
         let playerScores = [0, 0], currentBuzzer = null, attemptedPlayers = new Set();
 
         function readScore(key) {
             try { return Number.parseInt(localStorage.getItem(key), 10) || 0; }
             catch (error) { return 0; }
+        }
+        function readMusicVolume() {
+            try {
+                const saved = Number.parseInt(localStorage.getItem("mult_music_volume"), 10);
+                return Number.isFinite(saved) ? Math.min(1, Math.max(0, saved / 100)) : 0.7;
+            } catch (error) { return 0.7; }
         }
         const highScores = { easy: readScore(storageKeys.easy), medium: readScore(storageKeys.medium), hard: readScore(storageKeys.hard) };
         const reverseHighScores = { easy: readScore(reverseStorageKeys.easy), medium: readScore(reverseStorageKeys.medium), hard: readScore(reverseStorageKeys.hard) };
@@ -260,6 +277,8 @@
         const diffButtons = document.querySelectorAll(".diff-btn");
         const modeButtons = document.querySelectorAll(".mode-btn");
         const audioToggleBtn = document.getElementById("audio-toggle");
+        const musicVolumeEl = document.getElementById("music-volume");
+        const musicVolumeValueEl = document.getElementById("music-volume-value");
         const backMenuBtn = document.getElementById("back-menu-btn");
         const reviewArea = document.getElementById("review-area");
         const diffBox = document.getElementById("diff-box");
@@ -277,6 +296,10 @@
         document.getElementById("enter-game-btn").addEventListener("click", enterGame);
         backMenuBtn.addEventListener("click", returnToMenu);
         audioToggleBtn.addEventListener("click", toggleSound);
+        musicVolumeEl.value = String(Math.round(musicVolume * 100));
+        musicVolumeValueEl.value = `${musicVolumeEl.value}%`;
+        musicVolumeEl.addEventListener("input", () => setMusicVolume(musicVolumeEl.value));
+        document.getElementById("exit-game-btn").addEventListener("click", exitGame);
         diffButtons.forEach((button) => button.addEventListener("click", () => handleDiff(button.dataset.difficulty)));
         modeButtons.forEach((button) => button.addEventListener("click", () => handleMode(button.dataset.mode)));
         answerForm.addEventListener("submit", (event) => {
@@ -294,6 +317,11 @@
             if (button && gameActive && mode === "reverse") checkReverseAnswer(Number(button.dataset.a), Number(button.dataset.b));
         });
         document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !gameContainer.classList.contains("hidden")) {
+                event.preventDefault();
+                exitGame();
+                return;
+            }
             if (!gameActive || mode !== "pvp" || event.repeat) return;
             const key = event.key.toLowerCase();
             if (key === "a") { event.preventDefault(); buzzIn(0); }
@@ -311,18 +339,126 @@
             gameContainer.classList.add("hidden");
             menuContainer.classList.remove("hidden");
         }
-        function toggleSound() {
-            soundEnabled = !soundEnabled;
-            audioToggleBtn.textContent = soundEnabled ? "音效：開" : "音效：關";
-            audioToggleBtn.setAttribute("aria-pressed", String(soundEnabled));
-            if (soundEnabled && !audioContext) {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                if (AudioContextClass) audioContext = new AudioContextClass();
+        function exitGame() {
+            if (gameActive && !window.confirm("確定退出目前遊戲？本局分數不會保存。")) return;
+            gameActive = false;
+            if (timerInterval !== null) {
+                window.clearInterval(timerInterval);
+                timerInterval = null;
             }
-            if (soundEnabled && audioContext && audioContext.state === "suspended") audioContext.resume().catch(() => {});
+            stopBackgroundMusic();
+            soundEnabled = false;
+            audioToggleBtn.textContent = "音樂與音效：關";
+            audioToggleBtn.setAttribute("aria-pressed", "false");
+            if (audioContext && audioContext.state === "running") audioContext.suspend().catch(() => {});
+            answerEl.disabled = true;
+            p1Answer.disabled = true;
+            p2Answer.disabled = true;
+            p1Buzz.disabled = true;
+            p2Buzz.disabled = true;
+            diffBox.style.pointerEvents = "auto";
+            diffBox.style.opacity = "1";
+            modeBox.style.pointerEvents = "auto";
+            modeBox.style.opacity = "1";
+            modeButtons.forEach((button) => { button.disabled = false; });
+            btnEl.textContent = "開始遊戲";
+            messageEl.textContent = "";
+            questionEl.textContent = "準備好了嗎？按下開始遊戲！";
+            reviewArea.classList.add("hidden");
+            gameContainer.classList.add("hidden");
+            menuContainer.classList.remove("hidden");
+        }
+        function toggleSound() {
+            if (!soundEnabled) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!audioContext && AudioContextClass) {
+                    try { audioContext = new AudioContextClass(); }
+                    catch (error) { audioContext = null; }
+                }
+                if (!audioContext) {
+                    messageEl.className = "message wrong";
+                    messageEl.textContent = "此瀏覽器目前不支援網頁音訊。";
+                    return;
+                }
+                soundEnabled = true;
+                audioToggleBtn.textContent = "音樂與音效：開";
+                audioToggleBtn.setAttribute("aria-pressed", "true");
+                audioContext.resume().then(() => {
+                    if (soundEnabled) startBackgroundMusic();
+                }).catch(() => {
+                    soundEnabled = false;
+                    audioToggleBtn.textContent = "音樂與音效：關";
+                    audioToggleBtn.setAttribute("aria-pressed", "false");
+                    messageEl.className = "message wrong";
+                    messageEl.textContent = "音訊無法啟動，請確認瀏覽器的音效權限後再試。";
+                });
+            } else {
+                soundEnabled = false;
+                audioToggleBtn.textContent = "音樂與音效：關";
+                audioToggleBtn.setAttribute("aria-pressed", "false");
+                stopBackgroundMusic();
+            }
+        }
+        function setMusicVolume(value) {
+            const percent = Math.min(100, Math.max(0, Number(value) || 0));
+            musicVolume = percent / 100;
+            musicVolumeValueEl.value = `${Math.round(percent)}%`;
+            if (musicGainNode && audioContext) {
+                musicGainNode.gain.setTargetAtTime(musicVolume, audioContext.currentTime, 0.035);
+            }
+            try { localStorage.setItem("mult_music_volume", String(Math.round(percent))); }
+            catch (error) { /* 無法儲存時仍可在本次遊戲調整。 */ }
+        }
+        function startBackgroundMusic() {
+            if (!soundEnabled || !audioContext || musicInterval !== null) return;
+            if (!musicGainNode) {
+                musicGainNode = audioContext.createGain();
+                musicGainNode.gain.setValueAtTime(musicVolume, audioContext.currentTime);
+                musicGainNode.connect(audioContext.destination);
+            }
+            const melody = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 880, 698.46,
+                523.25, 659.25, 783.99, 1046.5, 880, 783.99, 659.25, 587.33];
+            const bass = [130.81, 146.83, 174.61, 146.83];
+            musicStep = 0;
+            const playMusicNote = (frequency, duration, volume) => {
+                if (!soundEnabled || !audioContext || audioContext.state !== "running") return;
+                try {
+                    const oscillator = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    const now = audioContext.currentTime;
+                    oscillator.type = "sine";
+                    oscillator.frequency.setValueAtTime(frequency, now);
+                    gain.gain.setValueAtTime(0.0001, now);
+                    gain.gain.linearRampToValueAtTime(volume, now + 0.035);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+                    oscillator.connect(gain);
+                    gain.connect(musicGainNode || audioContext.destination);
+                    oscillator.start(now);
+                    oscillator.stop(now + duration + 0.02);
+                } catch (error) { /* 背景配樂失敗不影響遊戲。 */ }
+            };
+            const playStep = () => {
+                if (!soundEnabled || !audioContext) return;
+                if (audioContext.state === "suspended") {
+                    audioContext.resume().then(() => { if (soundEnabled) playStep(); }).catch(() => {});
+                    return;
+                }
+                playMusicNote(melody[musicStep % melody.length], 0.34, 0.09);
+                if (musicStep % 4 === 0) playMusicNote(bass[Math.floor(musicStep / 4) % bass.length], 0.62, 0.06);
+                musicStep += 1;
+            };
+            playStep();
+            musicInterval = window.setInterval(playStep, 420);
+        }
+        function stopBackgroundMusic() {
+            if (musicInterval !== null) {
+                window.clearInterval(musicInterval);
+                musicInterval = null;
+            }
         }
         function playTone(frequency, duration, type, volume) {
             if (!soundEnabled || !audioContext) return;
+            if (audioContext.state === "suspended") audioContext.resume().catch(() => {});
             try {
                 const oscillator = audioContext.createOscillator(), gain = audioContext.createGain(), now = audioContext.currentTime;
                 oscillator.type = type || "sine";
