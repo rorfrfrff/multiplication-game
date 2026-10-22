@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#667eea">
-    <title>九九乘法大挑戰</title>
+    <title>數學運算大挑戰</title>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -43,9 +43,9 @@
         .audio-control { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
         .exit-btn { background: #fed7d7; color: #9b2c2c; border: 0; padding: 8px 11px; border-radius: 7px; cursor: pointer; font-weight: 800; }
         .exit-btn:hover { background: #feb2b2; }
-        .music-volume { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; padding: 9px 12px; border-radius: 9px; background: #f7fafc; color: #4a5568; font-size: 14px; font-weight: 700; }
-        .music-volume input[type="range"] { flex: 1; min-width: 60px; width: auto; padding: 0; border: 0; border-radius: 999px; font-size: 14px; text-align: initial; accent-color: #5a67d8; cursor: pointer; }
-        .music-volume output { min-width: 42px; text-align: right; color: #4c51bf; }
+        .music-volume, .sfx-volume { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; padding: 9px 12px; border-radius: 9px; background: #f7fafc; color: #4a5568; font-size: 14px; font-weight: 700; }
+        .music-volume input[type="range"], .sfx-volume input[type="range"] { flex: 1; min-width: 60px; width: auto; padding: 0; border: 0; border-radius: 999px; font-size: 14px; text-align: initial; accent-color: #5a67d8; cursor: pointer; }
+        .music-volume output, .sfx-volume output { min-width: 42px; text-align: right; color: #4c51bf; }
         .audio-btn {
             background: #edf2f7;
             border: none;
@@ -135,8 +135,8 @@
             .stats { font-size: 14px; }
         }
 
-        .mode-container { display: flex; gap: 8px; margin: 14px 0 18px; }
-        .mode-btn { flex: 1; border: 2px solid #cbd5e0; border-radius: 9px; padding: 10px 6px; background: #f7fafc; color: #4a5568; font-weight: 700; cursor: pointer; }
+        .mode-container { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px; }
+        .mode-btn { flex: 1 1 42%; border: 2px solid #cbd5e0; border-radius: 9px; padding: 10px 6px; background: #f7fafc; color: #4a5568; font-weight: 700; cursor: pointer; }
         .mode-btn.active { background: #4c51bf; color: #fff; border-color: #434190; }
         .mode-btn:disabled { opacity: .55; cursor: not-allowed; }
         .pvp-board { display: flex; gap: 10px; margin: 14px 0; }
@@ -145,6 +145,7 @@
         .player-card.player-two { border-color: #f6ad55; }
         .player-card.buzzed { box-shadow: 0 0 0 3px rgba(90,103,216,.18); }
         .player-name { font-weight: 800; font-size: 16px; }
+        .player-name input { width: 100%; font-size: 14px; padding: 6px; border: 1px solid #cbd5e0; border-radius: 7px; }
         .player-score { font-size: 28px; font-weight: 800; margin: 3px 0 8px; color: #4a5568; }
         .pvp-answer { width: 100%; font-size: 20px; padding: 8px 4px; }
         .buzz-btn { width: 100%; border: 0; border-radius: 8px; padding: 10px 5px; margin-top: 8px; color: white; background: #3182ce; font-weight: 800; cursor: pointer; }
@@ -155,14 +156,32 @@
         .answer-choice { min-height: 58px; border: 2px solid #cbd5e0; border-radius: 11px; background: #f7fafc; color: #4a5568; font-size: 22px; font-weight: 800; cursor: pointer; }
         .answer-choice:hover { border-color: #5a67d8; background: #ebf4ff; }
         .single-only { display: block; }
+        .pvp-leaderboard { margin: 12px 0; padding: 12px 16px; border-radius: 11px; background: #fffaf0; text-align: left; color: #4a5568; }
+        .pvp-leaderboard h2 { margin: 0 0 7px; font-size: 17px; color: #975a16; }
+        .pvp-leaderboard ol { margin: 0; padding-left: 25px; }
+        .pvp-leaderboard li { padding: 3px 0; }
+        .player-profile { display: flex; align-items: center; gap: 12px; margin: 10px 0; padding: 11px 13px; border-radius: 12px; background: #f7fafc; text-align: left; }
+        .profile-avatar { display: grid; place-items: center; flex: 0 0 54px; height: 54px; border-radius: 50%; background: #ebf4ff; font-size: 32px; }
+        .profile-controls { flex: 1; min-width: 0; color: #4a5568; font-size: 13px; }
+        .profile-controls label { display: block; margin-bottom: 5px; font-weight: 800; }
+        .profile-controls select { width: 100%; padding: 7px; border: 1px solid #cbd5e0; border-radius: 7px; background: white; color: #4a5568; }
+        .profile-controls input[type="text"] { width: 100%; margin: 0 0 8px; padding: 7px; border: 1px solid #cbd5e0; border-radius: 7px; background: white; color: #4a5568; font-size: 14px; }
+        .profile-local-note { margin: 4px 0 0; color: #718096; font-size: 12px; }
+        .profile-progress { margin-top: 5px; color: #718096; }
+        .achievement-panel { margin: 10px 0 16px; padding: 11px 14px; border-radius: 11px; background: #fffaf0; color: #4a5568; text-align: left; }
+        .achievement-panel summary { cursor: pointer; font-weight: 800; color: #975a16; }
+        .achievement-panel ul { margin: 9px 0 0; padding-left: 22px; }
+        .achievement-panel li { margin: 5px 0; font-size: 13px; }
+        .achievement-panel li.unlocked { color: #2f855a; font-weight: 700; }
+        .achievement-notice { min-height: 22px; margin: 4px 0; color: #805ad5; font-weight: 800; font-size: 14px; }
         @media (max-width: 380px) { .mode-btn { font-size: 12px; } .pvp-board { gap: 6px; } .player-card { padding: 9px 6px; } .answer-choice { font-size: 19px; } }
 
     </style>
-<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/OWgmZyNl0mgnrq8AK_8phePDuAu-I_g9Qb1eaHyjKguiNrx_9JUh9KAebvlebslIgLGzX1PFgR7c3zjOKxXi8563c-xecf_1d2-GyORyXjPO2Lr4Hft88BOw402mdK7pQcI_6LdtTESjnxdk_16b-UEhy5E5JbggR8BR2kERRmrgtzDNZ55ANtXZO1kHnHjYvwf3dMGmBLx7gbMIFUYIcwkwPl5cRe1ZkGsW0xARAOPSpOtFuTV8bfH3P57oH4zbblg4fH7pwt5EA7NvmiwXfZZbcPgmn-OzYmX3hkjsE6qYlNhmEfqF4YvxOV94RCvEzy5YvGbcotXRYMZaT4HsneEwBOIJa56GjuuU-0QFI3wFWgCR4usI2VGsHad--f288D20oxdLKhU98k0ZgfR7YllR1_AI34Qkd4JDQM3BuWiRdRRyzysvNnmy33jlkMaDkBnU9OcXHexuswcm_h1tcbHSgOgdFJBq0zzPuV4AA5ogTIh9EePvfuDnaHV8xVQE-R5_HgBPZ72S7fJN_HJCZHjAcBvg-zR325HbXE1kqi8AZNuzqcRb80zkH4zCiCyVJOCWUym5_8_pxNYRE6COJnYIa4xZlViAh7FqLsMnbSTsY5o5-YrVv6nFLPsJf797JppcKVMsLwiv41ePoKb7UjE4CJYBAxaMVoFPYsUca-iZtITU5YeY19F7sLUZvVFRm72SvOpCaNgUaD6jvz5MU96IY-tfQLv6CADj7xeHC8gL-t2DBCvkuuDYH8KPS_3TUTB1a5j2qvbb7eWhqgFxlEsTH94vhcTiKTAnGMU1WkT0OvNlU95gfO4u-82k957SqSvY9ZfathGfnzBJBQfupVWde7II92h-kE59LdIvXDIEBuqfMFqsLsrRuYFbDl2wKf4ouV_gjXW9b7hch8NS9LYmW4zOPDSI5pdZIR5hgAoJgfyWt7zq1Dv7Ngls_fV4KJEz9biS39E8FE_KfQcv66LhPxCAFAjjKFyfp7ZPls7sbU-QuCVSI4t7tN0qsgsadxrM89YCgwqiOdqNIhslW8kYhieRWwloPlDXfIUAFscP6pTu3tTtKd-vboMWGFVl1MwVDckFsidNjA6AM-ehLFlYhy7Liwaa2T49XCzXjJZOeeH3UzH6x5jiLRfXiswyPIhAmh7cJSQ3rLUSf3n21Yv5dh4_LxchjVruFscog-pwBgqbqsMaRjkPOU3j-p3s-DlM4S4ePnvVSgq5Xcm9F7nJpWEJ8gfQtn8MvDOA6O2daiG1McF2z17GRsVGx1mrPuZHyOXB-MPXl9JocMqLSYDWE8bcCEou4vWfVbYAPc61NiexB31-I4ciSelwk5-BFX0dxQ3xdJmxlDjizAArnnHRN-yuPvXXG4tRysd07hHwKX-P6_0SJaz1jSGv5SJ1t1GsBXt1PTTxW4p9KQ'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/a0HAg3j2Z0K2Y4nKb3WssLyAF1PKZXDP5cOUGIwxCBHoPM1Q-dC9GcWb09Nik8Y9MovqfFo7luQDF7DKVR77qcA0i2Y4rTESNxxrMdoGsRdJJAO98EwDmj4TafwCSWWki9LocbUoElWFDQjlYrmRkX-E_g0om_RSw1TbVSSnZluw01Dqk2D1MLVHUKf-44XurG2Xs525VJ4gkfGQ_J_6ZT02YxVp7cjDXW6P3UqfDHTpR2n3q62lPl8LTrfaQSyA-rJeR8mfobPBYI43WYhbNGS1_6YdLxsMQAQ5E1RjNi-XQOfL9OlJA18BFKuIRTCvlnui7OFpq8LDReVJLFgpD41fRc-5zkUB4hWFqlwC1jCkg1DL9WHiIS8-gtierbQXASQQtTPtj3Y0ZEehcBGB8ioskXnjSNlQgekL-uEaqTecsbL2kqrrjX5FNU3fM9KwqMoNgQXmbhHfx99o-V7Utfy6GrIxoE_xhDsmZR7v_KAkPD9MtKISbxEuXc5y5k5NcaG4xyCbcaNMyw5QyTl1omfe7oi9BEOByxUmRyVvRRV8YfobH1dC0PILNr7h2EnTYR0-xsnLnzr0dli2aPDFMf_hqq-cG3vmpbptQOW8e8akGaGq74VwM_nGcFvQEE2KKM7VDJaOWRLs6Xz4FJhRuKbm5Wj9SKMxwkd9e1bLaZJMIwcyiB5Lb5Qd4giFnUfZxFjQr47vD_if1b5UtTshOnrnC23p9Gs6Yi5vN8obx5ZSwgo918fTTJD3wNZHXIPV83QigP8Zl3xcLnslMtQmd2tn5cOIzmcyDpHCsQH3ksmji0vdSR4EOqN2Mc_4KWt0M-D7gbaE_5lrAY8Zhvn5LUsQb5pBssYQ78c4Tlp_yO1EqBKcXO-oO_01O9f5dXcx6ux2I4l9wjD99BxruPmWPhPi_rJ49-LmdfbjTcj8AakMN3HHS6UbOcAmD0cpcxcE4MmmT2epxAYZwrKEUwTou--AGrb5bgdukrbJvAF6yQCetqPUIm0qR13Jz-IjWfyXMjN1MSOVr6a2REF7HWOhBao4jzmPll5OH6G_h9STnMfIV0w1rDnQzWnNvL5mwXQcLBhrajBxuG3z11AZGL1G_Fne3SASeeqZtH5WKv9dQvtU_8xvhdVtMx4en3sljJ1Roq2Jeh3zbHk-iLzmd2JhmWRhL8vK12t4PkmuPctkqvYYDEW3rVBPoEEZk-PrBGS-oyX4nxrL7ohiNvHqvyOrTqzwpNYJux7iFbz-mQixl-L9yOE-N1VfEPEhEzLqEWTQXVOxcf29WcYzuy_Ssp7NV4tGnR9xmL-rf36Oy85xWACpvdlreEAYIE-0UQajlYWuhCY7abjxgRLoz5IJOzmfOAnawCexvOY3UjNm_f8UQxoiMQobwIm-o6kVmzXoHNBP3dv_SAp5rDQ6SjAyGw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/B8Kh7RWV6aHjDoEn0fio5M8IIenGt35lALhuw47Ho3U1HXAL2QJSImSfzCdAFMF4PivnCPY8oe4oydKn8RNCgsZjfz7b-TSWrEYiVAwAfih9rpE_5PVUULbd9PtF7KL6MqQzHyfljpgWCXv0mNPdlOCgzxSattj7rxmlYGaXWb_zae7Tm1Ce74olFzqweKMJtZMCODYykySLXNZxWpuWyOUPyuujyH3vLp9J0xzG1UzRzLk3fSHdZvdx7qig0uBlbqbdI1dmVYwBaYp3B-bgmi8r46YKlkIEebkUxLKtikKqGodgsjb7V-v_qhtkUXjKadygokTWPv2AIAJIsD7bbPy9MJP2Z1nhc6yvBbaphk7qD39v1_JCNIIuYoYdBfA6zdd3wJmSmq8_PTVdY8UBWCTLtyE2MkDDDCf6gzaJP4M0nptCT1PLyffTo_0wES-D2tA53a8xj14EG4U9zAUUlOaRwe9ukG4cenh8U2FG1CnDtyz7KdpbuYTcq6Kq5DPwyFS6K2IiuJEWgTDkvUwguEmHotPQfRxgE6eimqCfL8z7Y9znuyrG_Sooyiw06nsTVlnXTa1koYdYxT9D09vAonvV2AwKTNY3lIKahe1cX0WycHkM1FUKsp2t7Ubv-s-Oo_etaKe2mZlHLpO7LE5AsodTJDqECQyDxL5CuEHsF35llHnsJCCwf0tYnmOgi7cHmczBJb1TQLaOxFCfSb4kEGHNmbme4RDkgKL7jPTRk6dFjPzSwtD50kMjQWZFMjb4ghlvGQBd4WoEM2loK0HI1KZgVgs_rv0VJI9OXDo-EyeiM3s05ewNRxuGjeiXFisOd2_Nl_Ccr2Tl7fXovBBY3o--Bi4E7nmaoXWKkERnz3E2TY7PY9kO_0_1Zo6oq6DCVOYT5nu_m8LlM2y5bA555kciWrsbxqpkV9IgCPFIKmYRTIiXwoSlgWr4_eGLkOqhkkk5DvHNkmGXHhloPhi8wac4ZLZYNGpxOL_kqkUWHpODr-1iRtedWBLP3zw4wZ_fRNnKgMmGcE4d4-HMR8qU185nOnBP-a37l7RLhP1hwaNeYG4in_zUXRXCWZd5FhbhkRfXwkragLw1EKlJHuaPPLPxunWuuJhmLwjDIARf5G6Zse0ZQtrNWLBoIl9ZXzoTyLmvIy538IPCd7omZ8M_K89vvD6rbPILfFjgyRPdczAYD3ohXWT1vp__NymvdWVdSyeLh95RN_fiNq5-dj0YZ2xBMa8Ncrm_cu-Z7iZHT8QKIRVlBQIkSGhf_y1k28RnwWVW8IlJVbF1n0qhOmiNdP0ZPpB-JSTPizU-g755TDY'></script></head>
+<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/3xRmM3EOfwqnwUsNYgKssVGYI5XJ0-0O_XeY85rj0bozhedLdjCVyWSg8Kg17np7TgCKVLYkTYx-N69zLDyuDUkeWmnMVakiDNtlA2onx5R4TSmbxEN5GbbqFzVRpWYSvxB3UfI2MCM4zHpMJt21r4A69yLdgS6EygBCXVC_PgMWtnI9IyNkgrTXMR7uEoy3A8kpAfFEbW0V0fgtdmHBO0xJclwEuNxZ6qPsditk6Z-j-8omuJS9mo2LjfM4s5s3RJFZ0pYrY8pyS8_O4ZIraczKcMt7lbdjQAxQZNz9aTNjMl0157VffkFA869Xb7huASKBr2eXdyv9Je0IV2M8JOwniZlnfauIS9Bhk45PvEfxEmiMy2LXkYNa9ZboemQClEPRV9UWp2rlotwjk42CTP0OeXF7w6imvE-zhZkQ0iC15_eTEnUTV3NJC_U86aLJQaFOT81WMJ-LyyBF1MTDgwjJ04dm1SJJEA90zcAGtwgEOT7r_oWuAAGT38S6hzdwtbLmidcxph3pZbkv02jGn7VeR1lScmFolMUCd10sggmIFQ5jYVcem5Jv33Auh58lyMNGr3oSYqP4TVs2y7pyq6QuZweI0UxjuewfB4oaU1Zgzh75S0lQtQ7WcxWi_ItP-mGinonacoAmr0HMVhdadootr3sP9iNrcLbhM3CIKrbRSJsy0Cl4soNA2OmkovW3qrCH4VTmlm74Zmrn7LkHyFmUyjynRk2hFTPNBvhpVyGXY8C1-n7sOLun_4H3zMn-Ua9Yfr9jgcmYEQxp6ZMIq5v8Nl-WZXktaFtQrlgC95oyjy8un8syf14NG4jAulM09yCXNWODhbvdsFCY6QWHsf-l5HJSIWDzQjDMt6Wa0dmLUrKjSk3BtfKpImmFk9g5q8zP4H2EDuh--e_025kWMANUcIC9y5sCySdY9IAjdo1OscxE7bgcg9nX3wTbMW-XST36I_V5-HiLJNM4CLBsg2VevrpYsCol8HIrS13sk4yRz7X2Eey4_G36Kna8vgJZYGlXPHj9WPfav8wIOzmeMTAwM5hLjL1nmGRqcjvJO4ccdE6QIW6mmx19_AVLJfhQFrpucsE4622oiCwCn18riiZjZTHRvHMIil8fBmY7F8RWmea5AmvmdFZSSsVPUCnCxE1w8LbNBePz-aQ-xSXnEX1c1WT33bEVI0E0repaVRHSJy2zX-7tsoMsZtytO7V4mR-I77R9IpiubVL717A4W3QhqMa5LfS3kxufomQ_gPWrzZf816zj8jPYVL-jnAREmfNfqhcjSFz5tpiMsW1Hy3FKKvS0Ojzozv86DNRHf2s2k5xoQ7dERRBO4ngsinf2S4k5IN40OdRfunPKkCmQwfB0NlU7Cg98gdjSJsiILLDgh6IhUEFjl68MDX3WdYv3TX9OZZQdhjeL8ZnQQw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/a0HAg3j2Z0K2Y4nKb3WssLyAF1PKZXDP5cOUGIwxCBHoPM1Q-dC9GcWb09Nik8Y9MovqfFo7luQDF7DKVR77qcA0i2Y4rTESNxxrMdoGsRdJJAO98EwDmj4TafwCSWWki9LocbUoElWFDQjlYrmRkX-E_g0om_RSw1TbVSSnZluw01Dqk2D1MLVHUKf-44XurG2Xs525VJ4gkfGQ_J_6ZT02YxVp7cjDXW6P3UqfDHTpR2n3q62lPl8LTrfaQSyA-rJeR8mfobPBYI43WYhbNGS1_6YdLxsMQAQ5E1RjNi-XQOfL9OlJA18BFKuIRTCvlnui7OFpq8LDReVJLFgpD41fRc-5zkUB4hWFqlwC1jCkg1DL9WHiIS8-gtierbQXASQQtTPtj3Y0ZEehcBGB8ioskXnjSNlQgekL-uEaqTecsbL2kqrrjX5FNU3fM9KwqMoNgQXmbhHfx99o-V7Utfy6GrIxoE_xhDsmZR7v_KAkPD9MtKISbxEuXc5y5k5NcaG4xyCbcaNMyw5QyTl1omfe7oi9BEOByxUmRyVvRRV8YfobH1dC0PILNr7h2EnTYR0-xsnLnzr0dli2aPDFMf_hqq-cG3vmpbptQOW8e8akGaGq74VwM_nGcFvQEE2KKM7VDJaOWRLs6Xz4FJhRuKbm5Wj9SKMxwkd9e1bLaZJMIwcyiB5Lb5Qd4giFnUfZxFjQr47vD_if1b5UtTshOnrnC23p9Gs6Yi5vN8obx5ZSwgo918fTTJD3wNZHXIPV83QigP8Zl3xcLnslMtQmd2tn5cOIzmcyDpHCsQH3ksmji0vdSR4EOqN2Mc_4KWt0M-D7gbaE_5lrAY8Zhvn5LUsQb5pBssYQ78c4Tlp_yO1EqBKcXO-oO_01O9f5dXcx6ux2I4l9wjD99BxruPmWPhPi_rJ49-LmdfbjTcj8AakMN3HHS6UbOcAmD0cpcxcE4MmmT2epxAYZwrKEUwTou--AGrb5bgdukrbJvAF6yQCetqPUIm0qR13Jz-IjWfyXMjN1MSOVr6a2REF7HWOhBao4jzmPll5OH6G_h9STnMfIV0w1rDnQzWnNvL5mwXQcLBhrajBxuG3z11AZGL1G_Fne3SASeeqZtH5WKv9dQvtU_8xvhdVtMx4en3sljJ1Roq2Jeh3zbHk-iLzmd2JhmWRhL8vK12t4PkmuPctkqvYYDEW3rVBPoEEZk-PrBGS-oyX4nxrL7ohiNvHqvyOrTqzwpNYJux7iFbz-mQixl-L9yOE-N1VfEPEhEzLqEWTQXVOxcf29WcYzuy_Ssp7NV4tGnR9xmL-rf36Oy85xWACpvdlreEAYIE-0UQajlYWuhCY7abjxgRLoz5IJOzmfOAnawCexvOY3UjNm_f8UQxoiMQobwIm-o6kVmzXoHNBP3dv_SAp5rDQ6SjAyGw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/B8Kh7RWV6aHjDoEn0fio5M8IIenGt35lALhuw47Ho3U1HXAL2QJSImSfzCdAFMF4PivnCPY8oe4oydKn8RNCgsZjfz7b-TSWrEYiVAwAfih9rpE_5PVUULbd9PtF7KL6MqQzHyfljpgWCXv0mNPdlOCgzxSattj7rxmlYGaXWb_zae7Tm1Ce74olFzqweKMJtZMCODYykySLXNZxWpuWyOUPyuujyH3vLp9J0xzG1UzRzLk3fSHdZvdx7qig0uBlbqbdI1dmVYwBaYp3B-bgmi8r46YKlkIEebkUxLKtikKqGodgsjb7V-v_qhtkUXjKadygokTWPv2AIAJIsD7bbPy9MJP2Z1nhc6yvBbaphk7qD39v1_JCNIIuYoYdBfA6zdd3wJmSmq8_PTVdY8UBWCTLtyE2MkDDDCf6gzaJP4M0nptCT1PLyffTo_0wES-D2tA53a8xj14EG4U9zAUUlOaRwe9ukG4cenh8U2FG1CnDtyz7KdpbuYTcq6Kq5DPwyFS6K2IiuJEWgTDkvUwguEmHotPQfRxgE6eimqCfL8z7Y9znuyrG_Sooyiw06nsTVlnXTa1koYdYxT9D09vAonvV2AwKTNY3lIKahe1cX0WycHkM1FUKsp2t7Ubv-s-Oo_etaKe2mZlHLpO7LE5AsodTJDqECQyDxL5CuEHsF35llHnsJCCwf0tYnmOgi7cHmczBJb1TQLaOxFCfSb4kEGHNmbme4RDkgKL7jPTRk6dFjPzSwtD50kMjQWZFMjb4ghlvGQBd4WoEM2loK0HI1KZgVgs_rv0VJI9OXDo-EyeiM3s05ewNRxuGjeiXFisOd2_Nl_Ccr2Tl7fXovBBY3o--Bi4E7nmaoXWKkERnz3E2TY7PY9kO_0_1Zo6oq6DCVOYT5nu_m8LlM2y5bA555kciWrsbxqpkV9IgCPFIKmYRTIiXwoSlgWr4_eGLkOqhkkk5DvHNkmGXHhloPhi8wac4ZLZYNGpxOL_kqkUWHpODr-1iRtedWBLP3zw4wZ_fRNnKgMmGcE4d4-HMR8qU185nOnBP-a37l7RLhP1hwaNeYG4in_zUXRXCWZd5FhbhkRfXwkragLw1EKlJHuaPPLPxunWuuJhmLwjDIARf5G6Zse0ZQtrNWLBoIl9ZXzoTyLmvIy538IPCd7omZ8M_K89vvD6rbPILfFjgyRPdczAYD3ohXWT1vp__NymvdWVdSyeLh95RN_fiNq5-dj0YZ2xBMa8Ncrm_cu-Z7iZHT8QKIRVlBQIkSGhf_y1k28RnwWVW8IlJVbF1n0qhOmiNdP0ZPpB-JSTPizU-g755TDY'></script></head>
 <body>
     <main>
         <section id="menu-container" class="window-box">
-            <h1>九九乘法大挑戰</h1>
+            <h1>數學運算大挑戰</h1>
             <div class="subtitle">鍛鍊你的大腦速算極限！</div>
             <div class="instructions">
                 <strong>遊戲規則說明：</strong><br>
@@ -170,13 +189,17 @@
                 2. 你有 3 顆心，答錯會<strong>扣除 1 顆心</strong>；心心扣光遊戲提早結束。<br>
                 3. 輸入答案後按 <strong>Enter 鍵</strong>即可快速提交。<br>
                 4. 結束後會提供<strong>錯題筆記</strong>，幫你複習盲點。<br>
-                5. 可選擇<strong>雙人 PvP</strong>（玩家 1 按 A、玩家 2 按 L 搶答）或<strong>倒打逆向</strong>（每題 10 秒選因數組合）。
+                5. 可選擇<strong>雙人 PvP</strong>（玩家 1 按 A、玩家 2 按 L 搶答），也可挑戰<strong>加法、減法、除法及倒打逆向</strong>。<br>
+                6. 除法題都會<strong>整除</strong>；減法不會出現負數。不同運算模式各自保存最高分。<br>
+                7. PvP 可自訂玩家名稱，個人高分會加入<strong>本機前 10 名排行榜</strong>（只存在此瀏覽器）。<br>
+                8. 答題累積成就點數，可解鎖不同角色外觀；進度保存在本機瀏覽器。<br>
+                9. 可設定本機玩家暱稱並保存遊戲資料；此資料只在目前瀏覽器使用，不是線上帳號。
             </div>
             <button class="action-btn menu-btn" type="button" id="enter-game-btn">進入遊戲</button>
         </section>
 
-        <section id="game-container" class="window-box hidden" aria-label="九九乘法遊戲">
-            <h1>九九乘法大挑戰</h1>
+        <section id="game-container" class="window-box hidden" aria-label="數學運算遊戲">
+            <h1>數學運算大挑戰</h1>
             <div class="audio-control">
                 <button id="exit-game-btn" class="exit-btn" type="button" title="退出遊戲（Esc）">退出遊戲</button>
                 <button id="audio-toggle" class="audio-btn" type="button" aria-pressed="false">音樂與音效：關</button>
@@ -186,11 +209,37 @@
                 <input id="music-volume" type="range" min="0" max="100" step="1" value="70" aria-label="調整背景音樂音量">
                 <output id="music-volume-value" for="music-volume">70%</output>
             </div>
+            <div class="sfx-volume">
+                <label for="sfx-volume">答題特效音音量</label>
+                <input id="sfx-volume" type="range" min="0" max="100" step="1" value="85" aria-label="調整答題特效音音量">
+                <output id="sfx-volume-value" for="sfx-volume">85%</output>
+            </div>
+            <section class="player-profile" aria-label="本機玩家資料與角色外觀">
+                <div id="profile-avatar" class="profile-avatar" aria-hidden="true">🎓</div>
+                <div class="profile-controls">
+                    <label for="profile-name">本機玩家暱稱</label>
+                    <input id="profile-name" type="text" maxlength="14" autocomplete="nickname" placeholder="輸入暱稱" aria-label="設定本機玩家暱稱">
+                    <label for="skin-select">角色外觀</label>
+                    <select id="skin-select" aria-label="選擇已解鎖的角色外觀"></select>
+                    <div id="profile-progress" class="profile-progress"></div>
+                    <div class="profile-local-note">暱稱與遊戲進度只保存在此瀏覽器，不是線上帳號。</div>
+                </div>
+            </section>
+            <details class="achievement-panel" id="achievement-panel">
+                <summary id="achievement-summary">成就 0 / 8｜已解鎖外觀 1 / 5</summary>
+                <ul id="achievement-list"></ul>
+            </details>
+            <div id="achievement-notice" class="achievement-notice" aria-live="polite"></div>
             <div class="mode-container" id="mode-box" role="group" aria-label="選擇遊戲模式">
                 <button class="mode-btn active" type="button" data-mode="solo">個人闖關</button>
                 <button class="mode-btn" type="button" data-mode="pvp">雙人 PvP</button>
                 <button class="mode-btn" type="button" data-mode="reverse">倒打逆向</button>
                 <button class="mode-btn" type="button" data-mode="addition">加法模式</button>
+                <button class="mode-btn" type="button" data-mode="addition-pvp">加法 PvP</button>
+                <button class="mode-btn" type="button" data-mode="subtraction">減法模式</button>
+                <button class="mode-btn" type="button" data-mode="subtraction-pvp">減法 PvP</button>
+                <button class="mode-btn" type="button" data-mode="division">除法模式</button>
+                <button class="mode-btn" type="button" data-mode="division-pvp">除法 PvP</button>
             </div>
             <div class="difficulty-container" id="diff-box" aria-label="選擇難度">
                 <button class="diff-btn active" type="button" data-difficulty="easy">簡單 (2–9)</button>
@@ -207,21 +256,27 @@
             </div>
             <div class="pvp-board hidden" id="pvp-board" aria-label="雙人即時比分">
                 <div class="player-card player-one" id="player-one-card">
-                    <div class="player-name">玩家 1（A）</div><div class="player-score" id="p1-score">0</div>
+                    <label class="player-name" for="p1-name">玩家 1（A）名稱</label><input id="p1-name" maxlength="14" value="玩家 1" aria-label="玩家 1 名稱">
+                    <div class="player-score" id="p1-score">0</div>
                     <input class="pvp-answer" id="p1-answer" type="number" min="0" step="1" inputmode="numeric" placeholder="答題" aria-label="玩家 1 答案" disabled>
                     <button class="buzz-btn" id="p1-buzz" type="button" disabled>搶答（A）</button>
                 </div>
                 <div class="player-card player-two" id="player-two-card">
-                    <div class="player-name">玩家 2（L）</div><div class="player-score" id="p2-score">0</div>
+                    <label class="player-name" for="p2-name">玩家 2（L）名稱</label><input id="p2-name" maxlength="14" value="玩家 2" aria-label="玩家 2 名稱">
+                    <div class="player-score" id="p2-score">0</div>
                     <input class="pvp-answer" id="p2-answer" type="number" min="0" step="1" inputmode="numeric" placeholder="答題" aria-label="玩家 2 答案" disabled>
                     <button class="buzz-btn" id="p2-buzz" type="button" disabled>搶答（L）</button>
                 </div>
             </div>
+            <section id="pvp-leaderboard" class="pvp-leaderboard hidden" aria-label="雙人排行榜">
+                <h2>雙人排行榜（本機前 10 名）</h2>
+                <ol id="pvp-leaderboard-list"></ol>
+            </section>
             <div id="game-box">
                 <div class="question" id="question" aria-live="polite">選擇難度後點擊開始</div>
                 <div id="reverse-status" class="reverse-status hidden" aria-live="polite"></div>
                 <div id="reverse-options" class="reverse-options hidden" aria-label="選擇正確的乘數組合"></div>
-                <div id="pvp-hint" class="hidden">按 A（玩家 1）或 L（玩家 2）搶答；搶到後輸入答案並按 Enter。</div>
+                <div id="pvp-hint" class="hidden">按 A（玩家 1）或 L（玩家 2）搶答；搶到後輸入答案並按 Enter。答錯則另一位可接著搶答。</div>
                 <form id="answer-form">
                     <input type="number" id="answer" placeholder="答案" aria-label="輸入答案" inputmode="numeric" disabled>
                     <button id="btn" class="action-btn" type="submit">開始遊戲</button>
@@ -244,16 +299,132 @@
         const storageKeys = { easy: "mult_high_easy", medium: "mult_high_medium", hard: "mult_high_hard" };
         const reverseStorageKeys = { easy: "mult_reverse_high_easy", medium: "mult_reverse_high_medium", hard: "mult_reverse_high_hard" };
         const additionStorageKeys = { easy: "add_high_easy", medium: "add_high_medium", hard: "add_high_hard" };
+        const subtractionStorageKeys = { easy: "subtract_high_easy", medium: "subtract_high_medium", hard: "subtract_high_hard" };
+        const divisionStorageKeys = { easy: "divide_high_easy", medium: "divide_high_medium", hard: "divide_high_hard" };
+        const PVP_LEADERBOARD_KEY = "math_pvp_leaderboard_v1";
+        const PLAYER_PROFILE_KEY = "math_player_profile_v1";
+        const skins = [
+            { id: "student", name: "小小學霸", emoji: "🎓", points: 0 },
+            { id: "fox", name: "數學狐狸", emoji: "🦊", points: 50 },
+            { id: "wizard", name: "算術魔法師", emoji: "🧙", points: 150 },
+            { id: "robot", name: "計算機器人", emoji: "🤖", points: 300 },
+            { id: "astronaut", name: "星際數學家", emoji: "🚀", points: 600 }
+        ];
+        const achievementDefinitions = [
+            { id: "first-answer", title: "初試啼聲", detail: "答對第一題", test: (p) => p.totalCorrect >= 1 },
+            { id: "streak-five", title: "連勝節奏", detail: "連續答對 5 題", test: (p) => p.bestStreak >= 5 },
+            { id: "streak-ten", title: "心算連擊王", detail: "連續答對 10 題", test: (p) => p.bestStreak >= 10 },
+            { id: "total-50", title: "熟能生巧", detail: "累積答對 50 題", test: (p) => p.totalCorrect >= 50 },
+            { id: "addition-25", title: "加法高手", detail: "加法答對 25 題", test: (p) => p.operationCorrect.addition >= 25 },
+            { id: "subtraction-25", title: "減法高手", detail: "減法答對 25 題", test: (p) => p.operationCorrect.subtraction >= 25 },
+            { id: "division-25", title: "除法高手", detail: "除法答對 25 題", test: (p) => p.operationCorrect.division >= 25 },
+            { id: "pvp-win-three", title: "對戰常勝軍", detail: "雙人對戰贏得 3 場", test: (p) => p.pvpWins >= 3 },
+            { id: "perfect-run", title: "零失誤挑戰", detail: "保留 3 顆心完成一場個人挑戰", test: (p) => p.perfectRuns >= 1 }
+        ];
 
         let score = 0, timeLeft = GAME_LENGTH_SECONDS, num1 = 0, num2 = 0, correctAnswer = 0;
         let gameActive = false, timerInterval = null, difficulty = "easy", mode = "solo";
-        let soundEnabled = false, audioContext = null, musicInterval = null, musicStep = 0, musicGainNode = null, musicVolume = readMusicVolume(), hp = STARTING_HEARTS, wrongQuestions = [];
+        let soundEnabled = false, audioContext = null, musicInterval = null, musicStep = 0, musicGainNode = null, musicVolume = readMusicVolume(), sfxVolume = readSfxVolume(), hp = STARTING_HEARTS, wrongQuestions = [];
         let questionTimeLeft = REVERSE_QUESTION_SECONDS, reverseTarget = 0, reverseValidPairs = [];
         let playerScores = [0, 0], currentBuzzer = null, attemptedPlayers = new Set();
+        let profile = loadPlayerProfile();
+        let profileMessageTimeout = null;
 
         function readScore(key) {
             try { return Number.parseInt(localStorage.getItem(key), 10) || 0; }
             catch (error) { return 0; }
+        }
+        function loadPlayerProfile() {
+            const defaults = {
+                name: "本機玩家", gamesPlayed: 0, totalCorrect: 0, currentStreak: 0, bestStreak: 0, totalPoints: 0,
+                operationCorrect: { addition: 0, subtraction: 0, division: 0, multiplication: 0 },
+                pvpWins: 0, perfectRuns: 0, unlockedAchievements: [], unlockedSkins: ["student"], selectedSkin: "student"
+            };
+            try {
+                const saved = JSON.parse(localStorage.getItem(PLAYER_PROFILE_KEY) || "{}");
+                return {
+                    ...defaults,
+                    ...saved,
+                    name: typeof saved.name === "string" ? saved.name.trim().slice(0, 14) || defaults.name : defaults.name,
+                    gamesPlayed: Number.isFinite(saved.gamesPlayed) ? Math.max(0, Math.floor(saved.gamesPlayed)) : 0,
+                    operationCorrect: { ...defaults.operationCorrect, ...(saved.operationCorrect || {}) },
+                    unlockedAchievements: Array.isArray(saved.unlockedAchievements) ? saved.unlockedAchievements : [],
+                    unlockedSkins: Array.isArray(saved.unlockedSkins) ? saved.unlockedSkins : ["student"]
+                };
+            } catch (error) { return defaults; }
+        }
+        function savePlayerProfile() {
+            try { localStorage.setItem(PLAYER_PROFILE_KEY, JSON.stringify(profile)); }
+            catch (error) { /* 無法持久化時，成就仍保留在本次工作階段。 */ }
+        }
+        function saveLocalPlayerName(value) {
+            profile.name = String(value || "").trim().slice(0, 14) || "本機玩家";
+            profileNameEl.value = profile.name;
+            if (!gameActive) p1NameEl.value = profile.name;
+            savePlayerProfile();
+        }
+        function showProfileNotice(text) {
+            achievementNoticeEl.textContent = text;
+            if (profileMessageTimeout !== null) window.clearTimeout(profileMessageTimeout);
+            profileMessageTimeout = window.setTimeout(() => { achievementNoticeEl.textContent = ""; }, 4500);
+        }
+        function renderPlayerProfile() {
+            const selected = skins.find((skin) => skin.id === profile.selectedSkin && profile.totalPoints >= skin.points) || skins[0];
+            profile.selectedSkin = selected.id;
+            profileAvatarEl.textContent = selected.emoji;
+            skinSelectEl.replaceChildren();
+            skins.forEach((skin) => {
+                const option = document.createElement("option");
+                option.value = skin.id;
+                option.textContent = profile.totalPoints >= skin.points ? `${skin.emoji} ${skin.name}` : `🔒 ${skin.name}（累積 ${skin.points} 分解鎖）`;
+                option.disabled = profile.totalPoints < skin.points;
+                skinSelectEl.appendChild(option);
+            });
+            skinSelectEl.value = selected.id;
+            const nextSkin = skins.find((skin) => skin.points > profile.totalPoints);
+            profileProgressEl.textContent = nextSkin
+                ? `答對 ${profile.totalCorrect} 題｜完成 ${profile.gamesPlayed} 局｜點數 ${profile.totalPoints}｜下一外觀：${nextSkin.name}（還差 ${Math.max(0, nextSkin.points - profile.totalPoints)} 點）`
+                : `答對 ${profile.totalCorrect} 題｜完成 ${profile.gamesPlayed} 局｜點數 ${profile.totalPoints}｜所有外觀已解鎖`;
+            const unlockedCount = achievementDefinitions.filter((item) => profile.unlockedAchievements.includes(item.id)).length;
+            const skinCount = skins.filter((skin) => profile.totalPoints >= skin.points).length;
+            achievementSummaryEl.textContent = `成就 ${unlockedCount} / ${achievementDefinitions.length}｜已解鎖外觀 ${skinCount} / ${skins.length}`;
+            achievementListEl.replaceChildren();
+            achievementDefinitions.forEach((item) => {
+                const li = document.createElement("li");
+                const unlocked = profile.unlockedAchievements.includes(item.id);
+                li.className = unlocked ? "unlocked" : "";
+                li.textContent = `${unlocked ? "✓" : "○"} ${item.title}：${item.detail}`;
+                achievementListEl.appendChild(li);
+            });
+        }
+        function updatePlayerProgress() {
+            const newAchievements = [];
+            achievementDefinitions.forEach((item) => {
+                if (item.test(profile) && !profile.unlockedAchievements.includes(item.id)) {
+                    profile.unlockedAchievements.push(item.id);
+                    newAchievements.push(item.title);
+                }
+            });
+            const newSkins = skins.filter((skin) => profile.totalPoints >= skin.points && !profile.unlockedSkins.includes(skin.id));
+            newSkins.forEach((skin) => profile.unlockedSkins.push(skin.id));
+            savePlayerProfile();
+            renderPlayerProfile();
+            const notices = [];
+            if (newAchievements.length) notices.push(`🏅 成就解鎖：${newAchievements.join("、")}`);
+            if (newSkins.length) notices.push(`新外觀解鎖：${newSkins.map((skin) => `${skin.emoji}${skin.name}`).join("、")}`);
+            if (notices.length) showProfileNotice(notices.join("｜"));
+        }
+        function recordCorrectAnswer() {
+            profile.totalCorrect += 1;
+            profile.currentStreak += 1;
+            profile.bestStreak = Math.max(profile.bestStreak, profile.currentStreak);
+            profile.totalPoints += POINTS_PER_CORRECT_ANSWER;
+            profile.operationCorrect[getArithmeticType()] += 1;
+            updatePlayerProgress();
+        }
+        function recordWrongAnswer() {
+            profile.currentStreak = 0;
+            savePlayerProfile();
         }
         function readMusicVolume() {
             try {
@@ -261,9 +432,17 @@
                 return Number.isFinite(saved) ? Math.min(1, Math.max(0, saved / 100)) : 0.7;
             } catch (error) { return 0.7; }
         }
+        function readSfxVolume() {
+            try {
+                const saved = Number.parseInt(localStorage.getItem("mult_sfx_volume"), 10);
+                return Number.isFinite(saved) ? Math.min(1, Math.max(0, saved / 100)) : 0.85;
+            } catch (error) { return 0.85; }
+        }
         const highScores = { easy: readScore(storageKeys.easy), medium: readScore(storageKeys.medium), hard: readScore(storageKeys.hard) };
         const reverseHighScores = { easy: readScore(reverseStorageKeys.easy), medium: readScore(reverseStorageKeys.medium), hard: readScore(reverseStorageKeys.hard) };
         const additionHighScores = { easy: readScore(additionStorageKeys.easy), medium: readScore(additionStorageKeys.medium), hard: readScore(additionStorageKeys.hard) };
+        const subtractionHighScores = { easy: readScore(subtractionStorageKeys.easy), medium: readScore(subtractionStorageKeys.medium), hard: readScore(subtractionStorageKeys.hard) };
+        const divisionHighScores = { easy: readScore(divisionStorageKeys.easy), medium: readScore(divisionStorageKeys.medium), hard: readScore(divisionStorageKeys.hard) };
 
         const menuContainer = document.getElementById("menu-container");
         const gameContainer = document.getElementById("game-container");
@@ -282,6 +461,8 @@
         const audioToggleBtn = document.getElementById("audio-toggle");
         const musicVolumeEl = document.getElementById("music-volume");
         const musicVolumeValueEl = document.getElementById("music-volume-value");
+        const sfxVolumeEl = document.getElementById("sfx-volume");
+        const sfxVolumeValueEl = document.getElementById("sfx-volume-value");
         const backMenuBtn = document.getElementById("back-menu-btn");
         const reviewArea = document.getElementById("review-area");
         const diffBox = document.getElementById("diff-box");
@@ -295,6 +476,17 @@
         const p2Answer = document.getElementById("p2-answer");
         const p1Buzz = document.getElementById("p1-buzz");
         const p2Buzz = document.getElementById("p2-buzz");
+        const p1NameEl = document.getElementById("p1-name");
+        const p2NameEl = document.getElementById("p2-name");
+        const pvpLeaderboardEl = document.getElementById("pvp-leaderboard");
+        const pvpLeaderboardListEl = document.getElementById("pvp-leaderboard-list");
+        const profileNameEl = document.getElementById("profile-name");
+        const skinSelectEl = document.getElementById("skin-select");
+        const profileAvatarEl = document.getElementById("profile-avatar");
+        const profileProgressEl = document.getElementById("profile-progress");
+        const achievementSummaryEl = document.getElementById("achievement-summary");
+        const achievementListEl = document.getElementById("achievement-list");
+        const achievementNoticeEl = document.getElementById("achievement-notice");
 
         document.getElementById("enter-game-btn").addEventListener("click", enterGame);
         backMenuBtn.addEventListener("click", returnToMenu);
@@ -302,14 +494,28 @@
         musicVolumeEl.value = String(Math.round(musicVolume * 100));
         musicVolumeValueEl.value = `${musicVolumeEl.value}%`;
         musicVolumeEl.addEventListener("input", () => setMusicVolume(musicVolumeEl.value));
+        sfxVolumeEl.value = String(Math.round(sfxVolume * 100));
+        sfxVolumeValueEl.value = `${sfxVolumeEl.value}%`;
+        sfxVolumeEl.addEventListener("input", () => setSfxVolume(sfxVolumeEl.value));
+        profileNameEl.value = profile.name;
+        p1NameEl.value = profile.name;
+        profileNameEl.addEventListener("change", () => saveLocalPlayerName(profileNameEl.value));
+        p1NameEl.addEventListener("change", () => saveLocalPlayerName(p1NameEl.value));
         document.getElementById("exit-game-btn").addEventListener("click", exitGame);
+        skinSelectEl.addEventListener("change", () => {
+            const chosenSkin = skins.find((skin) => skin.id === skinSelectEl.value);
+            if (!chosenSkin || profile.totalPoints < chosenSkin.points) return;
+            profile.selectedSkin = chosenSkin.id;
+            savePlayerProfile();
+            renderPlayerProfile();
+        });
         diffButtons.forEach((button) => button.addEventListener("click", () => handleDiff(button.dataset.difficulty)));
         modeButtons.forEach((button) => button.addEventListener("click", () => handleMode(button.dataset.mode)));
         answerForm.addEventListener("submit", (event) => {
             event.preventDefault();
             if (!gameActive) startGame();
-            else if (mode === "solo" || mode === "addition") checkAnswer();
-            else if (mode === "pvp" && currentBuzzer !== null) submitPvP(currentBuzzer);
+            else if (["solo", "addition", "subtraction", "division"].includes(mode)) checkAnswer();
+            else if (isPvPMode() && currentBuzzer !== null) submitPvP(currentBuzzer);
         });
         p1Buzz.addEventListener("click", () => buzzIn(0));
         p2Buzz.addEventListener("click", () => buzzIn(1));
@@ -325,11 +531,12 @@
                 exitGame();
                 return;
             }
-            if (!gameActive || mode !== "pvp" || event.repeat) return;
+            if (!gameActive || !isPvPMode() || event.repeat) return;
             const key = event.key.toLowerCase();
             if (key === "a") { event.preventDefault(); buzzIn(0); }
             else if (key === "l") { event.preventDefault(); buzzIn(1); }
         });
+        renderPlayerProfile();
 
         function enterGame() {
             menuContainer.classList.add("hidden");
@@ -357,6 +564,9 @@
             answerEl.disabled = true;
             p1Answer.disabled = true;
             p2Answer.disabled = true;
+            profileNameEl.disabled = false;
+            p1NameEl.disabled = false;
+            p2NameEl.disabled = false;
             p1Buzz.disabled = true;
             p2Buzz.disabled = true;
             diffBox.style.pointerEvents = "auto";
@@ -412,6 +622,13 @@
             try { localStorage.setItem("mult_music_volume", String(Math.round(percent))); }
             catch (error) { /* 無法儲存時仍可在本次遊戲調整。 */ }
         }
+        function setSfxVolume(value) {
+            const percent = Math.min(100, Math.max(0, Number(value) || 0));
+            sfxVolume = percent / 100;
+            sfxVolumeValueEl.value = `${Math.round(percent)}%`;
+            try { localStorage.setItem("mult_sfx_volume", String(Math.round(percent))); }
+            catch (error) { /* 無法儲存時仍可在本次遊戲調整。 */ }
+        }
         function startBackgroundMusic() {
             if (!soundEnabled || !audioContext || musicInterval !== null) return;
             if (!musicGainNode) {
@@ -460,41 +677,119 @@
             }
         }
         function playTone(frequency, duration, type, volume) {
-            if (!soundEnabled || !audioContext) return;
+            if (!soundEnabled || !audioContext || sfxVolume <= 0) return;
             if (audioContext.state === "suspended") audioContext.resume().catch(() => {});
             try {
                 const oscillator = audioContext.createOscillator(), gain = audioContext.createGain(), now = audioContext.currentTime;
                 oscillator.type = type || "sine";
                 oscillator.frequency.setValueAtTime(frequency, now);
-                gain.gain.setValueAtTime(volume || 0.08, now);
+                gain.gain.setValueAtTime((volume || 0.08) * sfxVolume, now);
                 gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
                 oscillator.connect(gain); gain.connect(audioContext.destination);
                 oscillator.start(now); oscillator.stop(now + duration);
             } catch (error) { /* 音效失敗不影響遊戲。 */ }
         }
+        function playCorrectSfx() {
+            [[523.25, 0], [659.25, 75], [783.99, 150], [1046.5, 225]].forEach(([frequency, delay]) => {
+                window.setTimeout(() => playTone(frequency, 0.18, "sine", 0.09), delay);
+            });
+        }
+        function playWrongSfx() {
+            [[392, 0], [293.66, 130], [220, 260]].forEach(([frequency, delay]) => {
+                window.setTimeout(() => playTone(frequency, 0.2, "triangle", 0.085), delay);
+            });
+        }
         function updateHighScoreDisplay() {
-            const scores = mode === "reverse" ? reverseHighScores : mode === "addition" ? additionHighScores : highScores;
-            const modeLabel = mode === "reverse" ? "逆向・" : mode === "addition" ? "加法・" : "";
+            const scores = getHighScoresForMode();
+            const modeLabel = mode === "reverse" ? "逆向・" : `${getOperationName()}・`;
             diffLabelEl.textContent = `${modeLabel}${difficultyLabels[difficulty]}`;
             highScoreEl.textContent = scores[difficulty];
-            highscoreBoard.classList.toggle("hidden", mode === "pvp");
-            pvpBoard.classList.toggle("hidden", mode !== "pvp");
+            highscoreBoard.classList.toggle("hidden", isPvPMode());
+            pvpBoard.classList.toggle("hidden", !isPvPMode());
+        }
+        function isPvPMode() {
+            return ["pvp", "addition-pvp", "subtraction-pvp", "division-pvp"].includes(mode);
+        }
+        function getOperationName() {
+            if (["addition", "addition-pvp"].includes(mode)) return "加法";
+            if (["subtraction", "subtraction-pvp"].includes(mode)) return "減法";
+            if (["division", "division-pvp"].includes(mode)) return "除法";
+            return "乘法";
+        }
+        function getArithmeticType() {
+            if (["addition", "addition-pvp"].includes(mode)) return "addition";
+            if (["subtraction", "subtraction-pvp"].includes(mode)) return "subtraction";
+            if (["division", "division-pvp"].includes(mode)) return "division";
+            return "multiplication";
+        }
+        function getHighScoresForMode() {
+            if (mode === "reverse") return reverseHighScores;
+            if (["addition", "addition-pvp"].includes(mode)) return additionHighScores;
+            if (["subtraction", "subtraction-pvp"].includes(mode)) return subtractionHighScores;
+            if (["division", "division-pvp"].includes(mode)) return divisionHighScores;
+            return highScores;
+        }
+        function getStorageKeysForMode() {
+            if (mode === "reverse") return reverseStorageKeys;
+            if (["addition", "addition-pvp"].includes(mode)) return additionStorageKeys;
+            if (["subtraction", "subtraction-pvp"].includes(mode)) return subtractionStorageKeys;
+            if (["division", "division-pvp"].includes(mode)) return divisionStorageKeys;
+            return storageKeys;
+        }
+        function readPvPLeaderboard() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(PVP_LEADERBOARD_KEY) || "[]");
+                if (!Array.isArray(saved)) return [];
+                return saved.filter((item) => item && typeof item.name === "string" && typeof item.operation === "string" && Number.isFinite(item.score) && item.score > 0).slice(0, 10);
+            } catch (error) { return []; }
+        }
+        function renderPvPLeaderboard() {
+            if (!pvpLeaderboardListEl) return;
+            const rows = readPvPLeaderboard();
+            pvpLeaderboardListEl.replaceChildren();
+            if (rows.length === 0) {
+                const empty = document.createElement("li");
+                empty.textContent = "尚無對戰紀錄，來挑戰第一名吧！";
+                pvpLeaderboardListEl.appendChild(empty);
+                return;
+            }
+            rows.forEach((item) => {
+                const row = document.createElement("li");
+                row.textContent = `${item.name}｜${item.operation}｜${item.score} 分`;
+                pvpLeaderboardListEl.appendChild(row);
+            });
+        }
+        function recordPvPLeaderboard() {
+            const getName = (input, fallback) => input.value.trim().slice(0, 14) || fallback;
+            const candidates = [
+                { name: getName(p1NameEl, "玩家 1"), score: playerScores[0] },
+                { name: getName(p2NameEl, "玩家 2"), score: playerScores[1] }
+            ].filter((item) => item.score > 0).map((item) => ({ ...item, operation: getOperationName() }));
+            if (candidates.length === 0) return;
+            const rows = [...readPvPLeaderboard(), ...candidates]
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 10);
+            try { localStorage.setItem(PVP_LEADERBOARD_KEY, JSON.stringify(rows)); }
+            catch (error) { /* 無法寫入本機儲存時，對戰結果仍正常顯示。 */ }
+            renderPvPLeaderboard();
         }
         function updateModeUI() {
-            answerForm.classList.toggle("hidden", gameActive && !["solo", "addition"].includes(mode));
-            answerEl.classList.toggle("hidden", !["solo", "addition"].includes(mode));
+            answerForm.classList.toggle("hidden", gameActive && (isPvPMode() || mode === "reverse"));
+            answerEl.classList.toggle("hidden", isPvPMode() || mode === "reverse");
             reverseOptionsEl.classList.toggle("hidden", mode !== "reverse" || !gameActive);
             reverseStatusEl.classList.toggle("hidden", mode !== "reverse" || !gameActive);
-            pvpHintEl.classList.toggle("hidden", mode !== "pvp");
-            document.getElementById("solo-score-wrap").classList.toggle("hidden", mode === "pvp");
-            hpEl.classList.toggle("hidden", mode === "pvp");
+            pvpHintEl.classList.toggle("hidden", !isPvPMode());
+            pvpLeaderboardEl.classList.toggle("hidden", !isPvPMode());
+            document.getElementById("solo-score-wrap").classList.toggle("hidden", isPvPMode());
+            hpEl.classList.toggle("hidden", isPvPMode());
             updateHighScoreDisplay();
+            renderPvPLeaderboard();
             if (!gameActive) {
-                questionEl.textContent = mode === "reverse" ? "倒打逆向：看到乘積後，選出正確的乘數組合！" : mode === "pvp" ? "雙人搶答：選擇難度後按開始！" : mode === "addition" ? "加法模式：快速算出加總，答對得 10 分！" : "準備好了嗎？按下開始遊戲！";
+                questionEl.textContent = mode === "reverse" ? "倒打逆向：看到乘積後，選出正確的乘數組合！" : isPvPMode() ? `雙人${getOperationName()}搶答：玩家 1 按 A、玩家 2 按 L！` : mode === "solo" ? "乘法模式：快速算出乘積，答對得 10 分！" : `${getOperationName()}模式：快速算出答案，答對得 10 分！`;
             }
         }
         function handleMode(nextMode) {
-            if (gameActive || !["solo", "pvp", "reverse", "addition"].includes(nextMode)) return;
+            if (gameActive || !["solo", "pvp", "reverse", "addition", "addition-pvp", "subtraction", "subtraction-pvp", "division", "division-pvp"].includes(nextMode)) return;
             mode = nextMode;
             modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === mode));
             updateModeUI();
@@ -508,20 +803,23 @@
         }
         function startGame() {
             if (gameActive) return;
+            saveLocalPlayerName(profileNameEl.value);
             score = 0; timeLeft = GAME_LENGTH_SECONDS; hp = STARTING_HEARTS; wrongQuestions = [];
             playerScores = [0, 0]; currentBuzzer = null; attemptedPlayers = new Set();
             gameActive = true;
+            profileNameEl.disabled = true;
             scoreEl.textContent = "0"; timerEl.textContent = timeLeft; updateHearts();
             document.getElementById("p1-score").textContent = "0";
             document.getElementById("p2-score").textContent = "0";
             messageEl.textContent = ""; messageEl.className = "message";
             answerEl.disabled = false; answerEl.value = ""; btnEl.textContent = "提交答案";
+            p1NameEl.disabled = isPvPMode(); p2NameEl.disabled = isPvPMode();
             backMenuBtn.classList.add("hidden"); reviewArea.classList.add("hidden"); reviewArea.replaceChildren();
             diffBox.style.pointerEvents = "none"; diffBox.style.opacity = "0.5";
             modeBox.style.pointerEvents = "none"; modeBox.style.opacity = "0.5";
             modeButtons.forEach((button) => { button.disabled = true; });
             updateModeUI();
-            if (mode === "pvp") {
+            if (isPvPMode()) {
                 p1Answer.disabled = true; p2Answer.disabled = true; p1Buzz.disabled = false; p2Buzz.disabled = false;
                 answerForm.classList.add("hidden");
             } else if (mode === "reverse") {
@@ -544,18 +842,32 @@
         }
         function generateQuestion() {
             if (mode === "reverse") { generateReverseQuestion(); return; }
-            if (difficulty === "easy") {
-                num1 = Math.floor(Math.random() * 8) + 2; num2 = Math.floor(Math.random() * 8) + 2;
-            } else if (difficulty === "medium") {
-                num1 = Math.floor(Math.random() * 9) + 11; num2 = Math.floor(Math.random() * 9) + 11;
+            const randomOperand = () => {
+                if (difficulty === "easy") return Math.floor(Math.random() * 8) + 2;
+                if (difficulty === "medium") return Math.floor(Math.random() * 9) + 11;
+                return Math.floor(Math.random() * 89) + 11;
+            };
+            num1 = randomOperand();
+            num2 = randomOperand();
+            const operation = getArithmeticType();
+            if (operation === "subtraction" && num1 < num2) [num1, num2] = [num2, num1];
+            if (operation === "division") {
+                const quotient = num1;
+                const divisor = num2;
+                num1 = quotient * divisor;
+                num2 = divisor;
+                correctAnswer = quotient;
+            } else if (operation === "addition") {
+                correctAnswer = num1 + num2;
+            } else if (operation === "subtraction") {
+                correctAnswer = num1 - num2;
             } else {
-                num1 = Math.floor(Math.random() * 89) + 11; num2 = Math.floor(Math.random() * 89) + 11;
+                correctAnswer = num1 * num2;
             }
-            const operator = mode === "addition" ? "+" : "×";
-            correctAnswer = mode === "addition" ? num1 + num2 : num1 * num2;
+            const operator = operation === "addition" ? "+" : operation === "subtraction" ? "−" : operation === "division" ? "÷" : "×";
             questionEl.textContent = `${num1} ${operator} ${num2} = ?`;
             answerEl.value = "";
-            if (mode === "pvp") resetPvPRound();
+            if (isPvPMode()) resetPvPRound();
         }
         function generateReverseQuestion() {
             const a = Math.floor(Math.random() * 8) + 2, b = Math.floor(Math.random() * 8) + 2;
@@ -588,16 +900,20 @@
             hpEl.setAttribute("aria-label", `剩餘 ${hp} 顆心`);
         }
         function checkAnswer() {
-            if (!gameActive || !["solo", "addition"].includes(mode)) return;
+            if (!gameActive || isPvPMode() || mode === "reverse") return;
             const rawAnswer = answerEl.value.trim(), userAnswer = rawAnswer === "" ? Number.NaN : Number(rawAnswer);
             if (userAnswer === correctAnswer) {
                 score += POINTS_PER_CORRECT_ANSWER; scoreEl.textContent = score;
+                recordCorrectAnswer();
                 messageEl.className = "message correct"; messageEl.textContent = `答對了！(+${POINTS_PER_CORRECT_ANSWER})`;
-                playTone(660, 0.12, "sine", 0.08); window.setTimeout(() => playTone(880, 0.16, "sine", 0.07), 80);
+                playCorrectSfx();
                 generateQuestion();
             } else {
-                hp -= 1; updateHearts(); wrongQuestions.push({ q: `${num1} ${mode === "addition" ? "+" : "×"} ${num2}`, correct: correctAnswer, user: Number.isNaN(userAnswer) ? "未填" : userAnswer });
-                messageEl.className = "message wrong"; messageEl.textContent = "答錯囉！扣除 1 顆心"; playTone(220, 0.25, "triangle", 0.09);
+                const operation = getArithmeticType();
+                const operator = operation === "addition" ? "+" : operation === "subtraction" ? "−" : operation === "division" ? "÷" : "×";
+                recordWrongAnswer();
+                hp -= 1; updateHearts(); wrongQuestions.push({ q: `${num1} ${operator} ${num2}`, correct: correctAnswer, user: Number.isNaN(userAnswer) ? "未填" : userAnswer });
+                messageEl.className = "message wrong"; messageEl.textContent = "答錯囉！扣除 1 顆心"; playWrongSfx();
                 if (hp <= 0) { endGame("生命值耗盡！"); return; }
                 generateQuestion();
             }
@@ -608,17 +924,19 @@
             const correct = reverseValidPairs.some((pair) => pair[0] === a && pair[1] === b);
             if (correct) {
                 score += POINTS_PER_CORRECT_ANSWER; scoreEl.textContent = score;
+                recordCorrectAnswer();
                 messageEl.className = "message correct"; messageEl.textContent = `答對了！(+${POINTS_PER_CORRECT_ANSWER})`;
-                playTone(660, 0.12, "sine", 0.08); generateQuestion();
+                playCorrectSfx(); generateQuestion();
             } else handleReverseMiss("答錯囉！");
         }
         function handleReverseMiss(reason) {
             if (!gameActive || mode !== "reverse") return;
+            recordWrongAnswer();
             hp -= 1; updateHearts();
             const validText = reverseValidPairs.map(([a, b]) => `${a} × ${b}`).join(" 或 ");
             wrongQuestions.push({ q: `乘積 ${reverseTarget}`, correct: validText, user: reason === "時間到！" ? "逾時" : "錯誤選項" });
             messageEl.className = "message wrong"; messageEl.textContent = `${reason} 正確組合：${validText}；扣除 1 顆心`;
-            playTone(220, 0.25, "triangle", 0.09);
+            playWrongSfx();
             if (hp <= 0) { endGame("生命值耗盡！"); return; }
             generateQuestion();
         }
@@ -630,7 +948,7 @@
             document.getElementById("player-two-card").classList.remove("buzzed");
         }
         function buzzIn(player) {
-            if (!gameActive || mode !== "pvp" || currentBuzzer !== null || attemptedPlayers.has(player)) return;
+            if (!gameActive || !isPvPMode() || currentBuzzer !== null || attemptedPlayers.has(player)) return;
             currentBuzzer = player;
             const input = player === 0 ? p1Answer : p2Answer;
             const otherBuzz = player === 0 ? p2Buzz : p1Buzz;
@@ -640,15 +958,17 @@
             input.focus(); playTone(520, 0.08, "square", 0.06);
         }
         function submitPvP(player) {
-            if (!gameActive || mode !== "pvp" || currentBuzzer !== player) return;
+            if (!gameActive || !isPvPMode() || currentBuzzer !== player) return;
             const input = player === 0 ? p1Answer : p2Answer;
             const raw = input.value.trim(), answer = raw === "" ? Number.NaN : Number(raw);
             if (answer === correctAnswer) {
                 playerScores[player] += POINTS_PER_CORRECT_ANSWER;
+                recordCorrectAnswer();
                 document.getElementById(player === 0 ? "p1-score" : "p2-score").textContent = playerScores[player];
                 messageEl.className = "message correct"; messageEl.textContent = `玩家 ${player + 1} 答對，得 ${POINTS_PER_CORRECT_ANSWER} 分！`;
-                playTone(660, 0.12, "sine", 0.08); generateQuestion();
+                playCorrectSfx(); generateQuestion();
             } else {
+                recordWrongAnswer();
                 attemptedPlayers.add(player); currentBuzzer = null;
                 input.disabled = true; input.value = "";
                 document.getElementById(player === 0 ? "player-one-card" : "player-two-card").classList.remove("buzzed");
@@ -657,10 +977,10 @@
                 (player === 0 ? p1Buzz : p2Buzz).disabled = true;
                 messageEl.className = "message wrong";
                 messageEl.textContent = Number.isNaN(answer) ? `玩家 ${player + 1} 未輸入答案，換另一位搶答。` : `玩家 ${player + 1} 答錯，換另一位搶答！`;
-                playTone(220, 0.2, "triangle", 0.08);
+                playWrongSfx();
                 if (attemptedPlayers.size === 2) {
                     messageEl.textContent += ` 正確答案是 ${correctAnswer}。`;
-                    window.setTimeout(() => { if (gameActive && mode === "pvp") generateQuestion(); }, 900);
+                    window.setTimeout(() => { if (gameActive && isPvPMode()) generateQuestion(); }, 900);
                 }
             }
         }
@@ -668,35 +988,51 @@
             if (!gameActive) return;
             gameActive = false; window.clearInterval(timerInterval); timerInterval = null;
             answerEl.disabled = true; p1Answer.disabled = true; p2Answer.disabled = true; p1Buzz.disabled = true; p2Buzz.disabled = true;
-            if (mode === "pvp") {
-                const outcome = playerScores[0] === playerScores[1] ? "平手！" : playerScores[0] > playerScores[1] ? "玩家 1 獲勝！" : "玩家 2 獲勝！";
+            profileNameEl.disabled = false;
+            p1NameEl.disabled = false; p2NameEl.disabled = false;
+            profile.gamesPlayed += 1;
+            savePlayerProfile();
+            renderPlayerProfile();
+            if (isPvPMode()) {
+                const player1 = p1NameEl.value.trim() || "玩家 1";
+                const player2 = p2NameEl.value.trim() || "玩家 2";
+                if (playerScores[0] !== playerScores[1]) {
+                    profile.pvpWins += 1;
+                    updatePlayerProgress();
+                }
+                const outcome = playerScores[0] === playerScores[1] ? "平手！" : playerScores[0] > playerScores[1] ? `${player1} 獲勝！` : `${player2} 獲勝！`;
                 questionEl.textContent = reason;
                 messageEl.className = "message correct";
-                messageEl.textContent = `對戰結束！${outcome} 玩家 1：${playerScores[0]} 分｜玩家 2：${playerScores[1]} 分`;
+                messageEl.textContent = `對戰結束！${outcome} ${player1}：${playerScores[0]} 分｜${player2}：${playerScores[1]} 分`;
+                recordPvPLeaderboard();
             } else {
+                if (score > 0 && hp === STARTING_HEARTS) {
+                    profile.perfectRuns += 1;
+                    updatePlayerProgress();
+                }
                 questionEl.textContent = reason;
-                const scores = mode === "reverse" ? reverseHighScores : mode === "addition" ? additionHighScores : highScores;
-                const keys = mode === "reverse" ? reverseStorageKeys : mode === "addition" ? additionStorageKeys : storageKeys;
+                const scores = getHighScoresForMode();
+                const keys = getStorageKeysForMode();
                 let resultText = `遊戲結束！最終得分：${score} 分！`;
                 if (score > scores[difficulty]) {
                     scores[difficulty] = score;
                     try { localStorage.setItem(keys[difficulty], String(score)); } catch (error) { /* 保留頁面內紀錄。 */ }
                     highScoreEl.textContent = score;
                     resultText += `
-恭喜打破${mode === "reverse" ? "逆向・" : mode === "addition" ? "加法・" : ""}${difficultyLabels[difficulty]}模式紀錄！`;
+恭喜打破${mode === "reverse" ? "逆向・" : `${getOperationName()}・`}${difficultyLabels[difficulty]}模式紀錄！`;
                 }
                 messageEl.className = "message correct"; messageEl.textContent = resultText;
             }
             answerForm.classList.remove("hidden");
-            answerEl.classList.toggle("hidden", !["solo", "addition"].includes(mode));
+            answerEl.classList.toggle("hidden", isPvPMode() || mode === "reverse");
             reverseOptionsEl.classList.add("hidden"); reverseStatusEl.classList.add("hidden");
             answerForm.classList.remove("hidden");
-            answerEl.classList.toggle("hidden", !["solo", "addition"].includes(mode));
+            answerEl.classList.toggle("hidden", isPvPMode() || mode === "reverse");
             reverseOptionsEl.classList.add("hidden"); reverseStatusEl.classList.add("hidden");
             btnEl.textContent = "再玩一次"; backMenuBtn.classList.remove("hidden");
             diffBox.style.pointerEvents = "auto"; diffBox.style.opacity = "1";
             modeBox.style.pointerEvents = "auto"; modeBox.style.opacity = "1"; modeButtons.forEach((button) => { button.disabled = false; });
-            if (wrongQuestions.length > 0 && mode !== "pvp") {
+            if (wrongQuestions.length > 0 && !isPvPMode()) {
                 const title = document.createElement("div"); title.className = "review-title"; title.textContent = "錯題複習筆記：";
                 reviewArea.replaceChildren(title);
                 wrongQuestions.forEach((item) => {
