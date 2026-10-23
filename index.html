@@ -176,8 +176,50 @@
         .achievement-notice { min-height: 22px; margin: 4px 0; color: #805ad5; font-weight: 800; font-size: 14px; }
         @media (max-width: 380px) { .mode-btn { font-size: 12px; } .pvp-board { gap: 6px; } .player-card { padding: 9px 6px; } .answer-choice { font-size: 19px; } }
 
+
+        .local-feature-panel { margin: 12px 0; padding: 12px 14px; background: #f7fafc; border: 1px solid #cbd5e0; border-radius: 12px; text-align: left; }
+        .local-feature-panel summary { cursor: pointer; color: #4a5568; font-weight: 800; }
+        .local-feature-panel h2 { margin: 0 0 9px; font-size: 17px; color: #4a5568; }
+        .settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+        .setting-label { display: block; margin: 7px 0 4px; color: #4a5568; font-size: 13px; font-weight: 700; }
+        .local-feature-panel input[type="text"], .local-feature-panel select, .practice-settings select { width: 100%; min-width: 0; padding: 9px; border: 2px solid #cbd5e0; border-radius: 8px; background: #fff; color: #2d3748; font-size: 16px; }
+        .local-feature-panel button, .practice-settings button { min-height: 44px; border: 1px solid #a0aec0; border-radius: 8px; padding: 8px 10px; background: #fff; color: #2d3748; font-weight: 700; cursor: pointer; }
+        .local-feature-panel button[aria-pressed="true"] { background: #4c51bf; border-color: #434190; color: #fff; }
+        .local-tool-buttons, .a11y-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 9px; }
+        .local-status { min-height: 20px; margin: 6px 0 0; color: #2f855a; font-size: 13px; line-height: 1.4; }
+        .practice-settings { margin: 12px 0; padding: 12px; background: #ebf4ff; border-radius: 10px; text-align: left; }
+        .practice-operations { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin: 8px 0; }
+        .practice-operations label { display: flex; align-items: center; gap: 7px; padding: 8px; border: 1px solid #cbd5e0; border-radius: 8px; background: #fff; font-weight: 700; }
+        .practice-operations input { width: 20px; height: 20px; margin: 0; accent-color: #4c51bf; }
+        .practice-progress, .pvp-round-status { margin: 7px 0; color: #4c51bf; font-weight: 800; }
+        .mistake-list { max-height: 230px; overflow: auto; padding-left: 22px; }
+        .mistake-list li { margin: 6px 0; padding-bottom: 5px; border-bottom: 1px dotted #cbd5e0; overflow-wrap: anywhere; }
+        .a11y-buttons button { font-size: 13px; }
+        button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #2b6cb0; outline-offset: 2px; }
+        .large-text .window-box { font-size: 1.12rem; }
+        .large-text .instructions, .large-text .message, .large-text .local-feature-panel { font-size: 1.08rem; }
+        .large-text .question { font-size: clamp(44px, 12vw, 60px); }
+        .large-text button, .large-text input, .large-text select { font-size: 1.08em; }
+        .high-contrast { background: #000 !important; color: #fff; }
+        .high-contrast .window-box { background: #fff; color: #111; border: 3px solid #000; }
+        .high-contrast .instructions, .high-contrast .local-feature-panel, .high-contrast .practice-settings { background: #fff; color: #111; border: 2px solid #111; }
+        .high-contrast button { border: 2px solid #111; }
+        .high-contrast .question { color: #102a83; }
+        .reduce-motion *, .reduce-motion *::before, .reduce-motion *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+        @media (max-width: 600px) {
+            body { align-items: flex-start; padding: 10px 0; }
+            .window-box { width: calc(100% - 20px); max-width: 620px; padding: 20px 15px; }
+            .pvp-board { flex-direction: column; }
+            .audio-control { flex-wrap: wrap; }
+            .audio-control > button { flex: 1; min-height: 44px; }
+            .mode-btn, .diff-btn, .action-btn, .back-btn, .buzz-btn, .answer-choice { min-height: 48px; }
+            .settings-grid, .local-tool-buttons, .a11y-buttons { grid-template-columns: 1fr; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; }
+        }
     </style>
-<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/4A5pMiqXEyhdOmFSxHryORbuzqg5-wTBUFWdRe19-ycmOCVM28ku3c2wbmwDzqY2uliR_Y6OkJ_2E45Kw8CIbQGa2ypxwkEWmM2uyVLGt6cgKfjTOHkHXJ-6bytI4j6N46rKv5RE6zOZbfRFJeDEtNPZ1faAJueKGEnkTPnf3S2U_9dxlZn8sE0fNaUGNMSbU021tbj_IJ9STJWwPTcHo1U01p3nmU1D_5Jg4qQerpW_Eg5Xgh0IYCX7Q-DW4ZjwwywyR4hXxppq2VLRhH91C2QiEJpqe25SNFo6wbOGuXTcxbHxXePLYjQExgrzlTBybbImsMuKYIL01R35qOmC6dnXVzx5U6kyrNTivblBZIX5EVu-xAS5t5Td5A-T9Z7cM_X7wdJtqoJQSE-Td6D2O6vOCNGFaflUgdXZZyFTDZyk32ic7Syqn82JfTunKorEAIdQTYs2Aw0fhyMtKGquhD9vJedWVkDX9noUNu8JU4lkLbNnKGaAwbllyk0dy7XRA1b2SS8QcqCLWIbQnYbuBiYlVHnxlzguwC26LWgMX-aNO-KlfoM2M1Bl_qVomuC4SmTMJ5-oXIQnW8hw2WHOxSAX618VjveCmm1hd6aoC5ZIDXt-wFnbbpYSgwzLOHmmGNGKOukA1jVGYacoZJbpW-cBERMuJaUfxqlBe5xgxQdxJjFTW6ZzKCQUZA2lRBEWYkPcdvHnV2GRUOG3dqBVlS9ftqm5lnoKNdqLR-MyvqeR8MhYTuzSm1NWVgikIUPQM437_jXV5jGMrCup33rj-zUwMHa9_VlFauk7rUkf6jNPgtvgN2Qop5ou85ecn9Sd1bQtpOAZl7IoT9wqGcGSkX8CqEldzMzQCHrU6bZuIjjQH2iTfP6n5-ISk9j9wZtBi2Lsc2j4nhGbIUtdVtBFBvAdaQESbIFzwtIxCRXyp63i6URk_3SAeJ5AgIqkXgfMMyIuOdZFOewqxjDA62f_7VbXRWYW-w98pdFn0hfTgB0E3h0GEk5baQjwckWsvfnrNUQktOl-A-udwajiOSISgX5VGdqjbbmJXPN0AJ-3VDriHL7cblnK_UyhzeFga4xKFnb80oRLXQg-WciYiQ_9nIkGKqF29l_xB5LyzJHeNYZVJFNRy611E6iQ7DDfxV_1_9xJCBV4LxGtX5r-e2J8cnVv4-Lpbdprik35eq6RkEcqBh7MzcCkQ9ub1gOy84pKMMSMUtFtQ7J-SHA5UZcirbHBlECcLPuiARn2Ws3Ouxc901T-yBPtvEGReODa_ATbi3COMiRbVPd6eLYqn5Fza60PqKS03YSa1FuTGx56o_juBaSyB2hjRwqveAlhzqbsAfV0qcBJmfIS8qn0RbcMfOGhEIa3RrZ2n0c5vhG8QCqSs3zWLrly6lCge09Yx_s4IFKHf2fpRLrXVxrf9Q'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/a0HAg3j2Z0K2Y4nKb3WssLyAF1PKZXDP5cOUGIwxCBHoPM1Q-dC9GcWb09Nik8Y9MovqfFo7luQDF7DKVR77qcA0i2Y4rTESNxxrMdoGsRdJJAO98EwDmj4TafwCSWWki9LocbUoElWFDQjlYrmRkX-E_g0om_RSw1TbVSSnZluw01Dqk2D1MLVHUKf-44XurG2Xs525VJ4gkfGQ_J_6ZT02YxVp7cjDXW6P3UqfDHTpR2n3q62lPl8LTrfaQSyA-rJeR8mfobPBYI43WYhbNGS1_6YdLxsMQAQ5E1RjNi-XQOfL9OlJA18BFKuIRTCvlnui7OFpq8LDReVJLFgpD41fRc-5zkUB4hWFqlwC1jCkg1DL9WHiIS8-gtierbQXASQQtTPtj3Y0ZEehcBGB8ioskXnjSNlQgekL-uEaqTecsbL2kqrrjX5FNU3fM9KwqMoNgQXmbhHfx99o-V7Utfy6GrIxoE_xhDsmZR7v_KAkPD9MtKISbxEuXc5y5k5NcaG4xyCbcaNMyw5QyTl1omfe7oi9BEOByxUmRyVvRRV8YfobH1dC0PILNr7h2EnTYR0-xsnLnzr0dli2aPDFMf_hqq-cG3vmpbptQOW8e8akGaGq74VwM_nGcFvQEE2KKM7VDJaOWRLs6Xz4FJhRuKbm5Wj9SKMxwkd9e1bLaZJMIwcyiB5Lb5Qd4giFnUfZxFjQr47vD_if1b5UtTshOnrnC23p9Gs6Yi5vN8obx5ZSwgo918fTTJD3wNZHXIPV83QigP8Zl3xcLnslMtQmd2tn5cOIzmcyDpHCsQH3ksmji0vdSR4EOqN2Mc_4KWt0M-D7gbaE_5lrAY8Zhvn5LUsQb5pBssYQ78c4Tlp_yO1EqBKcXO-oO_01O9f5dXcx6ux2I4l9wjD99BxruPmWPhPi_rJ49-LmdfbjTcj8AakMN3HHS6UbOcAmD0cpcxcE4MmmT2epxAYZwrKEUwTou--AGrb5bgdukrbJvAF6yQCetqPUIm0qR13Jz-IjWfyXMjN1MSOVr6a2REF7HWOhBao4jzmPll5OH6G_h9STnMfIV0w1rDnQzWnNvL5mwXQcLBhrajBxuG3z11AZGL1G_Fne3SASeeqZtH5WKv9dQvtU_8xvhdVtMx4en3sljJ1Roq2Jeh3zbHk-iLzmd2JhmWRhL8vK12t4PkmuPctkqvYYDEW3rVBPoEEZk-PrBGS-oyX4nxrL7ohiNvHqvyOrTqzwpNYJux7iFbz-mQixl-L9yOE-N1VfEPEhEzLqEWTQXVOxcf29WcYzuy_Ssp7NV4tGnR9xmL-rf36Oy85xWACpvdlreEAYIE-0UQajlYWuhCY7abjxgRLoz5IJOzmfOAnawCexvOY3UjNm_f8UQxoiMQobwIm-o6kVmzXoHNBP3dv_SAp5rDQ6SjAyGw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/B8Kh7RWV6aHjDoEn0fio5M8IIenGt35lALhuw47Ho3U1HXAL2QJSImSfzCdAFMF4PivnCPY8oe4oydKn8RNCgsZjfz7b-TSWrEYiVAwAfih9rpE_5PVUULbd9PtF7KL6MqQzHyfljpgWCXv0mNPdlOCgzxSattj7rxmlYGaXWb_zae7Tm1Ce74olFzqweKMJtZMCODYykySLXNZxWpuWyOUPyuujyH3vLp9J0xzG1UzRzLk3fSHdZvdx7qig0uBlbqbdI1dmVYwBaYp3B-bgmi8r46YKlkIEebkUxLKtikKqGodgsjb7V-v_qhtkUXjKadygokTWPv2AIAJIsD7bbPy9MJP2Z1nhc6yvBbaphk7qD39v1_JCNIIuYoYdBfA6zdd3wJmSmq8_PTVdY8UBWCTLtyE2MkDDDCf6gzaJP4M0nptCT1PLyffTo_0wES-D2tA53a8xj14EG4U9zAUUlOaRwe9ukG4cenh8U2FG1CnDtyz7KdpbuYTcq6Kq5DPwyFS6K2IiuJEWgTDkvUwguEmHotPQfRxgE6eimqCfL8z7Y9znuyrG_Sooyiw06nsTVlnXTa1koYdYxT9D09vAonvV2AwKTNY3lIKahe1cX0WycHkM1FUKsp2t7Ubv-s-Oo_etaKe2mZlHLpO7LE5AsodTJDqECQyDxL5CuEHsF35llHnsJCCwf0tYnmOgi7cHmczBJb1TQLaOxFCfSb4kEGHNmbme4RDkgKL7jPTRk6dFjPzSwtD50kMjQWZFMjb4ghlvGQBd4WoEM2loK0HI1KZgVgs_rv0VJI9OXDo-EyeiM3s05ewNRxuGjeiXFisOd2_Nl_Ccr2Tl7fXovBBY3o--Bi4E7nmaoXWKkERnz3E2TY7PY9kO_0_1Zo6oq6DCVOYT5nu_m8LlM2y5bA555kciWrsbxqpkV9IgCPFIKmYRTIiXwoSlgWr4_eGLkOqhkkk5DvHNkmGXHhloPhi8wac4ZLZYNGpxOL_kqkUWHpODr-1iRtedWBLP3zw4wZ_fRNnKgMmGcE4d4-HMR8qU185nOnBP-a37l7RLhP1hwaNeYG4in_zUXRXCWZd5FhbhkRfXwkragLw1EKlJHuaPPLPxunWuuJhmLwjDIARf5G6Zse0ZQtrNWLBoIl9ZXzoTyLmvIy538IPCd7omZ8M_K89vvD6rbPILfFjgyRPdczAYD3ohXWT1vp__NymvdWVdSyeLh95RN_fiNq5-dj0YZ2xBMa8Ncrm_cu-Z7iZHT8QKIRVlBQIkSGhf_y1k28RnwWVW8IlJVbF1n0qhOmiNdP0ZPpB-JSTPizU-g755TDY'></script></head>
+<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/Aq_4GEIcUlUogpfm9a4Wu-t2vaPSrATOq5eVi8NLOwlHpqixkQOPTThDfSBiuoPTdZjke2jRkDnXQstJaWu-2Urc9cPAN6TST3e78JxgAsM3iV4u-AjlUCJ3AyYU4PwuZuBILklyslSBVsEOpopu-85gT3mFfvbavtkjN3hHfe-GsdIj7D9ASTs8E5O01N1_93gKb5gxsaoOnqZ-btm2E7V3XJqQM7RTCj2U-D6QNrcmi28StfPAnfzOWdFYltZuQoTJC91Jp2wAP_N4kp8CCm2WpRDdYIWdpFfzqmRGORiAytamCqi3qG9-rGq67Jab87irquXXS4eMr2FK4UOdKnkuoVZEsiAfzOXnzqcBLe00FcrA3_GskZIxWsEqGtx09piGw6q-zRtlGx8FqPoGCt_tkOhiQiZNtllK4RlEZweTgJY2UQ9PjrrAQZWJVeL-ihDGuhUpEaVPoLm6oGu_dEZYjMJWF54nL-jkrP1_GDci30pPTrFPeDD4TRp3LDvpC6DsMUAFJX3R2fnyN0-tMnysDBwjibKdNvOVGU3HKDQz3XPwg7BWGW6HsTfl8_91FqZIElPjTvyoObkv08S_qRuLRQDRsC0bTO0eXC_m-YJSK_QYH627eIw-sbvmlok-HcUbnBYFFS22azVCzfwfpAiAViMerAirdLLVoF8NqWEOCvKzL21IetzYOBGCIV76neroz7ReEe31IQRVewCvIgsYYvSPYZgJTDk-3TCEyVrkXKNLefqeUP1K5E1F8jn0GMs790SkdPWuBtTpv920NNe0wwVm21CNwV60ywoYSgjU6zG_K9CwBDEcXrpz3_Y14wHHnr4zUyE0e11Ya09rkjoJMGgHtFAh6r_xdHOaP5q1_3i8rfFO2u5Kj2_QYAeHQ-Oao3ys7bP9D_Tor7EOOmRDdndyadBdwcJYZlbH1V-8ULOStlG-yTpNTKsxUQlBe_0Vkh07SELs2ohLu-YOBHkynuuIXw1BGbAx-qCGX_frD8DcmCk8o5RQ1jSXU9KZ3NNqi-u8NiJZfTRAH9_y7vZcxAfneN7-nMMP30xNUYnnO0XT644SRFsOYsmv05cMGS1d80zJlugk0S1ilLxDJqbPpsshaWMDj0zEYQ0gQqsf5FcBiEf7HbSQyHdVA9KjSG5tLS7d1iK2mX9-d-rAk0HV2r4CLtQgvoTI6-Zx_QaZdSnyUJr7SG3-mssPqBLGX5ywSqEZM7F-zqMFEpIGy5h2gD7Wr-ry87wxzRj_1aMunRXJNsqCC_8lxPx6G7HbNQyafVssBafgDxRJz0KtZzqmNX6n3B_1i5gwi2XAAXr50M2x35qePhP5ShJkE6Mq3yWQyXm_DpLgPesACGkIrn9FqZ3WuaMfpoeuYATxvvdpWwHFT6wwQeo'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/a0HAg3j2Z0K2Y4nKb3WssLyAF1PKZXDP5cOUGIwxCBHoPM1Q-dC9GcWb09Nik8Y9MovqfFo7luQDF7DKVR77qcA0i2Y4rTESNxxrMdoGsRdJJAO98EwDmj4TafwCSWWki9LocbUoElWFDQjlYrmRkX-E_g0om_RSw1TbVSSnZluw01Dqk2D1MLVHUKf-44XurG2Xs525VJ4gkfGQ_J_6ZT02YxVp7cjDXW6P3UqfDHTpR2n3q62lPl8LTrfaQSyA-rJeR8mfobPBYI43WYhbNGS1_6YdLxsMQAQ5E1RjNi-XQOfL9OlJA18BFKuIRTCvlnui7OFpq8LDReVJLFgpD41fRc-5zkUB4hWFqlwC1jCkg1DL9WHiIS8-gtierbQXASQQtTPtj3Y0ZEehcBGB8ioskXnjSNlQgekL-uEaqTecsbL2kqrrjX5FNU3fM9KwqMoNgQXmbhHfx99o-V7Utfy6GrIxoE_xhDsmZR7v_KAkPD9MtKISbxEuXc5y5k5NcaG4xyCbcaNMyw5QyTl1omfe7oi9BEOByxUmRyVvRRV8YfobH1dC0PILNr7h2EnTYR0-xsnLnzr0dli2aPDFMf_hqq-cG3vmpbptQOW8e8akGaGq74VwM_nGcFvQEE2KKM7VDJaOWRLs6Xz4FJhRuKbm5Wj9SKMxwkd9e1bLaZJMIwcyiB5Lb5Qd4giFnUfZxFjQr47vD_if1b5UtTshOnrnC23p9Gs6Yi5vN8obx5ZSwgo918fTTJD3wNZHXIPV83QigP8Zl3xcLnslMtQmd2tn5cOIzmcyDpHCsQH3ksmji0vdSR4EOqN2Mc_4KWt0M-D7gbaE_5lrAY8Zhvn5LUsQb5pBssYQ78c4Tlp_yO1EqBKcXO-oO_01O9f5dXcx6ux2I4l9wjD99BxruPmWPhPi_rJ49-LmdfbjTcj8AakMN3HHS6UbOcAmD0cpcxcE4MmmT2epxAYZwrKEUwTou--AGrb5bgdukrbJvAF6yQCetqPUIm0qR13Jz-IjWfyXMjN1MSOVr6a2REF7HWOhBao4jzmPll5OH6G_h9STnMfIV0w1rDnQzWnNvL5mwXQcLBhrajBxuG3z11AZGL1G_Fne3SASeeqZtH5WKv9dQvtU_8xvhdVtMx4en3sljJ1Roq2Jeh3zbHk-iLzmd2JhmWRhL8vK12t4PkmuPctkqvYYDEW3rVBPoEEZk-PrBGS-oyX4nxrL7ohiNvHqvyOrTqzwpNYJux7iFbz-mQixl-L9yOE-N1VfEPEhEzLqEWTQXVOxcf29WcYzuy_Ssp7NV4tGnR9xmL-rf36Oy85xWACpvdlreEAYIE-0UQajlYWuhCY7abjxgRLoz5IJOzmfOAnawCexvOY3UjNm_f8UQxoiMQobwIm-o6kVmzXoHNBP3dv_SAp5rDQ6SjAyGw'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/B8Kh7RWV6aHjDoEn0fio5M8IIenGt35lALhuw47Ho3U1HXAL2QJSImSfzCdAFMF4PivnCPY8oe4oydKn8RNCgsZjfz7b-TSWrEYiVAwAfih9rpE_5PVUULbd9PtF7KL6MqQzHyfljpgWCXv0mNPdlOCgzxSattj7rxmlYGaXWb_zae7Tm1Ce74olFzqweKMJtZMCODYykySLXNZxWpuWyOUPyuujyH3vLp9J0xzG1UzRzLk3fSHdZvdx7qig0uBlbqbdI1dmVYwBaYp3B-bgmi8r46YKlkIEebkUxLKtikKqGodgsjb7V-v_qhtkUXjKadygokTWPv2AIAJIsD7bbPy9MJP2Z1nhc6yvBbaphk7qD39v1_JCNIIuYoYdBfA6zdd3wJmSmq8_PTVdY8UBWCTLtyE2MkDDDCf6gzaJP4M0nptCT1PLyffTo_0wES-D2tA53a8xj14EG4U9zAUUlOaRwe9ukG4cenh8U2FG1CnDtyz7KdpbuYTcq6Kq5DPwyFS6K2IiuJEWgTDkvUwguEmHotPQfRxgE6eimqCfL8z7Y9znuyrG_Sooyiw06nsTVlnXTa1koYdYxT9D09vAonvV2AwKTNY3lIKahe1cX0WycHkM1FUKsp2t7Ubv-s-Oo_etaKe2mZlHLpO7LE5AsodTJDqECQyDxL5CuEHsF35llHnsJCCwf0tYnmOgi7cHmczBJb1TQLaOxFCfSb4kEGHNmbme4RDkgKL7jPTRk6dFjPzSwtD50kMjQWZFMjb4ghlvGQBd4WoEM2loK0HI1KZgVgs_rv0VJI9OXDo-EyeiM3s05ewNRxuGjeiXFisOd2_Nl_Ccr2Tl7fXovBBY3o--Bi4E7nmaoXWKkERnz3E2TY7PY9kO_0_1Zo6oq6DCVOYT5nu_m8LlM2y5bA555kciWrsbxqpkV9IgCPFIKmYRTIiXwoSlgWr4_eGLkOqhkkk5DvHNkmGXHhloPhi8wac4ZLZYNGpxOL_kqkUWHpODr-1iRtedWBLP3zw4wZ_fRNnKgMmGcE4d4-HMR8qU185nOnBP-a37l7RLhP1hwaNeYG4in_zUXRXCWZd5FhbhkRfXwkragLw1EKlJHuaPPLPxunWuuJhmLwjDIARf5G6Zse0ZQtrNWLBoIl9ZXzoTyLmvIy538IPCd7omZ8M_K89vvD6rbPILfFjgyRPdczAYD3ohXWT1vp__NymvdWVdSyeLh95RN_fiNq5-dj0YZ2xBMa8Ncrm_cu-Z7iZHT8QKIRVlBQIkSGhf_y1k28RnwWVW8IlJVbF1n0qhOmiNdP0ZPpB-JSTPizU-g755TDY'></script></head>
 <body>
     <main>
         <section id="menu-container" class="window-box">
@@ -196,6 +238,43 @@
                 8. 答題累積成就點數，可解鎖不同角色外觀；進度保存在本機瀏覽器。<br>
                 9. 可設定本機玩家暱稱並保存遊戲資料；此資料只在目前瀏覽器使用，不是線上帳號。
             </div>
+            <details class="local-feature-panel" id="accessibility-panel">
+                <summary id="a11y-title">易用性設定</summary>
+                <div class="a11y-buttons">
+                    <button id="large-text-toggle" type="button" aria-pressed="false">大字模式：關</button>
+                    <button id="high-contrast-toggle" type="button" aria-pressed="false">高對比：關</button>
+                    <button id="reduce-motion-toggle" type="button" aria-pressed="false">減少動畫：關</button>
+                </div>
+            </details>
+            <details class="local-feature-panel" id="pvp-settings-panel">
+                <summary id="pvp-settings-title">雙人對戰設定</summary>
+                <div class="settings-grid">
+                    <div><label class="setting-label" id="p1-key-label" for="p1-key">玩家 1 搶答鍵</label><input id="p1-key" type="text" maxlength="1" value="A" autocomplete="off"></div>
+                    <div><label class="setting-label" id="p2-key-label" for="p2-key">玩家 2 搶答鍵</label><input id="p2-key" type="text" maxlength="1" value="L" autocomplete="off"></div>
+                </div>
+                <label class="setting-label" id="pvp-format-label" for="pvp-format">對戰規則</label>
+                <select id="pvp-format"><option value="timed">30 秒積分賽</option><option value="best3">三戰兩勝</option></select>
+                <p id="pvp-settings-status" class="local-status" aria-live="polite"></p>
+            </details>
+            <details class="local-feature-panel" id="mistake-notebook-panel">
+                <summary id="mistake-notebook-summary">錯題本（0）</summary>
+                <p id="mistake-notebook-empty">目前沒有錯題，繼續保持！</p>
+                <ol id="mistake-list" class="mistake-list"></ol>
+                <div class="local-tool-buttons">
+                    <button id="practice-mistakes-btn" type="button">重做錯題</button>
+                    <button id="clear-mistakes-btn" type="button">清空錯題本</button>
+                </div>
+            </details>
+            <section class="local-feature-panel" id="local-data-tools" aria-labelledby="backup-title">
+                <h2 id="backup-title">本機資料備份／還原</h2>
+                <p id="backup-description">備份會下載 JSON 檔；還原只匯入遊戲支援的本機資料。</p>
+                <div class="local-tool-buttons">
+                    <button id="export-backup-btn" type="button">匯出資料</button>
+                    <button id="import-backup-btn" type="button">匯入／還原資料</button>
+                </div>
+                <input id="backup-file-input" class="hidden" type="file" accept="application/json,.json">
+                <p id="backup-status" class="local-status" aria-live="polite"></p>
+            </section>
             <button class="action-btn menu-btn" type="button" id="enter-game-btn">進入遊戲</button>
         </section>
 
@@ -241,7 +320,23 @@
                 <button class="mode-btn" type="button" data-mode="subtraction-pvp">減法 PvP</button>
                 <button class="mode-btn" type="button" data-mode="division">除法模式</button>
                 <button class="mode-btn" type="button" data-mode="division-pvp">除法 PvP</button>
+                <button class="mode-btn" type="button" data-mode="challenge">60 秒挑戰</button>
+                <button class="mode-btn" type="button" data-mode="practice">自訂練習</button>
             </div>
+            <section id="practice-settings" class="practice-settings hidden" aria-labelledby="practice-settings-title">
+                <h2 id="practice-settings-title">自訂練習</h2>
+                <label class="setting-label" id="practice-count-label" for="practice-count">題數</label>
+                <select id="practice-count"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select>
+                <fieldset style="border:0;padding:0;margin:10px 0 0"><legend id="practice-operations-title" class="setting-label">選擇運算（可複選）</legend>
+                    <div class="practice-operations">
+                        <label><input type="checkbox" value="addition" checked> <span id="practice-add-label">加法 +</span></label>
+                        <label><input type="checkbox" value="subtraction" checked> <span id="practice-subtract-label">減法 −</span></label>
+                        <label><input type="checkbox" value="multiplication" checked> <span id="practice-multiply-label">乘法 ×</span></label>
+                        <label><input type="checkbox" value="division" checked> <span id="practice-divide-label">除法 ÷</span></label>
+                    </div>
+                </fieldset>
+                <p id="practice-description" class="local-status">不限時、不扣生命，依題數完成練習。</p>
+            </section>
             <div class="difficulty-container" id="diff-box" aria-label="選擇難度">
                 <button class="diff-btn active" type="button" data-difficulty="easy">簡單 (2–9)</button>
                 <button class="diff-btn" type="button" data-difficulty="medium">中等 (11–19)</button>
@@ -250,8 +345,9 @@
             <div class="stats">
                 <div class="single-only" id="solo-score-wrap"><span id="score-label">分數：</span><span id="score">0</span></div>
                 <div class="hp-display single-only" id="hp-box" aria-label="剩餘 3 顆心">❤️❤️❤️</div>
-                <div><span id="time-label">時間：</span><span id="timer">30</span><span id="seconds-label"> 秒</span></div>
+                <div id="time-wrap"><span id="time-label">時間：</span><span id="timer">30</span><span id="seconds-label"> 秒</span></div>
             </div>
+            <div id="practice-progress" class="practice-progress hidden" aria-live="polite"></div>
             <div class="highscore-board" id="highscore-board">
                 🏆 <span id="diff-label">簡單</span><span id="highscore-label">模式最高紀錄：</span><span id="high-score">0</span><span id="points-label"> 分</span>
             </div>
@@ -269,6 +365,7 @@
                     <button class="buzz-btn" id="p2-buzz" type="button" disabled>搶答（L）</button>
                 </div>
             </div>
+            <div id="pvp-round-status" class="pvp-round-status hidden" aria-live="polite"></div>
             <section id="pvp-leaderboard" class="pvp-leaderboard hidden" aria-label="雙人排行榜">
                 <h2 id="leaderboard-title">雙人排行榜（本機前 10 名）</h2>
                 <ol id="pvp-leaderboard-list"></ol>
@@ -302,13 +399,21 @@
         const additionStorageKeys = { easy: "add_high_easy", medium: "add_high_medium", hard: "add_high_hard" };
         const subtractionStorageKeys = { easy: "subtract_high_easy", medium: "subtract_high_medium", hard: "subtract_high_hard" };
         const divisionStorageKeys = { easy: "divide_high_easy", medium: "divide_high_medium", hard: "divide_high_hard" };
+        const challengeStorageKeys = { easy: "math_60sec_high_easy", medium: "math_60sec_high_medium", hard: "math_60sec_high_hard" };
+        const TIMED_CHALLENGE_SECONDS = 60;
+        const PVP_BEST3_SECONDS = 15;
+        const MISTAKE_NOTEBOOK_KEY = "math_mistake_notebook_v1";
+        const PVP_KEYS_KEY = "math_pvp_keys_v1";
+        const PVP_FORMAT_KEY = "math_pvp_format_v1";
+        const ACCESSIBILITY_KEY = "math_accessibility_v1";
+        const PRACTICE_SETTINGS_KEY = "math_practice_settings_v1";
         const PVP_LEADERBOARD_KEY = "math_pvp_leaderboard_v1";
         const PLAYER_PROFILE_KEY = "math_player_profile_v1";
         const LANGUAGE_KEY = "math_game_language";
         const translations = {
             zh: {
                 title: "數學運算大挑戰", tagline: "鍛鍊你的大腦速算極限！", rulesTitle: "遊戲規則說明：",
-                rules: "1. 挑戰時間為 30 秒，答對一題獲得 <strong>+10 分</strong>。<br>2. 你有 3 顆心，答錯會<strong>扣除 1 顆心</strong>；心心扣光遊戲提早結束。<br>3. 輸入答案後按 <strong>Enter 鍵</strong>即可快速提交。<br>4. 結束後會提供<strong>錯題筆記</strong>，幫你複習盲點。<br>5. 可選擇<strong>雙人 PvP</strong>（玩家 1 按 A、玩家 2 按 L 搶答），也可挑戰<strong>加法、減法、除法及倒打逆向</strong>。<br>6. 除法題都會<strong>整除</strong>；減法不會出現負數。不同運算模式各自保存最高分。<br>7. PvP 可自訂玩家名稱，個人高分會加入<strong>本機前 10 名排行榜</strong>（只存在此瀏覽器）。<br>8. 答題累積成就點數，可解鎖不同角色外觀；進度保存在本機瀏覽器。<br>9. 可設定本機玩家暱稱並保存遊戲資料；此資料只在目前瀏覽器使用，不是線上帳號。",
+                rules: "1. 一般挑戰 30 秒；另有<strong>60 秒混合四則運算挑戰</strong>，答對每題 +10 分。<br>2. 一般模式有 3 顆心，答錯扣 1 顆心；自訂練習不限時、不扣生命。<br>3. 可用 Enter 提交答案；PvP 可自訂搶答鍵，也可選 30 秒積分賽或三戰兩勝。<br>4. 錯題會存入<strong>本機錯題本</strong>，可重做；練習可選運算、難度和題數。<br>5. 分數、成就與玩家資料只存在此瀏覽器；可匯出備份 JSON，再於另一部裝置匯入。",
                 enterGame: "進入遊戲", exitGame: "退出遊戲", exitTitle: "退出遊戲（Esc）", switchLanguage: "English",
                 audioOn: "音樂與音效：開", audioOff: "音樂與音效：關", musicVolume: "背景音樂音量", sfxVolume: "答題特效音音量",
                 localProfile: "本機玩家資料與角色外觀", nickname: "本機玩家暱稱", skin: "角色外觀", localOnly: "暱稱與遊戲進度只保存在此瀏覽器，不是線上帳號。",
@@ -316,9 +421,9 @@
                 easy: "簡單", medium: "中等", hard: "困難", modeSolo: "個人闖關", modePvp: "雙人 PvP", modeReverse: "倒打逆向",
                 modeAddition: "加法模式", modeAdditionPvp: "加法 PvP", modeSubtraction: "減法模式", modeSubtractionPvp: "減法 PvP", modeDivision: "除法模式", modeDivisionPvp: "除法 PvP",
                 multiplication: "乘法", addition: "加法", subtraction: "減法", division: "除法",
-                p1Label: "玩家 1（A）名稱", p2Label: "玩家 2（L）名稱", p1Default: "玩家 1", p2Default: "玩家 2",
+                p1Label: "玩家 1（{key}）名稱", p2Label: "玩家 2（{key}）名稱", p1Default: "玩家 1", p2Default: "玩家 2",
                 answerPlaceholder: "答案", p1Answer: "玩家 1 答案", p2Answer: "玩家 2 答案", buzzA: "搶答（A）", buzzL: "搶答（L）",
-                pvpHint: "按 A（玩家 1）或 L（玩家 2）搶答；搶到後輸入答案並按 Enter。答錯則另一位可接著搶答。",
+                pvpHint: "按 {p1Key}（玩家 1）或 {p2Key}（玩家 2）搶答；搶到後輸入答案並按 Enter。答錯則另一位可接著搶答。",
                 leaderboardTitle: "雙人排行榜（本機前 10 名）", leaderboardEmpty: "尚無對戰紀錄，來挑戰第一名吧！",
                 start: "開始遊戲", submit: "提交答案", replay: "再玩一次", backMenu: "返回主選單", ready: "準備好了嗎？按下開始遊戲！",
                 soloMultiplyPrompt: "乘法模式：快速算出乘積，答對得 10 分！", operationPrompt: "{operation}模式：快速算出答案，答對得 10 分！",
@@ -345,11 +450,19 @@
                 achievementUnlocked: "🏅 成就解鎖：{items}", skinUnlocked: "新外觀解鎖：{items}", noPlayer: "本機玩家",
                 soundUnavailable: "音樂與音效：關", modeLabel: "{operation}・{difficulty}", pvpOperation: "{operation}",
                 incorrectChoice: "錯誤選項", playerNumber: "玩家 {player}", localScore: "{name}｜{operation}｜{score} 分",
+                modeChallenge: "60 秒混合挑戰", modePractice: "自訂練習", mixedOperations: "混合四則運算",
+                challengePrompt: "60 秒挑戰：混合加、減、乘、除，盡量答對更多題！", practicePrompt: "自訂練習：依你的設定完成題目。", practiceDone: "練習完成！", practiceProgress: "第 {current} / {total} 題", practiceNoOperations: "請至少選擇一種運算。", practiceNoMistakes: "錯題本目前是空的。",
+                practiceCount: "練習題數", practiceOperations: "選擇運算（可複選）", practiceDescription: "不限時、不扣生命，依題數完成練習。", additionShort: "加法 +", subtractionShort: "減法 −", multiplicationShort: "乘法 ×", divisionShort: "除法 ÷",
+                a11yTitle: "易用性設定", largeText: "大字模式", highContrast: "高對比", reduceMotion: "減少動畫", settingOn: "開", settingOff: "關",
+                pvpSettings: "雙人對戰設定", p1KeyLabel: "玩家 1 搶答鍵", p2KeyLabel: "玩家 2 搶答鍵", pvpFormatLabel: "對戰規則", pvpTimed: "30 秒積分賽", pvpBest3: "三戰兩勝（每回合 15 秒）", pvpKeyConflict: "兩位玩家的搶答鍵必須不同，請再選一次。", pvpSettingsSaved: "對戰設定已保存。", buzzKey: "搶答（{key}）", p1NameKey: "玩家 1（{key}）名稱", p2NameKey: "玩家 2（{key}）名稱", pvpHintKeys: "玩家 1 按 {p1Key}、玩家 2 按 {p2Key} 搶答；答錯後另一位可接著答。",
+                pvpRoundStatus: "第 {round} 回合｜回合勝場 {p1}：{w1}、{p2}：{w2}", pvpOvertime: "加賽｜回合勝場 {p1}：{w1}、{p2}：{w2}", pvpRoundWon: "玩家 {player} 贏得本回合！", pvpRoundDraw: "本回合平手，準備下一回合。", pvpRoundTimeout: "本回合時間到，無人得分。", pvpSeriesFinished: "三戰兩勝對戰結束！", pvpSeriesOutcome: "（回合勝場 {w1}–{w2}）",
+                mistakeBook: "錯題本", mistakeCount: "錯題本（{count}）", mistakeEmpty: "目前沒有錯題，繼續保持！", mistakePractice: "重做錯題", mistakeClear: "清空錯題本", mistakeClearConfirm: "確定清空本機錯題本？此操作無法復原。", mistakeDate: "{date}｜{question}｜正解：{correct}｜你的答案：{answer}",
+                backupTitle: "本機資料備份／還原", backupDescription: "備份會下載 JSON 檔；還原只匯入遊戲支援的本機資料。", backupExport: "匯出資料", backupImport: "匯入／還原資料", backupExported: "備份已下載。請妥善保存 JSON 檔。", backupImported: "資料已還原，遊戲即將重新載入。", backupInvalid: "檔案格式不正確或包含不支援的資料，未匯入任何內容。", backupConfirm: "要還原這份備份嗎？檔案中相同項目的本機遊戲資料會被取代。", backupNoData: "目前沒有可匯出的遊戲資料。",
                 appLanguage: "zh-TW"
             },
             en: {
                 title: "Math Challenge", tagline: "Sharpen your mental-math skills!", rulesTitle: "How to Play:",
-                rules: "1. You have 30 seconds. Each correct answer earns <strong>+10 points</strong>.<br>2. You have 3 hearts. Each wrong answer costs <strong>1 heart</strong>; the game ends when they run out.<br>3. Press <strong>Enter</strong> to submit your answer.<br>4. Review missed questions when the round ends.<br>5. Play <strong>two-player PvP</strong> (Player 1 presses A, Player 2 presses L), or try <strong>addition, subtraction, division, and reverse multiplication</strong>.<br>6. Division questions always divide evenly; subtraction never gives a negative answer. High scores are saved separately for each mode.<br>7. PvP scores appear on the <strong>local top-10 leaderboard</strong> in this browser only.<br>8. Earn achievement points to unlock character appearances; progress is saved locally.<br>9. Set a local player nickname and save game progress in this browser. This is not an online account.",
+                rules: "1. Standard rounds last 30 seconds; the <strong>60-second mixed-operations challenge</strong> awards +10 per correct answer.<br>2. Standard modes have 3 hearts and wrong answers cost 1; custom practice has no timer or life penalty.<br>3. Press Enter to submit. PvP keys are configurable; choose a 30-second score match or best of three.<br>4. Missed questions are saved in a <strong>local mistake notebook</strong> for review. Choose operations, difficulty and question count for custom practice.<br>5. Scores, achievements and player data stay in this browser. Export a JSON backup and import it on another device to move your data.",
                 enterGame: "Enter Game", exitGame: "Exit Game", exitTitle: "Exit game (Esc)", switchLanguage: "繁體中文",
                 audioOn: "Music & SFX: On", audioOff: "Music & SFX: Off", musicVolume: "Background music volume", sfxVolume: "Answer SFX volume",
                 localProfile: "Local Player Profile & Character", nickname: "Local player nickname", skin: "Character appearance", localOnly: "Your nickname and progress are saved in this browser only—not an online account.",
@@ -357,9 +470,9 @@
                 easy: "Easy", medium: "Medium", hard: "Hard", modeSolo: "Solo Challenge", modePvp: "Multiplication PvP", modeReverse: "Reverse Multiplication",
                 modeAddition: "Addition", modeAdditionPvp: "Addition PvP", modeSubtraction: "Subtraction", modeSubtractionPvp: "Subtraction PvP", modeDivision: "Division", modeDivisionPvp: "Division PvP",
                 multiplication: "Multiplication", addition: "Addition", subtraction: "Subtraction", division: "Division",
-                p1Label: "Player 1 (A) name", p2Label: "Player 2 (L) name", p1Default: "Player 1", p2Default: "Player 2",
+                p1Label: "Player 1 ({key}) name", p2Label: "Player 2 ({key}) name", p1Default: "Player 1", p2Default: "Player 2",
                 answerPlaceholder: "Answer", p1Answer: "Player 1 answer", p2Answer: "Player 2 answer", buzzA: "Buzz in (A)", buzzL: "Buzz in (L)",
-                pvpHint: "Press A (Player 1) or L (Player 2) to buzz in. Enter your answer and press Enter. If you are wrong, the other player can try.",
+                pvpHint: "Press {p1Key} (Player 1) or {p2Key} (Player 2) to buzz in. Enter your answer and press Enter. If you are wrong, the other player can try.",
                 leaderboardTitle: "PvP Leaderboard (Local Top 10)", leaderboardEmpty: "No matches yet. Set the first record!",
                 start: "Start Game", submit: "Submit Answer", replay: "Play Again", backMenu: "Back to Menu", ready: "Ready? Press Start Game!",
                 soloMultiplyPrompt: "Multiplication: solve quickly and earn 10 points per correct answer!", operationPrompt: "{operation}: solve quickly and earn 10 points per correct answer!",
@@ -386,6 +499,14 @@
                 achievementUnlocked: "🏅 Achievement unlocked: {items}", skinUnlocked: "New appearance unlocked: {items}", noPlayer: "Local Player",
                 soundUnavailable: "Music & SFX: Off", modeLabel: "{operation} · {difficulty}", pvpOperation: "{operation}",
                 incorrectChoice: "Wrong choice", playerNumber: "Player {player}", localScore: "{name} | {operation} | {score} pts",
+                modeChallenge: "60-Second Challenge", modePractice: "Custom Practice", mixedOperations: "Mixed Operations",
+                challengePrompt: "60-second challenge: solve as many mixed addition, subtraction, multiplication and division questions as you can!", practicePrompt: "Custom practice: complete the questions using your settings.", practiceDone: "Practice complete!", practiceProgress: "Question {current} / {total}", practiceNoOperations: "Select at least one operation.", practiceNoMistakes: "Your mistake notebook is empty.",
+                practiceCount: "Number of questions", practiceOperations: "Choose operations (select any)", practiceDescription: "No timer or life penalty; finish the selected number of questions.", additionShort: "Addition +", subtractionShort: "Subtraction −", multiplicationShort: "Multiplication ×", divisionShort: "Division ÷",
+                a11yTitle: "Accessibility settings", largeText: "Large text", highContrast: "High contrast", reduceMotion: "Reduce motion", settingOn: "On", settingOff: "Off",
+                pvpSettings: "PvP Settings", p1KeyLabel: "Player 1 buzz key", p2KeyLabel: "Player 2 buzz key", pvpFormatLabel: "Match rules", pvpTimed: "30-second score match", pvpBest3: "Best of three (15 seconds per round)", pvpKeyConflict: "Players must use different buzz keys. Choose another key.", pvpSettingsSaved: "PvP settings saved.", buzzKey: "Buzz in ({key})", p1NameKey: "Player 1 ({key}) name", p2NameKey: "Player 2 ({key}) name", pvpHintKeys: "Player 1 presses {p1Key}; Player 2 presses {p2Key}. If one misses, the other may try.",
+                pvpRoundStatus: "Round {round} | Round wins {p1}: {w1}, {p2}: {w2}", pvpOvertime: "Sudden death | Round wins {p1}: {w1}, {p2}: {w2}", pvpRoundWon: "Player {player} wins this round!", pvpRoundDraw: "Round tied. Get ready for the next round.", pvpRoundTimeout: "Round time expired. No points awarded.", pvpSeriesFinished: "Best-of-three match finished!", pvpSeriesOutcome: "(round wins {w1}-{w2})",
+                mistakeBook: "Mistake Notebook", mistakeCount: "Mistake Notebook ({count})", mistakeEmpty: "No mistakes yet. Keep it up!", mistakePractice: "Practice Mistakes", mistakeClear: "Clear Notebook", mistakeClearConfirm: "Clear the local mistake notebook? This cannot be undone.", mistakeDate: "{date} | {question} | Answer: {correct} | Your answer: {answer}",
+                backupTitle: "Local Data Backup / Restore", backupDescription: "Export downloads a JSON file. Restore imports only supported local game data.", backupExport: "Export Data", backupImport: "Import / Restore Data", backupExported: "Backup downloaded. Keep the JSON file somewhere safe.", backupImported: "Data restored. The game will reload shortly.", backupInvalid: "Invalid file or unsupported data. Nothing was imported.", backupConfirm: "Restore this backup? Matching local game data included in the file will be replaced.", backupNoData: "There is no saved game data to export.",
                 appLanguage: "en"
             }
         };
@@ -399,7 +520,7 @@
             return text.replace(/\{(\w+)\}/g, (_, name) => String(values[name] ?? ""));
         }
         function difficultyName(level) { return t(difficultyTextKeys[level] || "easy"); }
-        const modeTextKeys = { solo: "modeSolo", pvp: "modePvp", reverse: "modeReverse", addition: "modeAddition", "addition-pvp": "modeAdditionPvp", subtraction: "modeSubtraction", "subtraction-pvp": "modeSubtractionPvp", division: "modeDivision", "division-pvp": "modeDivisionPvp" };
+        const modeTextKeys = { solo: "modeSolo", pvp: "modePvp", reverse: "modeReverse", addition: "modeAddition", "addition-pvp": "modeAdditionPvp", subtraction: "modeSubtraction", "subtraction-pvp": "modeSubtractionPvp", division: "modeDivision", "division-pvp": "modeDivisionPvp", challenge: "modeChallenge", practice: "modePractice" };
         const difficultyTextKeys = { easy: "easy", medium: "medium", hard: "hard" };
         const skins = [
             { id: "student", nameKey: "student", emoji: "🎓", points: 0 },
@@ -427,6 +548,127 @@
         let playerScores = [0, 0], currentBuzzer = null, attemptedPlayers = new Set();
         let profile = loadPlayerProfile();
         let profileMessageTimeout = null;
+        let currentQuestionOperation = "multiplication";
+        let challengeHighScores = { easy: readScore(challengeStorageKeys.easy), medium: readScore(challengeStorageKeys.medium), hard: readScore(challengeStorageKeys.hard) };
+        let pvpKeys = readPvpKeys();
+        let pvpFormat = readPvpFormat();
+        let pvpRoundWins = [0, 0], pvpRoundNumber = 1, pvpOvertime = false, pvpTransitionTimeout = null;
+        let practiceSource = "custom", practiceQueue = [], practiceQueueIndex = 0, practiceAnswered = 0, practiceTarget = 10;
+        let practiceOperations = ["addition", "subtraction", "multiplication", "division"];
+        let mistakeNotebook = readMistakeNotebook();
+        let accessibilityPrefs = readAccessibilityPrefs();
+
+
+        function readJsonSetting(key, fallback) {
+            try { const value = JSON.parse(localStorage.getItem(key) || "null"); return value && typeof value === "object" ? value : fallback; }
+            catch (error) { return fallback; }
+        }
+        function readPvpKeys() {
+            const saved = readJsonSetting(PVP_KEYS_KEY, {});
+            const p1 = /^[A-Z]$/.test(String(saved.p1 || "").toUpperCase()) ? String(saved.p1).toUpperCase() : "A";
+            let p2 = /^[A-Z]$/.test(String(saved.p2 || "").toUpperCase()) ? String(saved.p2).toUpperCase() : "L";
+            if (p1 === p2) p2 = p1 === "L" ? "A" : "L";
+            return { p1, p2 };
+        }
+        function readPvpFormat() {
+            try { return localStorage.getItem(PVP_FORMAT_KEY) === "best3" ? "best3" : "timed"; }
+            catch (error) { return "timed"; }
+        }
+        function readAccessibilityPrefs() {
+            const saved = readJsonSetting(ACCESSIBILITY_KEY, {});
+            return { largeText: saved.largeText === true, highContrast: saved.highContrast === true, reduceMotion: saved.reduceMotion === true };
+        }
+        function readMistakeNotebook() {
+            const saved = readJsonSetting(MISTAKE_NOTEBOOK_KEY, []);
+            if (!Array.isArray(saved)) return [];
+            return saved.filter((item) => item && typeof item === "object" && typeof item.operation === "string" && Number.isFinite(Number(item.correctAnswer))).slice(0, 500);
+        }
+        function saveMistakeNotebook() {
+            try { localStorage.setItem(MISTAKE_NOTEBOOK_KEY, JSON.stringify(mistakeNotebook)); } catch (error) { /* 本次工作階段仍可查看錯題。 */ }
+            renderMistakeNotebook();
+        }
+        function saveMistake(note) {
+            const item = { id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, createdAt: Date.now(), ...note };
+            mistakeNotebook.unshift(item);
+            mistakeNotebook = mistakeNotebook.slice(0, 500);
+            saveMistakeNotebook();
+            return item;
+        }
+        function readPracticeSettings() {
+            const saved = readJsonSetting(PRACTICE_SETTINGS_KEY, {});
+            const allowed = ["addition", "subtraction", "multiplication", "division"];
+            return { count: [10, 20, 50].includes(Number(saved.count)) ? Number(saved.count) : 10,
+                operations: Array.isArray(saved.operations) ? saved.operations.filter((op) => allowed.includes(op)) : allowed };
+        }
+        function savePracticeSettings() {
+            const count = Number(practiceCountEl.value) || 10;
+            const operations = [...document.querySelectorAll("#practice-settings input[type=checkbox]:checked")].map((input) => input.value);
+            try { localStorage.setItem(PRACTICE_SETTINGS_KEY, JSON.stringify({ count, operations })); } catch (error) { /* 設定仍可於本次工作階段使用。 */ }
+        }
+        function applyAccessibilityPrefs() {
+            document.body.classList.toggle("large-text", accessibilityPrefs.largeText);
+            document.body.classList.toggle("high-contrast", accessibilityPrefs.highContrast);
+            document.body.classList.toggle("reduce-motion", accessibilityPrefs.reduceMotion);
+            const buttonPrefs = [[largeTextBtn, "largeText", "largeText"], [highContrastBtn, "highContrast", "highContrast"], [reduceMotionBtn, "reduceMotion", "reduceMotion"]];
+            buttonPrefs.forEach(([button, key, labelKey]) => {
+                button.setAttribute("aria-pressed", accessibilityPrefs[key] ? "true" : "false");
+                button.textContent = `${t(labelKey)}：${t(accessibilityPrefs[key] ? "settingOn" : "settingOff")}`;
+            });
+            try { localStorage.setItem(ACCESSIBILITY_KEY, JSON.stringify(accessibilityPrefs)); } catch (error) { /* 無法儲存不影響本次顯示。 */ }
+        }
+        function operationSymbol(operation) {
+            return operation === "addition" ? "+" : operation === "subtraction" ? "−" : operation === "division" ? "÷" : "×";
+        }
+        function formatMistakeQuestion(item) {
+            if (item.kind === "reverse") return t("reviewReverse", { target: item.target });
+            return `${item.a} ${operationSymbol(item.operation)} ${item.b}`;
+        }
+        function renderMistakeNotebook() {
+            const summary = document.getElementById("mistake-notebook-summary");
+            const empty = document.getElementById("mistake-notebook-empty");
+            const list = document.getElementById("mistake-list");
+            const practiceButton = document.getElementById("practice-mistakes-btn");
+            const clearButton = document.getElementById("clear-mistakes-btn");
+            if (!summary || !list) return;
+            summary.textContent = t("mistakeCount", { count: mistakeNotebook.length });
+            empty.textContent = mistakeNotebook.length ? "" : t("mistakeEmpty");
+            empty.classList.toggle("hidden", mistakeNotebook.length > 0);
+            list.replaceChildren();
+            mistakeNotebook.slice(0, 30).forEach((item) => {
+                const row = document.createElement("li");
+                const date = Number.isFinite(Number(item.createdAt)) ? new Date(Number(item.createdAt)).toLocaleDateString(language === "en" ? "en" : "zh-TW") : "";
+                const answer = item.userAnswer == null ? t("unanswered") : String(item.userAnswer);
+                const correct = item.kind === "reverse" && Array.isArray(item.correctPairs) ? item.correctPairs.map(([a, b]) => `${a} × ${b}`).join(language === "en" ? " or " : " 或 ") : String(item.correctAnswer);
+                const answerText = item.userAnswer === "wrongChoice" ? t("incorrectChoice") : answer;
+                row.textContent = t("mistakeDate", { date, question: formatMistakeQuestion(item), correct, answer: answerText });
+                list.appendChild(row);
+            });
+            practiceButton.disabled = mistakeNotebook.length === 0;
+            clearButton.disabled = mistakeNotebook.length === 0;
+        }
+        function updatePvpControls() {
+            p1KeyEl.value = pvpKeys.p1; p2KeyEl.value = pvpKeys.p2;
+            pvpFormatEl.value = pvpFormat;
+            document.getElementById("p1-key-label").textContent = t("p1KeyLabel");
+            document.getElementById("p2-key-label").textContent = t("p2KeyLabel");
+            document.getElementById("pvp-format-label").textContent = t("pvpFormatLabel");
+            pvpFormatEl.options[0].textContent = t("pvpTimed");
+            pvpFormatEl.options[1].textContent = t("pvpBest3");
+            document.getElementById("pvp-settings-title").textContent = t("pvpSettings");
+            p1NameLabel.textContent = t("p1NameKey", { key: pvpKeys.p1 });
+            p2NameLabel.textContent = t("p2NameKey", { key: pvpKeys.p2 });
+            p1Buzz.textContent = t("buzzKey", { key: pvpKeys.p1 });
+            p2Buzz.textContent = t("buzzKey", { key: pvpKeys.p2 });
+            pvpHintEl.textContent = t("pvpHintKeys", { p1Key: pvpKeys.p1, p2Key: pvpKeys.p2 });
+        }
+        function renderPvPRoundStatus() {
+            if (!pvpRoundStatusEl) return;
+            const p1 = (p1NameEl.value.trim() || t("p1Default")).slice(0, 14);
+            const p2 = (p2NameEl.value.trim() || t("p2Default")).slice(0, 14);
+            pvpRoundStatusEl.textContent = pvpOvertime
+                ? t("pvpOvertime", { p1, w1: pvpRoundWins[0], p2, w2: pvpRoundWins[1] })
+                : t("pvpRoundStatus", { round: pvpRoundNumber, p1, w1: pvpRoundWins[0], p2, w2: pvpRoundWins[1] });
+        }
 
         function readScore(key) {
             try { return Number.parseInt(localStorage.getItem(key), 10) || 0; }
@@ -541,6 +783,7 @@
         const additionHighScores = { easy: readScore(additionStorageKeys.easy), medium: readScore(additionStorageKeys.medium), hard: readScore(additionStorageKeys.hard) };
         const subtractionHighScores = { easy: readScore(subtractionStorageKeys.easy), medium: readScore(subtractionStorageKeys.medium), hard: readScore(subtractionStorageKeys.hard) };
         const divisionHighScores = { easy: readScore(divisionStorageKeys.easy), medium: readScore(divisionStorageKeys.medium), hard: readScore(divisionStorageKeys.hard) };
+        challengeHighScores = { easy: readScore(challengeStorageKeys.easy), medium: readScore(challengeStorageKeys.medium), hard: readScore(challengeStorageKeys.hard) };
 
         const menuContainer = document.getElementById("menu-container");
         const gameContainer = document.getElementById("game-container");
@@ -585,6 +828,19 @@
         const achievementSummaryEl = document.getElementById("achievement-summary");
         const achievementListEl = document.getElementById("achievement-list");
         const achievementNoticeEl = document.getElementById("achievement-notice");
+        const timeWrapEl = document.getElementById("time-wrap");
+        const practiceSettingsEl = document.getElementById("practice-settings");
+        const practiceProgressEl = document.getElementById("practice-progress");
+        const practiceCountEl = document.getElementById("practice-count");
+        const pvpRoundStatusEl = document.getElementById("pvp-round-status");
+        const p1NameLabel = document.getElementById("p1-name-label");
+        const p2NameLabel = document.getElementById("p2-name-label");
+        const p1KeyEl = document.getElementById("p1-key");
+        const p2KeyEl = document.getElementById("p2-key");
+        const pvpFormatEl = document.getElementById("pvp-format");
+        const largeTextBtn = document.getElementById("large-text-toggle");
+        const highContrastBtn = document.getElementById("high-contrast-toggle");
+        const reduceMotionBtn = document.getElementById("reduce-motion-toggle");
 
         function applyStaticTranslations() {
             if (document.documentElement) document.documentElement.lang = t("appLanguage");
@@ -610,13 +866,35 @@
             skinSelectEl.setAttribute("aria-label", t("skin"));
             document.getElementById("local-profile").setAttribute("aria-label", t("localProfile"));
             document.getElementById("profile-local-note").textContent = t("localOnly");
+            document.getElementById("a11y-title").textContent = t("a11yTitle");
+            document.getElementById("backup-title").textContent = t("backupTitle");
+            document.getElementById("backup-description").textContent = t("backupDescription");
+            document.getElementById("export-backup-btn").textContent = t("backupExport");
+            document.getElementById("import-backup-btn").textContent = t("backupImport");
+            document.getElementById("pvp-settings-title").textContent = t("pvpSettings");
+            document.getElementById("practice-settings-title").textContent = t("modePractice");
+            document.getElementById("practice-count-label").textContent = t("practiceCount");
+            document.getElementById("practice-operations-title").textContent = t("practiceOperations");
+            document.getElementById("practice-description").textContent = t("practiceDescription");
+            document.getElementById("practice-add-label").textContent = t("additionShort");
+            document.getElementById("practice-subtract-label").textContent = t("subtractionShort");
+            document.getElementById("practice-multiply-label").textContent = t("multiplicationShort");
+            document.getElementById("practice-divide-label").textContent = t("divisionShort");
+            document.getElementById("pvp-settings-status").textContent = "";
+            document.getElementById("backup-status").textContent = "";
+            document.getElementById("mistake-notebook-panel").setAttribute("aria-label", t("mistakeBook"));
+            document.getElementById("pvp-format-label").textContent = t("pvpFormatLabel");
+            document.getElementById("practice-count").setAttribute("aria-label", t("practiceCount"));
+            document.getElementById("pvp-format").setAttribute("aria-label", t("pvpFormatLabel"));
+            document.getElementById("export-backup-btn").setAttribute("aria-label", t("backupExport"));
+            document.getElementById("import-backup-btn").setAttribute("aria-label", t("backupImport"));
             document.getElementById("score-label").textContent = t("score");
             document.getElementById("time-label").textContent = t("time");
             document.getElementById("seconds-label").textContent = t("seconds");
             document.getElementById("highscore-label").textContent = t("highScore");
             document.getElementById("points-label").textContent = t("points");
-            document.getElementById("p1-name-label").textContent = t("p1Label");
-            document.getElementById("p2-name-label").textContent = t("p2Label");
+            document.getElementById("p1-name-label").textContent = t("p1Label", { key: pvpKeys.p1 });
+            document.getElementById("p2-name-label").textContent = t("p2Label", { key: pvpKeys.p2 });
             p1NameEl.setAttribute("aria-label", t("p1Label"));
             p2NameEl.setAttribute("aria-label", t("p2Label"));
             document.getElementById("p1-answer").placeholder = t("answerPlaceholder");
@@ -627,7 +905,7 @@
             p2Answer.setAttribute("aria-label", t("p2Answer"));
             p1Buzz.textContent = t("buzzA");
             p2Buzz.textContent = t("buzzL");
-            pvpHintEl.textContent = t("pvpHint");
+            pvpHintEl.textContent = t("pvpHint", { p1Key: pvpKeys.p1, p2Key: pvpKeys.p2 });
             pvpBoard.setAttribute("aria-label", t("pvpBoardAria"));
             pvpLeaderboardEl.setAttribute("aria-label", t("leaderboardTitle"));
             achievementListEl.setAttribute("aria-label", t("achievementList"));
@@ -642,6 +920,12 @@
                 const key = difficultyTextKeys[button.dataset.difficulty];
                 if (key) button.textContent = `${t(key)} (${button.dataset.difficulty === "easy" ? "2–9" : button.dataset.difficulty === "medium" ? "11–19" : "11–99"})`;
             });
+            updatePvpControls();
+            practiceCountEl.value = String(readPracticeSettings().count);
+            const savedPractice = readPracticeSettings();
+            document.querySelectorAll("#practice-settings input[type=checkbox]").forEach((input) => { input.checked = savedPractice.operations.includes(input.value); });
+            renderMistakeNotebook();
+            applyAccessibilityPrefs();
             const replaying = btnEl.dataset.replay === "true";
             btnEl.textContent = replaying ? t("replay") : gameActive ? t("submit") : t("start");
             const defaultNames = ["本機玩家", "Local Player"];
@@ -659,6 +943,7 @@
             updateHighScoreDisplay();
             renderPvPLeaderboard();
             updateModeUI();
+            renderMistakeNotebook(); updatePvpControls(); applyAccessibilityPrefs();
         });
 
         document.getElementById("enter-game-btn").addEventListener("click", enterGame);
@@ -675,6 +960,46 @@
         profileNameEl.addEventListener("change", () => saveLocalPlayerName(profileNameEl.value));
         p1NameEl.addEventListener("change", () => saveLocalPlayerName(p1NameEl.value));
         document.getElementById("exit-game-btn").addEventListener("click", exitGame);
+        const savedPracticeAtStartup = readPracticeSettings();
+        practiceCountEl.value = String(savedPracticeAtStartup.count);
+        document.querySelectorAll("#practice-settings input[type=checkbox]").forEach((input) => { input.checked = savedPracticeAtStartup.operations.includes(input.value); });
+        p1KeyEl.value = pvpKeys.p1; p2KeyEl.value = pvpKeys.p2; pvpFormatEl.value = pvpFormat;
+        function savePvpKey(player, raw) {
+            const key = String(raw || "").trim().toUpperCase();
+            if (!/^[A-Z]$/.test(key) || key === (player === 1 ? pvpKeys.p2 : pvpKeys.p1)) {
+                document.getElementById("pvp-settings-status").textContent = t("pvpKeyConflict");
+                updatePvpControls();
+                return;
+            }
+            pvpKeys[player === 1 ? "p1" : "p2"] = key;
+            try { localStorage.setItem(PVP_KEYS_KEY, JSON.stringify(pvpKeys)); } catch (error) { /* 設定仍可於本次工作階段使用。 */ }
+            document.getElementById("pvp-settings-status").textContent = t("pvpSettingsSaved");
+            updatePvpControls();
+        }
+        p1KeyEl.addEventListener("change", () => savePvpKey(1, p1KeyEl.value));
+        p2KeyEl.addEventListener("change", () => savePvpKey(2, p2KeyEl.value));
+        pvpFormatEl.addEventListener("change", () => {
+            pvpFormat = pvpFormatEl.value === "best3" ? "best3" : "timed";
+            try { localStorage.setItem(PVP_FORMAT_KEY, pvpFormat); } catch (error) { /* 本次工作階段仍套用。 */ }
+            document.getElementById("pvp-settings-status").textContent = t("pvpSettingsSaved");
+        });
+        practiceCountEl.addEventListener("change", savePracticeSettings);
+        document.querySelectorAll("#practice-settings input[type=checkbox]").forEach((input) => input.addEventListener("change", savePracticeSettings));
+        [[largeTextBtn, "largeText"], [highContrastBtn, "highContrast"], [reduceMotionBtn, "reduceMotion"]].forEach(([button, key]) => button.addEventListener("click", () => {
+            accessibilityPrefs[key] = !accessibilityPrefs[key]; applyAccessibilityPrefs();
+        }));
+        document.getElementById("practice-mistakes-btn").addEventListener("click", startMistakePractice);
+        document.getElementById("clear-mistakes-btn").addEventListener("click", () => {
+            if (!mistakeNotebook.length || !window.confirm(t("mistakeClearConfirm"))) return;
+            mistakeNotebook = []; saveMistakeNotebook();
+        });
+        document.getElementById("export-backup-btn").addEventListener("click", exportLocalBackup);
+        document.getElementById("import-backup-btn").addEventListener("click", () => document.getElementById("backup-file-input").click());
+        document.getElementById("backup-file-input").addEventListener("change", (event) => {
+            const file = event.target.files && event.target.files[0];
+            if (file) importLocalBackup(file);
+            event.target.value = "";
+        });
         skinSelectEl.addEventListener("change", () => {
             const chosenSkin = skins.find((skin) => skin.id === skinSelectEl.value);
             if (!chosenSkin || profile.totalPoints < chosenSkin.points) return;
@@ -687,7 +1012,7 @@
         answerForm.addEventListener("submit", (event) => {
             event.preventDefault();
             if (!gameActive) startGame();
-            else if (["solo", "addition", "subtraction", "division"].includes(mode)) checkAnswer();
+            else if (["solo", "addition", "subtraction", "division", "challenge", "practice"].includes(mode)) checkAnswer();
             else if (isPvPMode() && currentBuzzer !== null) submitPvP(currentBuzzer);
         });
         p1Buzz.addEventListener("click", () => buzzIn(0));
@@ -706,12 +1031,13 @@
             }
             if (!gameActive || !isPvPMode() || event.repeat) return;
             const key = event.key.toLowerCase();
-            if (key === "a") { event.preventDefault(); buzzIn(0); }
-            else if (key === "l") { event.preventDefault(); buzzIn(1); }
+            if (key.toUpperCase() === pvpKeys.p1) { event.preventDefault(); buzzIn(0); }
+            else if (key.toUpperCase() === pvpKeys.p2) { event.preventDefault(); buzzIn(1); }
         });
         applyStaticTranslations();
         renderPlayerProfile();
         updateHearts();
+        renderMistakeNotebook(); updatePvpControls(); applyAccessibilityPrefs();
 
         function enterGame() {
             menuContainer.classList.add("hidden");
@@ -727,6 +1053,7 @@
         function exitGame() {
             if (gameActive && !window.confirm(t("exitConfirm"))) return;
             gameActive = false;
+            if (pvpTransitionTimeout !== null) { window.clearTimeout(pvpTransitionTimeout); pvpTransitionTimeout = null; }
             if (timerInterval !== null) {
                 window.clearInterval(timerInterval);
                 timerInterval = null;
@@ -880,22 +1207,28 @@
             const modeLabel = mode === "reverse" ? `${t("modeReverse")} · ` : `${getOperationName()} · `;
             diffLabelEl.textContent = `${modeLabel}${difficultyName(difficulty)}`;
             highScoreEl.textContent = scores[difficulty];
-            highscoreBoard.classList.toggle("hidden", isPvPMode());
+            highscoreBoard.classList.toggle("hidden", isPvPMode() || mode === "practice");
             pvpBoard.classList.toggle("hidden", !isPvPMode());
         }
         function isPvPMode() {
             return ["pvp", "addition-pvp", "subtraction-pvp", "division-pvp"].includes(mode);
         }
         function getOperationName() {
+            if (mode === "challenge") return t("mixedOperations");
+            if (mode === "practice" && practiceSource === "mistakes") return t("modePractice");
             return t(getArithmeticType());
         }
         function getArithmeticType() {
+            if (mode === "practice") return currentQuestionOperation || practiceOperations[0] || "multiplication";
+            if (mode === "challenge") return currentQuestionOperation || "multiplication";
             if (["addition", "addition-pvp"].includes(mode)) return "addition";
             if (["subtraction", "subtraction-pvp"].includes(mode)) return "subtraction";
             if (["division", "division-pvp"].includes(mode)) return "division";
             return "multiplication";
         }
         function getHighScoresForMode() {
+            if (mode === "challenge") return challengeHighScores;
+            if (mode === "practice") return { easy: 0, medium: 0, hard: 0 };
             if (mode === "reverse") return reverseHighScores;
             if (["addition", "addition-pvp"].includes(mode)) return additionHighScores;
             if (["subtraction", "subtraction-pvp"].includes(mode)) return subtractionHighScores;
@@ -903,6 +1236,8 @@
             return highScores;
         }
         function getStorageKeysForMode() {
+            if (mode === "challenge") return challengeStorageKeys;
+            if (mode === "practice") return {};
             if (mode === "reverse") return reverseStorageKeys;
             if (["addition", "addition-pvp"].includes(mode)) return additionStorageKeys;
             if (["subtraction", "subtraction-pvp"].includes(mode)) return subtractionStorageKeys;
@@ -955,16 +1290,21 @@
             pvpHintEl.classList.toggle("hidden", !isPvPMode());
             pvpLeaderboardEl.classList.toggle("hidden", !isPvPMode());
             document.getElementById("solo-score-wrap").classList.toggle("hidden", isPvPMode());
-            hpEl.classList.toggle("hidden", isPvPMode());
+            hpEl.classList.toggle("hidden", isPvPMode() || mode === "practice");
+            timeWrapEl.classList.toggle("hidden", mode === "practice");
+            practiceSettingsEl.classList.toggle("hidden", mode !== "practice" || gameActive);
+            practiceProgressEl.classList.toggle("hidden", mode !== "practice" || !gameActive);
+            pvpRoundStatusEl.classList.toggle("hidden", !isPvPMode() || pvpFormat !== "best3" || !gameActive);
             updateHighScoreDisplay();
             renderPvPLeaderboard();
             if (!gameActive) {
-                questionEl.textContent = mode === "reverse" ? t("reversePrompt") : isPvPMode() ? t("pvpPrompt", { operation: getOperationName() }) : getArithmeticType() === "multiplication" ? t("soloMultiplyPrompt") : t("operationPrompt", { operation: getOperationName() });
+                questionEl.textContent = mode === "reverse" ? t("reversePrompt") : mode === "challenge" ? t("challengePrompt") : mode === "practice" ? t("practicePrompt") : isPvPMode() ? t("pvpPrompt", { operation: getOperationName() }) : getArithmeticType() === "multiplication" ? t("soloMultiplyPrompt") : t("operationPrompt", { operation: getOperationName() });
             }
         }
         function handleMode(nextMode) {
-            if (gameActive || !["solo", "pvp", "reverse", "addition", "addition-pvp", "subtraction", "subtraction-pvp", "division", "division-pvp"].includes(nextMode)) return;
+            if (gameActive || !["solo", "pvp", "reverse", "addition", "addition-pvp", "subtraction", "subtraction-pvp", "division", "division-pvp", "challenge", "practice"].includes(nextMode)) return;
             mode = nextMode;
+            if (mode === "practice") { practiceSource = "custom"; practiceQueue = []; }
             modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === mode));
             updateModeUI();
         }
@@ -978,11 +1318,21 @@
         function startGame() {
             if (gameActive) return;
             saveLocalPlayerName(profileNameEl.value);
-            score = 0; timeLeft = GAME_LENGTH_SECONDS; hp = STARTING_HEARTS; wrongQuestions = [];
+            if (mode === "practice") {
+                practiceOperations = [...document.querySelectorAll("#practice-settings input[type=checkbox]:checked")].map((input) => input.value);
+                if (practiceSource === "custom" && practiceOperations.length === 0) { messageEl.className = "message wrong"; messageEl.textContent = t("practiceNoOperations"); return; }
+                practiceTarget = practiceSource === "mistakes" ? practiceQueue.length : Number(practiceCountEl.value) || 10;
+                if (practiceSource === "mistakes" && practiceTarget === 0) { messageEl.className = "message wrong"; messageEl.textContent = t("practiceNoMistakes"); return; }
+                practiceAnswered = 0; practiceQueueIndex = 0;
+            }
+            score = 0; timeLeft = mode === "challenge" ? TIMED_CHALLENGE_SECONDS : (isPvPMode() && pvpFormat === "best3" ? PVP_BEST3_SECONDS : GAME_LENGTH_SECONDS); hp = STARTING_HEARTS; wrongQuestions = [];
             playerScores = [0, 0]; currentBuzzer = null; attemptedPlayers = new Set();
+            pvpRoundWins = [0, 0]; pvpRoundNumber = 1; pvpOvertime = false;
             gameActive = true;
             profileNameEl.disabled = true;
             scoreEl.textContent = "0"; timerEl.textContent = timeLeft; updateHearts();
+            practiceProgressEl.textContent = mode === "practice" ? t("practiceProgress", { current: 1, total: practiceTarget }) : "";
+            renderPvPRoundStatus();
             document.getElementById("p1-score").textContent = "0";
             document.getElementById("p2-score").textContent = "0";
             messageEl.textContent = ""; messageEl.className = "message";
@@ -1003,7 +1353,7 @@
                 answerForm.classList.remove("hidden"); answerEl.focus();
             }
             generateQuestion();
-            timerInterval = window.setInterval(() => {
+            if (mode !== "practice") timerInterval = window.setInterval(() => {
                 if (!gameActive) return;
                 timeLeft -= 1; timerEl.textContent = timeLeft;
                 if (mode === "reverse") {
@@ -1011,6 +1361,7 @@
                     reverseStatusEl.textContent = t("reverseTime", { seconds: questionTimeLeft });
                     if (questionTimeLeft <= 0) handleReverseMiss("timeout");
                 }
+                if (isPvPMode() && pvpFormat === "best3" && timeLeft <= 0) { completePvPRound(null, "timeout"); return; }
                 if (timeLeft <= 0) endGame("timeUp");
             }, 1000);
         }
@@ -1021,26 +1372,27 @@
                 if (difficulty === "medium") return Math.floor(Math.random() * 9) + 11;
                 return Math.floor(Math.random() * 89) + 11;
             };
-            num1 = randomOperand();
-            num2 = randomOperand();
-            const operation = getArithmeticType();
-            if (operation === "subtraction" && num1 < num2) [num1, num2] = [num2, num1];
-            if (operation === "division") {
-                const quotient = num1;
-                const divisor = num2;
-                num1 = quotient * divisor;
-                num2 = divisor;
-                correctAnswer = quotient;
-            } else if (operation === "addition") {
-                correctAnswer = num1 + num2;
-            } else if (operation === "subtraction") {
-                correctAnswer = num1 - num2;
-            } else {
-                correctAnswer = num1 * num2;
+            const operations = ["addition", "subtraction", "multiplication", "division"];
+            let operation = getArithmeticType();
+            if (mode === "challenge") operation = operations[Math.floor(Math.random() * operations.length)];
+            if (mode === "practice" && practiceSource === "custom") operation = practiceOperations[Math.floor(Math.random() * practiceOperations.length)];
+            if (mode === "practice" && practiceSource === "mistakes") {
+                const saved = practiceQueue[practiceQueueIndex++];
+                if (saved) { num1 = saved.a; num2 = saved.b; operation = saved.operation; correctAnswer = saved.correctAnswer; }
+            } else { num1 = randomOperand(); num2 = randomOperand(); }
+            currentQuestionOperation = operation;
+            if (!(mode === "practice" && practiceSource === "mistakes") && operation === "subtraction" && num1 < num2) [num1, num2] = [num2, num1];
+            if (!(mode === "practice" && practiceSource === "mistakes")) {
+                if (operation === "division") {
+                    const quotient = num1, divisor = num2;
+                    num1 = quotient * divisor; num2 = divisor; correctAnswer = quotient;
+                } else if (operation === "addition") correctAnswer = num1 + num2;
+                else if (operation === "subtraction") correctAnswer = num1 - num2;
+                else correctAnswer = num1 * num2;
             }
-            const operator = operation === "addition" ? "+" : operation === "subtraction" ? "−" : operation === "division" ? "÷" : "×";
-            questionEl.textContent = `${num1} ${operator} ${num2} = ?`;
+            questionEl.textContent = `${num1} ${operationSymbol(operation)} ${num2} = ?`;
             answerEl.value = "";
+            if (mode === "practice") practiceProgressEl.textContent = t("practiceProgress", { current: practiceAnswered + 1, total: practiceTarget });
             if (isPvPMode()) resetPvPRound();
         }
         function generateReverseQuestion() {
@@ -1075,22 +1427,37 @@
         }
         function checkAnswer() {
             if (!gameActive || isPvPMode() || mode === "reverse") return;
-            const rawAnswer = answerEl.value.trim(), userAnswer = rawAnswer === "" ? Number.NaN : Number(rawAnswer);
-            if (userAnswer === correctAnswer) {
-                score += POINTS_PER_CORRECT_ANSWER; scoreEl.textContent = score;
+            const rawAnswer = answerEl.value.trim();
+            const userAnswer = rawAnswer === "" ? Number.NaN : Number(rawAnswer);
+            const correct = userAnswer === correctAnswer;
+            if (correct) {
+                score += POINTS_PER_CORRECT_ANSWER;
+                scoreEl.textContent = score;
                 recordCorrectAnswer();
-                messageEl.className = "message correct"; messageEl.textContent = t("correct", { points: POINTS_PER_CORRECT_ANSWER });
+                messageEl.className = "message correct";
+                messageEl.textContent = t("correct", { points: POINTS_PER_CORRECT_ANSWER });
                 playCorrectSfx();
-                generateQuestion();
             } else {
-                const operation = getArithmeticType();
-                const operator = operation === "addition" ? "+" : operation === "subtraction" ? "−" : operation === "division" ? "÷" : "×";
+                const operation = currentQuestionOperation || getArithmeticType();
                 recordWrongAnswer();
-                hp -= 1; updateHearts(); wrongQuestions.push({ q: `${num1} ${operator} ${num2}`, correct: correctAnswer, user: Number.isNaN(userAnswer) ? t("unanswered") : userAnswer });
-                messageEl.className = "message wrong"; messageEl.textContent = t("wrong"); playWrongSfx();
-                if (hp <= 0) { endGame("noLife"); return; }
-                generateQuestion();
+                const userValue = Number.isNaN(userAnswer) ? null : userAnswer;
+                wrongQuestions.push({ q: `${num1} ${operationSymbol(operation)} ${num2}`, correct: correctAnswer, user: userValue === null ? t("unanswered") : userValue });
+                saveMistake({ kind: "arithmetic", a: num1, b: num2, operation, correctAnswer, userAnswer: userValue, difficulty, sourceMode: mode });
+                messageEl.className = "message wrong";
+                messageEl.textContent = t("wrong");
+                playWrongSfx();
+                if (mode !== "practice") {
+                    hp -= 1;
+                    updateHearts();
+                    if (hp <= 0) { endGame("noLife"); return; }
+                }
             }
+            if (mode === "practice") {
+                practiceAnswered += 1;
+                if (practiceAnswered >= practiceTarget) { endGame("practiceDone"); return; }
+                practiceProgressEl.textContent = t("practiceProgress", { current: practiceAnswered + 1, total: practiceTarget });
+            }
+            generateQuestion();
             answerEl.focus();
         }
         function checkReverseAnswer(a, b) {
@@ -1109,6 +1476,8 @@
             hp -= 1; updateHearts();
             const validText = reverseValidPairs.map(([a, b]) => `${a} × ${b}`).join(language === "en" ? " or " : " 或 ");
             wrongQuestions.push({ q: "", reverse: true, target: reverseTarget, correct: validText, user: reason === "timeout" ? "timeout" : "wrongChoice" });
+            const firstPair = reverseValidPairs[0] || [2, Math.floor(reverseTarget / 2)];
+            saveMistake({ kind: "reverse", target: reverseTarget, correctPairs: reverseValidPairs, a: firstPair[0], b: firstPair[1], operation: "multiplication", correctAnswer: firstPair[0] * firstPair[1], userAnswer: reason === "timeout" ? null : "wrongChoice", difficulty, sourceMode: "reverse" });
             messageEl.className = "message wrong"; messageEl.textContent = `${t(reason)} ${t("reverseAnswer", { pairs: validText })}`;
             playWrongSfx();
             if (hp <= 0) { endGame("noLife"); return; }
@@ -1131,6 +1500,34 @@
             messageEl.className = "message"; messageEl.textContent = t("pvpBuzzed", { player: player + 1 });
             input.focus(); playTone(520, 0.08, "square", 0.06);
         }
+
+        function completePvPRound(winner, result = "") {
+            if (!gameActive || pvpFormat !== "best3") return;
+            currentBuzzer = null;
+            p1Answer.disabled = true; p2Answer.disabled = true; p1Buzz.disabled = true; p2Buzz.disabled = true;
+            document.getElementById("player-one-card").classList.remove("buzzed");
+            document.getElementById("player-two-card").classList.remove("buzzed");
+            if (winner !== null) pvpRoundWins[winner] += 1;
+            renderPvPRoundStatus();
+            if (winner !== null) messageEl.textContent = t("pvpRoundWon", { player: winner + 1 });
+            else messageEl.textContent = (result === "bothWrong" ? `${t("pvpReveal", { answer: correctAnswer })} ` : "") + (result === "timeout" ? t("pvpRoundTimeout") : t("pvpRoundDraw"));
+            const decided = winner !== null && (pvpRoundWins[winner] >= 2 || pvpOvertime);
+            const completedThird = !pvpOvertime && pvpRoundNumber >= 3;
+            const thirdRoundWinner = completedThird && pvpRoundWins[0] !== pvpRoundWins[1];
+            if (decided || thirdRoundWinner) { endGame("pvpSeriesFinished"); return; }
+            if (completedThird && pvpRoundWins[0] === pvpRoundWins[1]) { pvpOvertime = true; pvpRoundNumber = 4; }
+            else if (!pvpOvertime) pvpRoundNumber += 1;
+            renderPvPRoundStatus();
+            if (pvpTransitionTimeout !== null) window.clearTimeout(pvpTransitionTimeout);
+            pvpTransitionTimeout = window.setTimeout(() => {
+                pvpTransitionTimeout = null;
+                if (!gameActive) return;
+                timeLeft = PVP_BEST3_SECONDS; timerEl.textContent = timeLeft;
+                messageEl.textContent = "";
+                generateQuestion();
+            }, 900);
+        }
+
         function submitPvP(player) {
             if (!gameActive || !isPvPMode() || currentBuzzer !== player) return;
             const input = player === 0 ? p1Answer : p2Answer;
@@ -1140,7 +1537,9 @@
                 recordCorrectAnswer();
                 document.getElementById(player === 0 ? "p1-score" : "p2-score").textContent = playerScores[player];
                 messageEl.className = "message correct"; messageEl.textContent = t("pvpCorrect", { player: player + 1, points: POINTS_PER_CORRECT_ANSWER });
-                playCorrectSfx(); generateQuestion();
+                playCorrectSfx();
+                if (pvpFormat === "best3") completePvPRound(player);
+                else generateQuestion();
             } else {
                 recordWrongAnswer();
                 attemptedPlayers.add(player); currentBuzzer = null;
@@ -1154,13 +1553,79 @@
                 playWrongSfx();
                 if (attemptedPlayers.size === 2) {
                     messageEl.textContent += t("pvpReveal", { answer: correctAnswer });
-                    window.setTimeout(() => { if (gameActive && isPvPMode()) generateQuestion(); }, 900);
+                    if (pvpFormat === "best3") completePvPRound(null, "bothWrong");
+                    else window.setTimeout(() => { if (gameActive && isPvPMode()) generateQuestion(); }, 900);
                 }
             }
         }
+
+        const LOCAL_DATA_KEYS = [...Object.values(storageKeys), ...Object.values(reverseStorageKeys), ...Object.values(additionStorageKeys), ...Object.values(subtractionStorageKeys), ...Object.values(divisionStorageKeys), ...Object.values(challengeStorageKeys), PVP_LEADERBOARD_KEY, PLAYER_PROFILE_KEY, LANGUAGE_KEY, "mult_music_volume", "mult_sfx_volume", MISTAKE_NOTEBOOK_KEY, PVP_KEYS_KEY, PVP_FORMAT_KEY, ACCESSIBILITY_KEY, PRACTICE_SETTINGS_KEY];
+        function startMistakePractice() {
+            if (!mistakeNotebook.length) { document.getElementById("backup-status").textContent = t("practiceNoMistakes"); return; }
+            practiceQueue = mistakeNotebook.slice(0, 30).map((item) => ({ a: Number(item.a), b: Number(item.b), operation: ["addition", "subtraction", "multiplication", "division"].includes(item.operation) ? item.operation : "multiplication", correctAnswer: Number(item.correctAnswer) })).filter((item) => Number.isFinite(item.a) && Number.isFinite(item.b) && Number.isFinite(item.correctAnswer));
+            if (!practiceQueue.length) return;
+            practiceSource = "mistakes"; mode = "practice";
+            modeButtons.forEach((button) => button.classList.toggle("active", button.dataset.mode === "practice"));
+            enterGame(); startGame();
+        }
+        function exportLocalBackup() {
+            const data = {};
+            try { LOCAL_DATA_KEYS.forEach((key) => { const value = localStorage.getItem(key); if (value !== null) data[key] = value; }); }
+            catch (error) { document.getElementById("backup-status").textContent = t("backupInvalid"); return; }
+            if (!Object.keys(data).length) { document.getElementById("backup-status").textContent = t("backupNoData"); return; }
+            const backup = { app: "math-challenge-local-backup", version: 1, exportedAt: new Date().toISOString(), data };
+            const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob), link = document.createElement("a");
+            link.href = url; link.download = `math-challenge-backup-${new Date().toISOString().slice(0, 10)}.json`;
+            document.body.appendChild(link); link.click(); link.remove(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+            document.getElementById("backup-status").textContent = t("backupExported");
+        }
+        function validateBackupValue(key, value) {
+            if (typeof value !== "string" || value.length > 1000000) return false;
+            if (key === LANGUAGE_KEY) return value === "zh" || value === "en";
+            if (["mult_music_volume", "mult_sfx_volume"].includes(key)) return /^\\d{1,3}$/.test(value) && Number(value) <= 100;
+            if ([...Object.values(storageKeys), ...Object.values(reverseStorageKeys), ...Object.values(additionStorageKeys), ...Object.values(subtractionStorageKeys), ...Object.values(divisionStorageKeys), ...Object.values(challengeStorageKeys)].includes(key)) return /^\\d{1,7}$/.test(value);
+            if (key === PVP_FORMAT_KEY) return value === "timed" || value === "best3";
+            try {
+                const parsed = JSON.parse(value);
+                if (key === PLAYER_PROFILE_KEY) return parsed && typeof parsed === "object" && typeof parsed.name === "string" && parsed.name.length <= 32 && Number.isFinite(Number(parsed.totalCorrect || 0));
+                if (key === PVP_LEADERBOARD_KEY) return Array.isArray(parsed) && parsed.length <= 100 && parsed.every((item) => item && typeof item.name === "string" && typeof item.operation === "string" && Number.isFinite(Number(item.score)));
+                if (key === MISTAKE_NOTEBOOK_KEY) return Array.isArray(parsed) && parsed.length <= 500 && parsed.every((item) => item && typeof item.operation === "string" && Number.isFinite(Number(item.correctAnswer)));
+                if (key === PVP_KEYS_KEY) return parsed && /^[A-Z]$/.test(parsed.p1) && /^[A-Z]$/.test(parsed.p2) && parsed.p1 !== parsed.p2;
+                if (key === PVP_FORMAT_KEY) return value === "timed" || value === "best3";
+                if (key === ACCESSIBILITY_KEY) return parsed && ["largeText", "highContrast", "reduceMotion"].every((k) => typeof parsed[k] === "boolean");
+                if (key === PRACTICE_SETTINGS_KEY) return parsed && [10, 20, 50].includes(Number(parsed.count)) && Array.isArray(parsed.operations) && parsed.operations.every((op) => ["addition", "subtraction", "multiplication", "division"].includes(op));
+                return false;
+            } catch (error) { return false; }
+        }
+        async function importLocalBackup(file) {
+            const status = document.getElementById("backup-status");
+            try {
+                if (file.size > 2000000) throw new Error("too large");
+                const backup = JSON.parse(await file.text());
+                if (!backup || backup.app !== "math-challenge-local-backup" || backup.version !== 1 || !backup.data || typeof backup.data !== "object" || Array.isArray(backup.data)) throw new Error("invalid envelope");
+                const entries = Object.entries(backup.data);
+                if (!entries.length || entries.some(([key, value]) => !LOCAL_DATA_KEYS.includes(key) || !validateBackupValue(key, value))) throw new Error("invalid data");
+                if (!window.confirm(t("backupConfirm"))) return;
+                const previous = new Map();
+                try {
+                    entries.forEach(([key, value]) => { previous.set(key, localStorage.getItem(key)); localStorage.setItem(key, value); });
+                } catch (error) {
+                    previous.forEach((value, key) => { try { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value); } catch (_) {} });
+                    throw error;
+                }
+                status.textContent = t("backupImported");
+                window.setTimeout(() => window.location.reload(), 700);
+            } catch (error) { status.textContent = t("backupInvalid"); }
+        }
+
         function endGame(reason) {
             if (!gameActive) return;
             gameActive = false; window.clearInterval(timerInterval); timerInterval = null;
+            if (pvpTransitionTimeout !== null) { window.clearTimeout(pvpTransitionTimeout); pvpTransitionTimeout = null; }
+            practiceSettingsEl.classList.toggle("hidden", mode !== "practice");
+            practiceProgressEl.classList.add("hidden");
+            pvpRoundStatusEl.classList.toggle("hidden", !isPvPMode() || pvpFormat !== "best3");
             answerEl.disabled = true; p1Answer.disabled = true; p2Answer.disabled = true; p1Buzz.disabled = true; p2Buzz.disabled = true;
             profileNameEl.disabled = false;
             p1NameEl.disabled = false; p2NameEl.disabled = false;
@@ -1170,17 +1635,20 @@
             if (isPvPMode()) {
                 const player1 = p1NameEl.value.trim() || t("p1Default");
                 const player2 = p2NameEl.value.trim() || t("p2Default");
-                if (playerScores[0] !== playerScores[1]) {
-                    profile.pvpWins += 1;
-                    updatePlayerProgress();
-                }
-                const outcome = playerScores[0] === playerScores[1] ? t("tie") : t("winner", { name: playerScores[0] > playerScores[1] ? player1 : player2 });
+                const winner = pvpFormat === "best3" ? (pvpRoundWins[0] === pvpRoundWins[1] ? null : pvpRoundWins[0] > pvpRoundWins[1] ? 0 : 1) : (playerScores[0] === playerScores[1] ? null : playerScores[0] > playerScores[1] ? 0 : 1);
+                if (winner !== null) { profile.pvpWins += 1; updatePlayerProgress(); }
+                const outcome = winner === null ? t("tie") : t("winner", { name: winner === 0 ? player1 : player2 });
+                const seriesText = pvpFormat === "best3" ? ` ${t("pvpSeriesOutcome", { w1: pvpRoundWins[0], w2: pvpRoundWins[1] })}` : "";
                 questionEl.textContent = t(reason);
                 messageEl.className = "message correct";
-                messageEl.textContent = t("pvpFinished", { outcome, p1: player1, s1: playerScores[0], p2: player2, s2: playerScores[1] });
+                messageEl.textContent = t("pvpFinished", { outcome, p1: player1, s1: playerScores[0], p2: player2, s2: playerScores[1] }) + seriesText;
                 recordPvPLeaderboard();
+            } else if (mode === "practice") {
+                questionEl.textContent = t("practiceDone");
+                messageEl.className = "message correct";
+                messageEl.textContent = t("practiceDone") + ` ${t("gameFinished", { score })}`;
             } else {
-                if (score > 0 && hp === STARTING_HEARTS) {
+                if (score > 0 && hp === STARTING_HEARTS && mode !== "practice") {
                     profile.perfectRuns += 1;
                     updatePlayerProgress();
                 }
@@ -1188,7 +1656,7 @@
                 const scores = getHighScoresForMode();
                 const keys = getStorageKeysForMode();
                 let resultText = t("gameFinished", { score });
-                if (score > scores[difficulty]) {
+                if (mode !== "practice" && score > scores[difficulty]) {
                     scores[difficulty] = score;
                     try { localStorage.setItem(keys[difficulty], String(score)); } catch (error) { /* 保留頁面內紀錄。 */ }
                     highScoreEl.textContent = score;
