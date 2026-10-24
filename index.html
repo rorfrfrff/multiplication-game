@@ -29,7 +29,10 @@
         .shop-backdrop { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 16px; background: rgba(26,32,44,.58); overflow: auto; }
         .shop-backdrop.hidden { display: none !important; }
         body.shop-open { overflow: hidden; }
-        .shop-page-dialog { width: min(920px, 100%); max-height: calc(100vh - 32px); overflow: auto; text-align: left; padding: 24px; border: 2px solid #f6ad55; }
+        .shop-page-dialog { width: min(980px, 100%); max-width: 980px; max-height: calc(100dvh - 24px); overflow: auto; overscroll-behavior: contain; text-align: left; padding: 24px; border: 2px solid #f6ad55; }
+        .shop-page-dialog:focus { outline: none; }
+        .shop-page-header { position: sticky; top: -24px; z-index: 2; margin: -8px -8px 8px; padding: 8px; background: rgba(255,255,255,.97); border-radius: 12px; }
+        .shop-balance { position: sticky; top: 52px; z-index: 1; margin: 8px 0; padding: 10px 14px; border: 1px solid #e9d8a6; border-radius: 12px; background: #fffaf0; color: #6841a5; font-weight: 900; text-align: center; box-shadow: 0 3px 10px rgba(35,48,90,.08); }
         .shop-page-dialog h1, .shop-page-dialog h2, .shop-page-dialog h3 { text-align: center; }
         .shop-page-header { display: flex; align-items: center; gap: 10px; }
         .shop-page-header h1 { flex: 1; margin: 0; }
@@ -266,17 +269,20 @@
         .high-contrast button { border: 2px solid #111; }
         .high-contrast .question { color: #102a83; }
         .reduce-motion *, .reduce-motion *::before, .reduce-motion *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-        .shop-balance { margin: 9px 0; padding: 9px 12px; border-radius: 9px; background: #fffaf0; color: #805ad5; font-weight: 900; text-align: center; }
-        .shop-group { margin: 14px 0 8px; }
-        .shop-group h3 { margin: 8px 0; color: #4a5568; font-size: 15px; }
-        .shop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-        .shop-card { display: flex; flex-direction: column; gap: 6px; padding: 10px; background: #fff; border: 1px solid #cbd5e0; border-radius: 10px; min-width: 0; }
-        .shop-card-title { font-weight: 800; color: #2d3748; overflow-wrap: anywhere; }
-        .shop-card-price { font-size: 12px; color: #718096; }
-        .shop-icon { font-size: 25px; }
-        .shop-preview { width: 100%; height: 22px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12); }
-        .shop-card button { width: 100%; min-height: 40px; border: 1px solid #a0aec0; border-radius: 7px; padding: 6px; background: #edf2f7; color: #2d3748; font-weight: 800; cursor: pointer; }
-        .shop-card button:disabled { opacity: .62; cursor: not-allowed; }
+        .shop-group { margin: 16px 0 12px; }
+        .shop-group h3 { margin: 10px 0; padding-bottom: 7px; color: #434190; font-size: 16px; border-bottom: 1px solid #e2e8f0; }
+        .shop-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+        .shop-card { display: grid; grid-template-columns: 38px minmax(0, 1fr); grid-template-areas: "icon title" "preview preview" "price price" "button button"; align-content: start; gap: 8px; padding: 12px; background: linear-gradient(160deg, #fff 0%, #f8faff 100%); border: 1px solid #d7deea; border-radius: 14px; min-width: 0; box-shadow: 0 3px 10px rgba(35,48,90,.06); transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+        .shop-card:hover { transform: translateY(-2px); border-color: #a3bffa; box-shadow: 0 7px 16px rgba(35,48,90,.1); }
+        .shop-card-title { grid-area: title; align-self: center; min-width: 0; font-weight: 850; line-height: 1.35; color: #2d3748; overflow-wrap: anywhere; }
+        .shop-card-price { grid-area: price; min-height: 18px; font-size: 12px; color: #718096; }
+        .shop-icon { grid-area: icon; display: grid; place-items: center; min-height: 36px; font-size: 26px; }
+        .shop-preview { grid-area: preview; width: 100%; height: 32px; border-radius: 8px; border: 1px solid rgba(0,0,0,.12); }
+        .shop-card button { grid-area: button; align-self: end; width: 100%; min-height: 42px; border: 1px solid #a0aec0; border-radius: 9px; padding: 7px; background: #edf2f7; color: #2d3748; font-weight: 800; cursor: pointer; transition: background .15s ease, transform .15s ease; }
+        .shop-card button:not(:disabled) { border-color: #48bb78; background: #48bb78; color: #fff; }
+        .shop-card button:not(:disabled):hover { background: #38a169; transform: translateY(-1px); }
+        .shop-card button:disabled { opacity: .68; cursor: not-allowed; }
+        @media (max-width: 360px) { .shop-grid { grid-template-columns: 1fr; } .shop-card { grid-template-columns: 42px minmax(0,1fr); } }
         .rpg-battle { margin: 12px 0; padding: 13px; border-radius: 14px; background: linear-gradient(145deg, #f0fff4, #ebf8ff); border: 2px solid #68d391; text-align: left; }
         .rpg-battle h2 { margin: 0 0 10px; text-align: center; color: #276749; font-size: 18px; }
         .rpg-zone-label { margin: 0 0 9px; padding: 7px 9px; text-align: center; border-radius: 8px; background: #e6fffa; color: #285e61; font-size: 13px; font-weight: 900; }
@@ -330,7 +336,13 @@
             .audio-control { flex-wrap: wrap; }
             .audio-control > button { flex: 1; min-height: 44px; }
             .mode-btn, .diff-btn, .action-btn, .back-btn, .buzz-btn, .answer-choice { min-height: 48px; }
-            .settings-grid, .local-tool-buttons, .a11y-buttons, .shop-grid { grid-template-columns: 1fr; }
+            .settings-grid, .local-tool-buttons, .a11y-buttons { grid-template-columns: 1fr; }
+            .shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+            .shop-card { padding: 10px; gap: 7px; }
+            .shop-card-title { font-size: 14px; }
+            .shop-card button { min-height: 44px; font-size: 13px; }
+            .shop-page-header { top: -17px; }
+            .shop-balance { top: 46px; }
             .rpg-arena { grid-template-columns: 1fr; }
             .rpg-skill-buttons { grid-template-columns: 1fr; }
             .rpg-vs { padding: 2px; }
@@ -344,12 +356,335 @@
             .shop-page-header h1 { order: -1; flex-basis: 100%; }
             .shop-page-header .back-btn { flex: 1; }
             .rpg-relic-list { grid-template-columns: 1fr; }
+            .shop-page-dialog { max-height: calc(100dvh - 16px); }
+            .shop-page-header { margin: -5px -5px 6px; }
+            .shop-balance { top: 45px; }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { scroll-behavior: auto !important; }
         }
+        /* Full-game layout refresh: one visual system across menu, play, settings and shop. */
+        :root {
+            --ui-ink: #24304a;
+            --ui-muted: #66738d;
+            --ui-primary: #4f46c8;
+            --ui-primary-dark: #3730a3;
+            --ui-border: #e1e7f2;
+            --ui-surface: #ffffff;
+            --ui-soft: #f5f7fc;
+            --ui-shadow: 0 18px 48px rgba(31, 41, 80, .16);
+        }
+        html { min-height: 100%; scroll-behavior: smooth; }
+        body {
+            min-height: 100svh;
+            align-items: flex-start;
+            padding: 18px 14px 36px;
+            color: var(--ui-ink);
+            background:
+                radial-gradient(ellipse at 8% 8%, rgba(255,255,255,.28), transparent 30%),
+                radial-gradient(ellipse at 95% 92%, rgba(255,255,255,.16), transparent 28%),
+                linear-gradient(135deg, #5969d8 0%, #6b55bd 48%, #8753a6 100%);
+            background-attachment: fixed;
+        }
+        main { width: 100%; max-width: 1120px; margin: 0 auto; gap: 14px; }
+        .global-tools {
+            top: 10px;
+            width: min(100%, 1040px);
+            margin: 0 auto;
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,.76);
+            border-radius: 18px;
+            background: rgba(255,255,255,.94);
+            box-shadow: 0 8px 24px rgba(27,35,78,.16);
+            backdrop-filter: blur(12px);
+        }
+        .global-toolbar-actions { justify-content: flex-end; }
+        .global-toolbar-actions button, .audio-btn, .global-shop-btn {
+            min-height: 42px;
+            border-radius: 11px;
+            transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+        }
+        .global-shop-btn { background: #ffcc76; color: #583c0d; }
+        .global-shop-btn:hover, .audio-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 12px rgba(35,48,90,.13); }
+        .global-volume-controls .music-volume, .global-volume-controls .sfx-volume { padding: 8px 12px; border: 1px solid #edf0f7; background: #f8f9fd; }
+        .window-box#menu-container, .window-box#game-container {
+            width: min(100%, 1000px);
+            max-width: 1000px;
+            padding: clamp(20px, 3vw, 34px);
+            border: 1px solid rgba(255,255,255,.9);
+            border-radius: 26px;
+            background: rgba(255,255,255,.97);
+            box-shadow: var(--ui-shadow);
+            text-align: center;
+        }
+        #menu-container { max-width: 1040px; }
+        #menu-title, #game-title { margin: 0 0 6px; color: #342d78; font-size: clamp(27px, 4vw, 38px); line-height: 1.15; letter-spacing: -.025em; }
+        .subtitle { margin: 0 0 18px; color: var(--ui-muted); font-size: 16px; }
+        #language-toggle { min-width: 108px; margin: 0 auto 12px; border: 1px solid #e3e8f4; background: #f7f8fd; }
+        #mode-home-title { margin: 12px 0 4px; color: #30365f; font-size: 22px; }
+        .mode-home-subtitle { margin: 0 auto 16px; max-width: 650px; color: var(--ui-muted); }
+        .mode-home-grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin: 18px 0 22px; }
+        .mode-card {
+            position: relative;
+            min-height: 120px;
+            padding: 16px;
+            border: 1px solid #e0e6f2;
+            border-radius: 17px;
+            background: linear-gradient(145deg,#fff 0%,#f5f7ff 100%);
+            box-shadow: 0 4px 12px rgba(38,48,88,.05);
+        }
+        .mode-card:hover { transform: translateY(-3px); border-color: #a7aaf0; box-shadow: 0 11px 24px rgba(76,81,191,.13); }
+        .mode-card-icon { width: 42px; height: 42px; align-self: center; border-radius: 13px; background: #eef0ff; font-size: 26px; }
+        .mode-card-title { font-size: 16px; line-height: 1.3; }
+        .mode-card-description { margin-top: 2px; font-size: 12px; }
+        .mode-card-featured { min-height: 94px; background: linear-gradient(120deg,#ecfff4,#eef6ff); border-color: #a9dfbd; }
+        .mode-card-featured .mode-card-icon { background: #ddf8e7; }
+        .instructions {
+            margin: 18px 0;
+            padding: 16px 18px;
+            border: 1px solid #e5eaf4;
+            border-left: 4px solid #675bd3;
+            border-radius: 14px;
+            background: #f7f8fc;
+            line-height: 1.75;
+        }
+        .local-feature-panel, .achievement-panel, .run-leaderboard-section {
+            border-color: #e3e8f2;
+            border-radius: 15px;
+            background: #f8f9fc;
+        }
+        .local-feature-panel { padding: 14px 16px; }
+        .local-feature-panel summary, .achievement-panel summary { padding: 3px 0; }
+        .mode-detail-screen { padding-top: 4px; }
+        .mode-back-btn { width: auto; min-width: 150px; padding-inline: 16px; }
+        .mode-detail-title { margin: 15px 0 6px; color: #342d78; font-size: 27px; }
+        .mode-detail-section { padding: 16px; border-color: #e4e8f2; border-radius: 16px; background: #f8f9fd; }
+        .mode-container { gap: 9px; }
+        .mode-btn, .diff-btn {
+            min-height: 48px;
+            border-width: 1px;
+            border-color: #dfe4ef;
+            border-radius: 11px;
+            background: #fff;
+            transition: transform .15s ease, border-color .15s ease, background .15s ease;
+        }
+        .mode-btn:hover, .diff-btn:hover { transform: translateY(-1px); border-color: #a5a6e8; }
+        .mode-btn.active, .diff-btn.active { background: var(--ui-primary); border-color: var(--ui-primary); box-shadow: 0 4px 10px rgba(79,70,200,.2); }
+        .difficulty-container { gap: 9px; }
+        .action-btn, .back-btn, .local-feature-panel button, .buzz-btn, .answer-choice {
+            border-radius: 12px;
+            transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+        }
+        .action-btn:hover:not(:disabled), .back-btn:hover:not(:disabled), .buzz-btn:hover:not(:disabled), .answer-choice:hover { transform: translateY(-1px); box-shadow: 0 5px 12px rgba(35,48,90,.13); }
+        #launch-mode-btn { min-height: 54px; margin-top: 12px; border-radius: 14px; box-shadow: 0 7px 16px rgba(76,81,191,.18); }
+        .practice-settings { padding: 16px; border: 1px solid #dce7fb; border-radius: 14px; }
+        .settings-grid { gap: 12px; }
+        .local-tool-buttons, .a11y-buttons { gap: 10px; }
+        button:disabled { cursor: not-allowed; }
+        .window-box#game-container { max-width: 920px; }
+        #game-title { font-size: clamp(24px,3.5vw,32px); }
+        #game-container .audio-control { justify-content: flex-start; margin: 8px 0 14px; }
+        .exit-btn { min-height: 40px; padding: 9px 14px; border-radius: 10px; }
+        .player-profile {
+            align-items: flex-start;
+            margin: 12px 0;
+            padding: 15px;
+            border: 1px solid #e2e8f2;
+            border-radius: 16px;
+            background: linear-gradient(135deg,#f8faff,#f3f6fc);
+        }
+        .profile-avatar { flex-basis: 60px; height: 60px; border: 3px solid #fff; box-shadow: 0 2px 9px rgba(35,48,90,.1); }
+        .profile-controls { font-size: 13px; }
+        .profile-progress { line-height: 1.45; }
+        #coin-balance { display: inline-flex; width: fit-content; margin-top: 7px; padding: 5px 10px; border-radius: 999px; background: #fff4d9; color: #79570b; font-weight: 900; }
+        .achievement-panel { margin: 10px 0 16px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3,minmax(0,1fr));
+            gap: 10px;
+            margin: 12px 0;
+        }
+        .stats > div {
+            min-width: 0;
+            padding: 11px 10px;
+            border: 1px solid #e5e9f2;
+            border-radius: 13px;
+            background: #f7f8fc;
+            color: #34405d;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+        .stats #hp-box { color: #d43d57; }
+        .highscore-board { margin: 12px 0; padding: 10px 14px; border: 1px solid #dce7f5; border-radius: 12px; background: #f3f8ff; color: #315c91; }
+        #rpg-battle { margin: 14px 0; padding: 16px; border-radius: 18px; }
+        .rpg-combatant { padding: 13px; border-radius: 14px; }
+        #game-box {
+            margin-top: 14px;
+            padding: clamp(16px,3vw,28px);
+            border: 1px solid #e3e7f1;
+            border-radius: 20px;
+            background: linear-gradient(180deg,#fff 0%,#f9faff 100%);
+            box-shadow: 0 8px 24px rgba(40,50,90,.07);
+        }
+        .question {
+            margin: 6px 0 18px;
+            color: #453cb5;
+            font-size: clamp(48px,9vw,72px);
+            line-height: 1.15;
+            letter-spacing: -.03em;
+            font-variant-numeric: tabular-nums;
+        }
+        #pvp-hint { margin: 10px auto; max-width: 650px; color: var(--ui-muted); line-height: 1.55; }
+        #answer-form { display: grid; grid-template-columns: minmax(0,1fr) minmax(190px,.62fr); align-items: stretch; gap: 12px; max-width: 620px; margin: 0 auto; }
+        #answer { width: 100%; min-width: 0; min-height: 58px; padding: 10px 14px; border: 2px solid #d6dcef; border-radius: 14px; background: #fff; color: var(--ui-ink); font-size: 27px; font-weight: 800; box-shadow: inset 0 1px 2px rgba(30,40,80,.04); }
+        #answer:focus { border-color: #7774df; box-shadow: 0 0 0 4px rgba(99,102,241,.12); }
+        #answer-form .action-btn { min-height: 58px; margin: 0; padding: 10px 18px; border-radius: 14px; font-size: 18px; }
+        .message { margin: 12px 0 0; }
+        .reverse-options { max-width: 620px; margin: 18px auto; }
+        .answer-choice { background: #f8f9ff; }
+        .pvp-board { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+        .player-card { padding: 15px; border-radius: 15px; background: #f8faff; }
+        .player-name input { min-height: 40px; text-align: left; }
+        .player-score { margin: 8px 0; color: #302f70; font-size: 34px; font-variant-numeric: tabular-nums; }
+        .pvp-answer { min-height: 48px; border: 2px solid #dfe4ef; border-radius: 10px; }
+        .buzz-btn { min-height: 48px; }
+        .review-box { max-height: 280px; margin-top: 16px; border-radius: 14px; }
+        #back-menu-btn { width: auto; min-width: 190px; margin: 14px auto 0; padding: 12px 18px; }
+        .shop-backdrop { z-index: 1500; padding: max(10px,env(safe-area-inset-top)) 12px max(10px,env(safe-area-inset-bottom)); }
+        @media (max-width: 820px) {
+            .mode-home-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+            .mode-card-featured { grid-column: 1 / -1; }
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px 8px 24px; }
+            main { gap: 10px; }
+            .global-tools { top: 6px; width: 100%; border-radius: 15px; }
+            .global-toolbar-actions { justify-content: center; }
+            .window-box#menu-container, .window-box#game-container { width: 100%; padding: 20px 15px; border-radius: 21px; }
+            .mode-home-grid { gap: 9px; margin: 14px 0 18px; }
+            .mode-card { min-height: 112px; padding: 11px; border-radius: 14px; }
+            .mode-card-icon { width: 34px; height: 34px; font-size: 22px; }
+            .mode-card-title { font-size: 14px; }
+            .mode-card-description { font-size: 11px; }
+            .instructions { padding: 13px; font-size: 13px; }
+            .mode-detail-section { padding: 12px; }
+            .stats { gap: 7px; }
+            .stats > div { padding: 9px 5px; font-size: 14px; }
+            .player-profile { padding: 12px; gap: 10px; }
+            .profile-avatar { flex-basis: 50px; height: 50px; font-size: 27px; }
+            .rpg-arena { grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 6px; }
+            .rpg-combatant { padding: 9px 6px; }
+            .rpg-avatar { font-size: 36px; }
+            .rpg-vs { padding: 2px; }
+            .rpg-skill-buttons { grid-template-columns: 1fr; }
+            #game-box { padding: 16px 12px; }
+            #answer-form { grid-template-columns: 1fr; gap: 9px; }
+            #answer-form .action-btn { width: 100%; }
+            .pvp-board { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+            .player-card { padding: 10px 8px; }
+            .player-name { font-size: 13px; }
+            .player-score { font-size: 28px; }
+        }
+        @media (max-width: 390px) {
+            .mode-home-grid { grid-template-columns: 1fr; }
+            .mode-card { min-height: 86px; grid-template-columns: 38px minmax(0,1fr); }
+            .mode-card-featured { grid-column: auto; }
+            .stats { grid-template-columns: repeat(2,minmax(0,1fr)); }
+            .stats #time-wrap { grid-column: 1 / -1; }
+            .pvp-board { grid-template-columns: 1fr; }
+            .rpg-arena { grid-template-columns: 1fr; }
+            .rpg-vs { padding: 0; }
+            .rpg-skill-buttons { grid-template-columns: 1fr; }
+        }
+        /* Put the live round controls before secondary profile and achievement details. */
+        #game-container:not(.hidden) { display: flex; flex-direction: column; }
+        #game-container #game-title { order: 0; }
+        #game-container > .audio-control { order: 1; }
+        #game-container > .stats { order: 2; }
+        #game-container > #highscore-board { order: 3; }
+        #game-container > #pvp-board { order: 4; }
+        #game-container > #pvp-round-status { order: 5; }
+        #game-container > #pvp-leaderboard { order: 6; }
+        #game-container > #game-box { order: 7; }
+        #game-container > #rpg-battle { order: 8; }
+        #game-container > #practice-progress { order: 9; }
+        #game-container > #back-menu-btn { order: 10; }
+        #game-container > #local-profile { order: 11; }
+        #game-container > #achievement-panel { order: 12; }
+        #game-container > #achievement-notice { order: 13; }
+
+
+        /* New purchasable background themes. */
+        body[data-game-background="lavender"] { background: linear-gradient(135deg,#8b7bd8 0%,#c084fc 48%,#f0abfc 100%); }
+        body[data-game-background="aurora"] { background: linear-gradient(135deg,#0f766e 0%,#2563eb 52%,#a855f7 100%); }
+        body[data-game-background="sakura"] { background: linear-gradient(135deg,#fb7185 0%,#f9a8d4 52%,#fce7f3 100%); }
+        body[data-game-background="galaxy"] { background: linear-gradient(135deg,#11143b 0%,#4c1d95 52%,#be185d 100%); }
+        body[data-game-background="candy"] { background: linear-gradient(135deg,#fb7185 0%,#f9a8d4 48%,#93c5fd 100%); }
+        body[data-game-font="rounded"] { font-family: "Trebuchet MS", "Arial Rounded MT Bold", "Noto Sans TC", sans-serif; }
+        body[data-game-font="pixel"] { font-family: "Courier New", "Noto Sans TC", monospace; letter-spacing: .015em; }
+        .combo-counter {
+            display: flex;
+            width: fit-content;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 9px;
+            padding: 7px 14px;
+            border: 1px solid #f3cc72;
+            border-radius: 999px;
+            background: linear-gradient(120deg,#fff4cc,#ffe3a1);
+            color: #82550c;
+            font-size: 14px;
+            font-weight: 950;
+            letter-spacing: .02em;
+            box-shadow: 0 4px 12px rgba(185,126,30,.12);
+        }
+        .combo-counter.is-hot { color: #fff; border-color: #f97316; background: linear-gradient(110deg,#f97316,#ec4899); box-shadow: 0 5px 18px rgba(236,72,153,.25); }
+        #game-box.combo-flash { animation: comboFieldFlash .52s ease-out; }
+        #question.combo-pop { animation: comboQuestionPop .42s cubic-bezier(.2,.8,.2,1); }
+        .combo-toast {
+            position: fixed;
+            top: clamp(96px, 19vh, 210px);
+            left: 50%;
+            z-index: 1400;
+            max-width: min(90vw, 520px);
+            padding: 13px 22px;
+            border: 1px solid rgba(255,255,255,.72);
+            border-radius: 999px;
+            background: linear-gradient(110deg,#6348da,#e44e9a);
+            color: #fff;
+            font-size: clamp(17px,4vw,24px);
+            font-weight: 950;
+            text-align: center;
+            box-shadow: 0 12px 34px rgba(49,35,120,.3);
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 12px) scale(.88);
+        }
+        .combo-toast.is-visible { animation: comboToastPop 1.25s ease both; }
+        .combo-burst { position: fixed; left: 50%; top: 40%; z-index: 1399; width: 1px; height: 1px; pointer-events: none; }
+        .combo-burst span {
+            position: absolute;
+            width: 9px;
+            height: 15px;
+            border-radius: 3px;
+            background: hsl(var(--combo-hue),88%,58%);
+            transform: rotate(var(--combo-angle)) translateY(0);
+            animation: comboParticle .72s cubic-bezier(.12,.72,.2,1) forwards;
+        }
+        @keyframes comboFieldFlash {
+            0% { box-shadow: 0 0 0 0 rgba(245,158,11,0); }
+            35% { box-shadow: 0 0 0 5px rgba(245,158,11,.2), 0 12px 35px rgba(236,72,153,.12); }
+            100% { box-shadow: 0 8px 24px rgba(40,50,90,.07); }
+        }
+        @keyframes comboQuestionPop { 0% { transform: scale(1); } 45% { transform: scale(1.09) rotate(-1deg); } 100% { transform: scale(1); } }
+        @keyframes comboToastPop { 0% { opacity: 0; transform: translate(-50%,12px) scale(.84); } 18% { opacity: 1; transform: translate(-50%,0) scale(1.05); } 28%,78% { opacity: 1; transform: translate(-50%,0) scale(1); } 100% { opacity: 0; transform: translate(-50%,-12px) scale(.95); } }
+        @keyframes comboParticle { 0% { opacity: 1; transform: rotate(var(--combo-angle)) translateY(0) scale(1); } 100% { opacity: 0; transform: rotate(var(--combo-angle)) translateY(-72px) scale(.55); } }
+        @media (prefers-reduced-motion: reduce) {
+            #game-box.combo-flash, #question.combo-pop, .combo-toast.is-visible, .combo-burst span { animation-duration: .01ms !important; }
+        }
+
     </style>
-<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/11oZj4vDq9VHM8kDjCwUJFo0R9WVLw8NVVmmxEHxiBEuWfoxdBbsKrJ_F0mzBFkxt7WQaJiio_S_LrlSjX0dhWSF4g4PCNHRjqrjER2atD7w8QA0KIty1PjZFPOJwE90fQ5UyK5a7vcTNME4D2zjInEXLy1DVwNcVwu8LItn6qe1H51iqTDKHcWBbMd1BELpITWvzS-1z8_xlt6Xmx4labc7sliDyj2eYFwUKYpsOoqd0Gvw3noYNbYHFtiqbg-LS1p-CtSJcG6hfRK61jS3o69hDvEdltuMOPsvqZz4tnaMF07SvxuERFQC-qQvjtVc87dR7I2ENcKXPcd3A6kGsOi90JEXoqgPIy7QZOMuOsfS0Hil3LovfcVghMKUFytDo-s7VM7UBjSzyiqJa5wBhuJpJUlj2yOK3oqjdD9eZN8csvrHxYqybK29YxYMaM9mdddmYA_485j4qbtmd6FNMw5ihGHvhvIL4W7FTUh5ByKAAghxW7z_MhZnbIBaFv5GKiRdyl2uViExB6ArODBp-e4DZuO8iDxHNyDVy4uhiX6gH18vx6gkVASUdCO6oRcpZq2R-p0vfffgoU4hVYTa0UPIPFHxbWX1O9Wknf3JpDeOjMF0ACFSKWV7yNY5z-bs9QdUAU4A5YAP3F1vCQg4nDTKnT-6zLSUClbNBL5HpHqv4G2R_md25zpVnbyWkmOCwU2AlntVM5W3KbRP67vlxkBa1yEPtQP_5A2YM99ngQ60XAQOG1Tg8hfBBptff5nkePYf1Y-zGLZf7wi57JXMx9KAYsEOkWS-posXdFQnD2uoiBcrrZLbqmVPlEfrQ1SqB67GxbYqrk3HMXkniFGVJoTblYwwTZGAQkOzbyotYVrk4dLjcI38eRitQ1ErE3thqEZw0YFUWfoBlwSA1DBfhMQ9DrXRSkkOHMUF_jLY8CPtOVDUjoel7mmtA-gZRvTkrFQxW-vqNbGC5zsAdY6vdkJpHjr7q2F3B1qQBQYcVGLpAyMQWoMDPj6aJDjjidPzmdYNLizLFmjhsM5S6pOSjmy0bPRXvzUYEcQCcL3f_6jhBkwArfbUR8gJLC_g-4viNlsp3eaZ-o-sq9_QIjp32ofW6TxpYlvrlUzeL1vd2uffUhgSvl5tGh8nWpHGTPFwLCo6Cg9u3OJU29hByqfSn1EGlhYrcE__dA-Mwe3Dt9AoOlp9wgnLoJPD416tSlyyj9TsZuN3gdYHHP6ooU2jPbGR_mT323tnMoASdzvFvCc15y95wqP4X804qctZyWiD0ZyOOCD_QoserDvbjZAy3iheYwpQYWrKrDro4VoyFGUxFuRoko8bRXjYy38Sogpn5uot-HXHBTkxZFlN8nM6CyUJC3vkiUh_EyuEs80aqjf_Vw3hcmSdGX5naTMaVL4MQ9DX1FPMIeUzx6ROhE03MXbalGZB'></script></head>
+<script type='text/javascript' src='https://private-us-east-1.manuscdn.com/xBtdqOQoeHMsT1GkUqioXZWLVpqhjRobontMx3h-wI5E8mwtKLMCBptw6RdMFWt2o1JLGN8PgWGwEekvCYsiqb_xp8ZqZc68NKAtaKNv63ktcK8Onkd2teuWLesqe_OBmXwadcK2fidVVkFjLrro-hWWdztFi6yUpojvsJfZB0EoUlK70lh3TBXUZQubf9O4viUJwfrC06yGqiD8LPQl6TMqCpOj3mjHsrv4tNlKLR9kxj-VML_fe1m1Z-Rsm-T9DniFxF0kLz_4ooHS3EYAQU5dyyizTcpAiE0kYT7MpTVV9skCrZ_p19FrvWKUDcypPAPVh0VvTS13BoOkW_x-sU0FyN_-PMmGfDnIeigOAa7WM5kAQTStxXBrYjpT0n5lahlXPF6i9vncb74zBZCBCbBub7-WzTFANeMRlkBBx3SWAGM3_Csmn6WhOVG3dlw53a3oL9XDMOpE06cU0kJtuhvvr37t4WNFfdyqPAcFYfMavnXUEIFsidjCA5MiFesX2px_-kNqXb_38FsNWKno-kBS3fGmV1AlxNrM9gz0ZrwPU_bkaifdR8AUpN-tbnKgAaJCNXnp1lBD_7eVHB7c0J9BPmvysqsXt-qSzZY6HHZrTVSgerPwA7fMnwVlV7LeozphqIGNDiPoR0eMo1No0VHWK9H__Igm9lqUB9RliRNiPXZabJOWwYsWRjbKB5RM6essRJ8L4YCcZFsnLFBJW0xDAqcl5IPikspDDe-IrP9oCwXcvnkm8--mALuXAmTjsbOok5MdMRvZPOPsWibCa8SwgQDZ1aa-UuTGbBV8uahSJqJhoRVqXgyTf-7cSjVPX7nl70D39AIweBwCMqdzDPSkgcHi8NwbWSt68khQaWENTbjn3K0tjssAectAuhMNzwAwJj-PB-A59qXTlzszMj84ilmSIskG0jZdQyvYbgWK7QyEyzmuiPA56hu1caYESf9pGeUgPBSWXNDtVxgFiOu4d4iDKGcdGqw6GsvmjeGUQTW29HNJlNbMTBisr2ZdZr6J9dhZgwIH9w01FolWZzEO8uI5xK-qzVG82RDMeIgR8xyUZOr8vg1fN2PFESVNdBgYAGjbXr_v6aLLhsH4cRt7jcqWt8bOlO5A72N0aJ5H0cuP3eHKZFCDbukCsOpfhfjBMGRBbZomK8J1U089f6l0uUnpjZIhywR9Y9KRuMtdKHV4Ca2ALBcNPcV2aa53jZQwm4EtLkGICOo_jRQw5mNZcQlUq3xIqHYFpgJViMplobviiaXDxOqb-E033FMvbh7sdO9JorIYDn78ldGANEuWBeLa5M_xNLDpmLlFdJV5Ux4XgFPjnGeQOhX6r0v34XWVeofAFLTMWvbyZF0'></script><script type='text/javascript' src='https://private-us-east-1.manuscdn.com/BD97AcTEGBBUaDcDPKLOhNoR_fg8GFBxg8ZaPfHNEyhLXVJILHgv34_fy0O84kYA6eZR4-CXGsUbVOCAqFTBQWcARFq-rmC0WbKERs7by5Qv4o4Xk71t8asWu8HqlJVmVMoz1FVysjwsSVvaYvcQJF8_PoPSZK0KqcVhIHqFxrQ8TIGqjNN8UUOhYI-G-ZMiVKGB1L-_aOwLL69eQO4yunz_flE2CaR5AxlXQXzF2rIlUFfHRqcVnrFCztncvDyUDAyYLIPwuziLmvNSvj6wQcGJhVEZWgh6q7uAHgkAhkHfieTWacvKeWBfqxuf4BZrDCO7r-ltyZ-poUlGd3fDZeqEeNsz5DldcYgmoNSedoxTCRSAJookrzwXY-7exVAp_1jshlJsQtpXDRrquaFiFVED0Ks4A_zV-9JcLcor2gX3Y79EZNc7WoW7C3W7gNgRaDhWp-fytN86dbRn-xTGz2BzyS9NikTUiEndudbRHCJDI_vm57NwFA1G6AGRB3THSK-ggblinn9bd3kC0VnkQ3a4fxvoBikkv3ISV27E1GtT4dSMnNzQDvut04u3D3iFC_27lQR9ViWywJ2fqmQhpj12JZKPTxDP6jHRKHcS0K0R2tqzYPk7A9E1kUBt8too_ANgOxNq_yR5tqQbNsVve4XmDbonz4sqnMZYlYJfXbPTtCOTe4dgQoK3yOQMrQDUOF_QEvILZkd1uxFHC_h-w1T1yTIa4f6Ur-EBW0RjVmFfUyf06u3QWLanWSi3yQh_T0_BNUA7cKRQmfd8zLK0DOSwUVE9HhUxBOvUsGN-jq0Esjisl3OhIFdillnSpWaQh2aB_v8ZPnZa1oMwEpF5M46dO_yZ8QcGC1XhxqinTamwkwD21BQBLnIqA1qtBQopsvNy0JBA1nlMnNhp'></script></head>
 <body>
     <main>
         <nav id="global-tools" class="global-tools" aria-label="全域音樂與商店工具">
@@ -712,15 +1047,15 @@
                 mistakeBook: "錯題本", mistakeCount: "錯題本（{count}）", mistakeEmpty: "目前沒有錯題，繼續保持！", mistakePractice: "重做錯題", mistakeClear: "清空錯題本", mistakeClearConfirm: "確定清空本機錯題本？此操作無法復原。", mistakeDate: "{date}｜{question}｜正解：{correct}｜你的答案：{answer}",
                 backupTitle: "本機資料備份／還原", backupDescription: "備份會下載 JSON 檔；還原只匯入遊戲支援的本機資料。", backupExport: "匯出資料", backupImport: "匯入／還原資料", backupExported: "備份已下載。請妥善保存 JSON 檔。", backupImported: "資料已還原，遊戲即將重新載入。", backupInvalid: "檔案格式不正確或包含不支援的資料，未匯入任何內容。", backupConfirm: "要還原這份備份嗎？檔案中相同項目的本機遊戲資料會被取代。", backupNoData: "目前沒有可匯出的遊戲資料。",
                 modeRpg: "RPG 冒險", shopTitle: "🛒 數學金幣商店", shopIntro: "答對題目賺金幣；自訂練習不計。擊敗 RPG 怪物可獲額外金幣與經驗。", shopBackgrounds: "背景顏色", shopFonts: "字體", shopCharacters: "角色外觀", coinBalance: "數學金幣：{coins} 🪙", coin: "金幣", shopBuy: "購買・{price} 🪙", shopApply: "套用", shopEquipped: "使用中", shopOwned: "已擁有", shopInsufficient: "金幣不足，還差 {missing} 枚。", shopPurchased: "已購買並套用：{name}", shopApplied: "已套用：{name}", shopLockedSkin: "🔒 {name}（商店售價 {price} 金幣）",
-                shopSunset: "夕陽粉橘背景", shopOcean: "海洋藍綠背景", shopForest: "森林綠背景", shopComic: "活潑漫畫字體", shopSerif: "故事書襯線字體", shopMono: "程式碼等寬字體", shopPanda: "數學熊貓", shopCat: "星際貓咪", shopDragon: "迷你飛龍",
+                shopSunset: "夕陽粉橘背景", shopOcean: "海洋藍綠背景", shopForest: "森林綠背景", shopLavender: "薰衣草暮色背景", shopAurora: "極光夜空背景", shopSakura: "櫻花粉霧背景", shopGalaxy: "星河宇宙背景", shopCandy: "糖果雲朵背景", shopComic: "活潑漫畫字體", shopSerif: "故事書襯線字體", shopMono: "程式碼等寬字體", shopRounded: "圓潤易讀字體", shopPixel: "像素復古字體", shopPanda: "數學熊貓", shopCat: "星際貓咪", shopDragon: "迷你飛龍", shopOwl: "智慧貓頭鷹", shopTurtle: "數學小海龜", shopUnicorn: "星星獨角獸",
                 rpgTitle: "⚔️ 數學 RPG 冒險", rpgPrompt: "RPG 冒險：沒有玩家生命值；怪物每 30 秒前進一格，碰到你便結束。用金幣施放技能！", rpgReady: "冒險開始！答錯不扣生命值；怪物每 30 秒前進一格，碰到你就結束。答對可擊退怪物，並用金幣施放技能！", rpgHero: "冒險者", rpgLevel: "等級 {level}", rpgHp: "怪物生命值 {current} / {max}", rpgMonster: "怪物", rpgXp: "經驗 {current} / {needed} XP", rpgMaxLevel: "已達最高等級", rpgSlime: "數學史萊姆", rpgGoblin: "乘法哥布林", rpgDragon: "算術飛龍",
                 rpgZone: "第 {area} 輪・{zone}・第 {encounter}/{total} 戰", rpgZoneMeadow: "加法草原", rpgZoneCave: "減法洞窟", rpgZoneVolcano: "乘法火山", rpgZoneSky: "除法天空島", rpgBoss: "頭目",
                 rpgRabbit: "加加兔", rpgLeafGoblin: "葉片哥布林", rpgSumGolem: "總和石巨人", rpgCaveBat: "洞穴蝙蝠", rpgStoneGolem: "減法石像鬼", rpgShadowWolf: "暗影狼", rpgMinusMinotaur: "減法牛頭怪", rpgFireFox: "火焰狐狸", rpgCrystalSpider: "水晶蜘蛛", rpgMagmaDrake: "熔岩飛龍", rpgProductTitan: "乘積泰坦", rpgCloudSprite: "雲朵精靈", rpgWindGriffin: "疾風獅鷲", rpgStormDragon: "雷暴巨龍", rpgDivisionPhoenix: "除法鳳凰",
                 rpgDistance: "與怪物距離：{current} / {total} 格", rpgTimerLabel: "怪物移動倒數：", rpgMonsterMoved: "怪物前進一格！距離 {current} / {total} 格。", rpgSkillTitle: "冒險技能（消耗數學金幣）", rpgWeaponsTitle: "🛠️ 武器工坊（使用數學金幣）", rpgWeaponHint: "購買或裝備武器，提升每次答對的傷害。", rpgWeaponEquipped: "目前裝備：{name}｜攻擊加成 +{bonus}", rpgWeaponAttack: "攻擊 +{bonus}", rpgWeaponBuyButton: "購買・{cost} 🪙", rpgWeaponEquipButton: "裝備", rpgWeaponEquippedTag: "使用中", rpgWeaponNeedPrevious: "先取得 {name}", rpgWeaponNeedCoins: "需要 {cost} 枚金幣", rpgWeaponPurchased: "已購買並裝備 {name}！攻擊力 +{bonus}。", rpgWeaponEquippedStatus: "已裝備 {name}，攻擊力 +{bonus}。", rpgWeaponCannotAfford: "金幣不足，無法購買 {name}。", rpgWeaponTraining: "冒險者練習杖", rpgWeaponCopper: "銅刃短劍", rpgWeaponIron: "精鋼大劍", rpgWeaponStarfire: "星火巨刃", rpgAchievementFiveKills: "初級獵手", rpgAchievementFiveKillsDetail: "在 RPG 冒險中擊敗 5 隻怪物。", rpgAchievementBoss: "頭目征服者", rpgAchievementBossDetail: "擊敗 1 隻區域頭目。", rpgAchievementTwentyKills: "傳奇冒險者", rpgAchievementTwentyKillsDetail: "在 RPG 冒險中累計擊敗 20 隻怪物。", rpgAchievementStarfire: "星火武器大師", rpgAchievementStarfireDetail: "購買並裝備最高階的星火巨刃。", rpgSkillBalance: "可用金幣：{coins} 🪙", rpgSkillRepel: "驅退怪物 2 格 · {cost} 🪙", rpgSkillFreeze: "凍結下一次移動 · {cost} 🪙", rpgSkillDouble: "下次答對雙倍攻擊 · {cost} 🪙", rpgSkillFreezeArmed: "冰凍已準備好：抵消怪物下一次移動。", rpgSkillDoubleArmed: "雙倍攻擊已準備好：下次答對時生效。", rpgSkillReady: "選擇技能協助冒險。", rpgSkillRepelUsed: "技能發動！怪物被擊退兩格。", rpgSkillFreezeUsed: "冰凍生效！怪物這次無法前進。", rpgSkillDoubleUsed: "雙倍攻擊已啟動。", rpgSkillInsufficient: "金幣不足，還差 {missing} 枚。", rpgSkillCannotRepel: "怪物目前不夠接近，無需驅退。", rpgHit: "答對！你對 {monster} 造成 {damage} 點傷害，並獲得 1 枚金幣！", rpgHitDouble: "雙倍攻擊！你對 {monster} 造成 {damage} 點傷害，並獲得 1 枚金幣！", rpgWrong: "答錯了；此模式沒有玩家生命值懲罰。怪物會依倒數前進，還有 {seconds} 秒移動。", rpgVictory: "擊敗 {monster}！獎勵 +{coins} 枚金幣、+{xp} XP。", rpgBossVictory: "擊敗頭目 {monster}！獎勵 +{coins} 枚金幣、+{xp} XP！", rpgLevelUp: "升級了！現在是等級 {level}，攻擊力提升！", rpgNextMonster: "下一隻怪物即將出現……", rpgRunOverTitle: "冒險結束", rpgReached: "怪物追上你了！冒險到此為止。", rpgRunOver: "你擊敗了 {kills} 隻怪物，目前等級 {level}，持有 {coins} 枚金幣。",
 
-                shopOpen: "🛒 商店", shopClose: "關閉商店", shopBack: "返回遊戲", shopPageTitle: "🛒 數學金幣商店", shopWhilePlaying: "商店開啟期間會暫停倒數；遊戲進行中不能購買或更換裝備。",
+                shopOpen: "🛒 商店", shopClose: "關閉商店", shopBack: "返回遊戲", shopPageTitle: "🛒 數學金幣商店", shopWhilePlaying: "商店開啟時倒數會暫停；你仍可購買並套用背景、字體與角色外觀。",
                 challengeLeaderboardTitle: "60 秒挑戰排行榜（本機前 10 名）", practiceLeaderboardTitle: "自訂練習排行榜（本機前 10 名）", runBoardEmpty: "尚無紀錄，完成一局後會自動登上本機排行榜。", runBoardAccuracy: "正確率 {accuracy}%", runBoardChallengeMeta: "{difficulty}｜答對 {correct}/{attempts} 題｜最高連擊 {combo}", runBoardPracticeMeta: "{difficulty}｜{count} 題｜{operations}｜正確率 {accuracy}%",
-                challengeScoreHint: "依難度答對得 10／15／20 分；連續作答每題可獲連擊加分：第 3 題起 +5，之後每 3 題連勝再加 +5，最多每題 +15。排行榜依總分與正確率排序。", practiceScoreHint: "依難度與連擊計分；完成全部題目後，依正確率最多再加 50 分。排行榜先比正確率，再比總分。", comboLabel: "連擊 {count}", accuracyBonusNotice: "正確率獎勵 +{bonus} 分",
+                challengeScoreHint: "依難度答對得 10／15／20 分；連續作答每題可獲連擊加分：第 3 題起 +5，之後每 3 題連勝再加 +5，最多每題 +15。排行榜依總分與正確率排序。", practiceScoreHint: "依難度與連擊計分；完成全部題目後，依正確率最多再加 50 分。排行榜先比正確率，再比總分。", comboLabel: "連擊 {count}", comboCounter: "連擊 ×{count}", comboCelebration: "連續答對 {count} 題！", accuracyBonusNotice: "正確率加分 +{bonus} 分",
                 rpgZoneCrystalForest: "水晶森林", rpgZoneTidalAbyss: "潮汐深淵", rpgZoneClockworkCity: "齒輪工城", rpgZoneAstralSummit: "星辰之巔",
                 rpgMossSprite: "苔蘚精靈", rpgCrystalStag: "水晶鹿", rpgPrismMoth: "稜鏡飛蛾", rpgCrystalQueen: "水晶女王", rpgTideCrab: "潮汐蟹", rpgReefSerpent: "珊瑚海蛇", rpgAbyssJelly: "深淵水母", rpgLeviathan: "利維坦", rpgTinBeetle: "鐵皮甲蟲", rpgGearHound: "齒輪獵犬", rpgBrassAutomaton: "黃銅機兵", rpgClockworkKing: "發條國王", rpgCometFox: "彗星狐狸", rpgMoonOwl: "月影貓頭鷹", rpgNebulaDragon: "星雲飛龍", rpgStarSovereign: "星辰君王",
                 rpgRelicTitle: "🎁 RPG 掉落裝備收藏", rpgRelicHint: "普通怪物有機率掉落；各區頭目必定掉落專屬裝備。重複裝備會轉換成金幣。", rpgRelicCurrentNone: "目前沒有裝備護符。", rpgRelicCurrent: "目前裝備：{emoji} {name}｜攻擊加成 +{bonus}", rpgRelicAttack: "攻擊 +{bonus}", rpgRelicEquip: "裝備", rpgRelicEquipped: "使用中", rpgRelicUnequip: "卸下護符", rpgRelicBossSource: "掉落來源：{boss}", rpgRelicDropped: "裝備掉落：{emoji} {name}（攻擊 +{bonus}）！", rpgRelicDuplicate: "重複掉落 {name}，已折換 {coins} 枚金幣。", rpgRelicUnequipped: "已卸下護符。", rpgRelicEquippedStatus: "已裝備 {name}，攻擊 +{bonus}。", rpgRelicNoneLabel: "不裝備護符",
@@ -778,15 +1113,15 @@
                 mistakeBook: "Mistake Notebook", mistakeCount: "Mistake Notebook ({count})", mistakeEmpty: "No mistakes yet. Keep it up!", mistakePractice: "Practice Mistakes", mistakeClear: "Clear Notebook", mistakeClearConfirm: "Clear the local mistake notebook? This cannot be undone.", mistakeDate: "{date} | {question} | Answer: {correct} | Your answer: {answer}",
                 backupTitle: "Local Data Backup / Restore", backupDescription: "Export downloads a JSON file. Restore imports only supported local game data.", backupExport: "Export Data", backupImport: "Import / Restore Data", backupExported: "Backup downloaded. Keep the JSON file somewhere safe.", backupImported: "Data restored. The game will reload shortly.", backupInvalid: "Invalid file or unsupported data. Nothing was imported.", backupConfirm: "Restore this backup? Matching local game data included in the file will be replaced.", backupNoData: "There is no saved game data to export.",
                 modeRpg: "RPG Adventure", shopTitle: "🛒 Math Coin Shop", shopIntro: "Earn coins by answering correctly; custom practice does not count. Defeat RPG monsters for bonus coins and XP.", shopBackgrounds: "Backgrounds", shopFonts: "Fonts", shopCharacters: "Character appearances", coinBalance: "Math Coins: {coins} 🪙", coin: "coins", shopBuy: "Buy · {price} 🪙", shopApply: "Apply", shopEquipped: "Equipped", shopOwned: "Owned", shopInsufficient: "Not enough coins; {missing} more needed.", shopPurchased: "Purchased and equipped: {name}", shopApplied: "Equipped: {name}", shopLockedSkin: "🔒 {name} (shop: {price} coins)",
-                shopSunset: "Sunset coral background", shopOcean: "Ocean teal background", shopForest: "Forest green background", shopComic: "Playful comic font", shopSerif: "Storybook serif font", shopMono: "Monospace font", shopPanda: "Math Panda", shopCat: "Space Cat", shopDragon: "Mini Dragon",
+                shopSunset: "Sunset coral background", shopOcean: "Ocean teal background", shopForest: "Forest green background", shopLavender: "Lavender twilight background", shopAurora: "Aurora night-sky background", shopSakura: "Sakura mist background", shopGalaxy: "Galaxy nebula background", shopCandy: "Candy-cloud background", shopComic: "Playful comic font", shopSerif: "Storybook serif font", shopMono: "Monospace font", shopRounded: "Rounded easy-read font", shopPixel: "Retro pixel font", shopPanda: "Math Panda", shopCat: "Space Cat", shopDragon: "Mini Dragon", shopOwl: "Wise Owl", shopTurtle: "Math Turtle", shopUnicorn: "Star Unicorn",
                 rpgTitle: "⚔️ Math RPG Adventure", rpgPrompt: "RPG Adventure: no player HP; monsters advance one space every 30 seconds. Spend coins on skills!", rpgReady: "Adventure begins! Wrong answers do not reduce HP. Monsters move one space every 30 seconds; if one reaches you, the run ends. Correct answers push them back. Spend coins on skills!", rpgHero: "Adventurer", rpgLevel: "Level {level}", rpgHp: "Monster HP {current} / {max}", rpgMonster: "Monster", rpgXp: "XP {current} / {needed}", rpgMaxLevel: "Maximum level reached", rpgSlime: "Math Slime", rpgGoblin: "Multiplication Goblin", rpgDragon: "Arithmetic Dragon",
                 rpgZone: "Route {area} · {zone} · Encounter {encounter}/{total}", rpgZoneMeadow: "Addition Meadow", rpgZoneCave: "Subtraction Cavern", rpgZoneVolcano: "Multiplication Volcano", rpgZoneSky: "Division Sky Isles", rpgBoss: "Boss",
                 rpgRabbit: "Plus-Plus Rabbit", rpgLeafGoblin: "Leaf Goblin", rpgSumGolem: "Sum Golem", rpgCaveBat: "Cave Bat", rpgStoneGolem: "Stone Gargoyle", rpgShadowWolf: "Shadow Wolf", rpgMinusMinotaur: "Minus Minotaur", rpgFireFox: "Fire Fox", rpgCrystalSpider: "Crystal Spider", rpgMagmaDrake: "Magma Drake", rpgProductTitan: "Product Titan", rpgCloudSprite: "Cloud Sprite", rpgWindGriffin: "Wind Griffin", rpgStormDragon: "Storm Dragon", rpgDivisionPhoenix: "Division Phoenix",
                 rpgDistance: "Distance to monster: {current} / {total} steps", rpgTimerLabel: "Next monster move: ", rpgMonsterMoved: "The monster advances one space! Distance: {current} / {total}.", rpgSkillTitle: "Adventure Skills (spend Math Coins)", rpgWeaponsTitle: "🛠️ Weapon Forge (spend Math Coins)", rpgWeaponHint: "Buy or equip weapons to increase damage for every correct answer.", rpgWeaponEquipped: "Equipped: {name} | Attack bonus +{bonus}", rpgWeaponAttack: "Attack +{bonus}", rpgWeaponBuyButton: "Buy · {cost} 🪙", rpgWeaponEquipButton: "Equip", rpgWeaponEquippedTag: "Equipped", rpgWeaponNeedPrevious: "Get {name} first", rpgWeaponNeedCoins: "Need {cost} coins", rpgWeaponPurchased: "Purchased and equipped {name}! Attack +{bonus}.", rpgWeaponEquippedStatus: "Equipped {name}; attack +{bonus}.", rpgWeaponCannotAfford: "Not enough coins to buy {name}.", rpgWeaponTraining: "Adventurer's Training Staff", rpgWeaponCopper: "Copper Shortblade", rpgWeaponIron: "Fine-Iron Greatsword", rpgWeaponStarfire: "Starfire Greatblade", rpgAchievementFiveKills: "Rookie Hunter", rpgAchievementFiveKillsDetail: "Defeat 5 monsters in RPG Adventure.", rpgAchievementBoss: "Boss Conqueror", rpgAchievementBossDetail: "Defeat one area boss.", rpgAchievementTwentyKills: "Legendary Adventurer", rpgAchievementTwentyKillsDetail: "Defeat 20 monsters in RPG Adventure.", rpgAchievementStarfire: "Starfire Weaponsmith", rpgAchievementStarfireDetail: "Buy and equip the highest-tier Starfire Greatblade.", rpgSkillBalance: "Coins available: {coins} 🪙", rpgSkillRepel: "Repel monster 2 spaces · {cost} 🪙", rpgSkillFreeze: "Freeze next move · {cost} 🪙", rpgSkillDouble: "Double attack on next correct answer · {cost} 🪙", rpgSkillFreezeArmed: "Freeze ready: cancel the monster's next move.", rpgSkillDoubleArmed: "Double attack ready: activates on your next correct answer.", rpgSkillReady: "Choose a skill to help your adventure.", rpgSkillRepelUsed: "Skill used! The monster was pushed back two spaces.", rpgSkillFreezeUsed: "Freeze activated! The monster cannot move this turn.", rpgSkillDoubleUsed: "Double attack activated.", rpgSkillInsufficient: "Not enough coins; {missing} more needed.", rpgSkillCannotRepel: "The monster is not close enough to repel yet.", rpgHit: "Correct! You dealt {damage} damage to {monster} and earned 1 coin!", rpgHitDouble: "Double attack! You dealt {damage} damage to {monster} and earned 1 coin!", rpgWrong: "Incorrect; there is no player HP penalty in this mode. The monster moves on its timer in {seconds} seconds.", rpgVictory: "{monster} defeated! Reward: +{coins} coins and +{xp} XP.", rpgBossVictory: "Boss {monster} defeated! Reward: +{coins} coins and +{xp} XP!", rpgLevelUp: "Level up! You are now level {level}; your attacks grow stronger.", rpgNextMonster: "The next monster is approaching...", rpgRunOverTitle: "Adventure Over", rpgReached: "The monster caught up to you! The adventure ends here.", rpgRunOver: "Monsters defeated: {kills}. Level {level}; wallet: {coins} coins.",
 
-                shopOpen: "🛒 Shop", shopClose: "Close Shop", shopBack: "Return to Game", shopPageTitle: "🛒 Math Coin Shop", shopWhilePlaying: "The countdown pauses while the shop is open. Purchases and equipment changes are disabled during a round.",
+                shopOpen: "🛒 Shop", shopClose: "Close Shop", shopBack: "Return to Game", shopPageTitle: "🛒 Math Coin Shop", shopWhilePlaying: "The countdown pauses while the shop is open. You can still buy and apply backgrounds, fonts, and character skins.",
                 challengeLeaderboardTitle: "60-Second Challenge Leaderboard (Local Top 10)", practiceLeaderboardTitle: "Custom Practice Leaderboard (Local Top 10)", runBoardEmpty: "No records yet. Finish a round to enter this local leaderboard.", runBoardAccuracy: "Accuracy {accuracy}%", runBoardChallengeMeta: "{difficulty} | {correct}/{attempts} correct | Best combo {combo}", runBoardPracticeMeta: "{difficulty} | {count} questions | {operations} | Accuracy {accuracy}%",
-                challengeScoreHint: "Correct answers score 10/15/20 by difficulty. Each answer in a streak earns a per-question combo bonus: +5 from the 3rd answer, increasing by +5 every 3 consecutive answers, up to +15 per answer. Ranked by score, then accuracy.", practiceScoreHint: "Points scale with difficulty and combos. Completing all questions earns up to 50 accuracy-bonus points. Ranked by accuracy, then score.", comboLabel: "Combo {count}", accuracyBonusNotice: "Accuracy bonus +{bonus} points",
+                challengeScoreHint: "Correct answers score 10/15/20 by difficulty. Each answer in a streak earns a per-question combo bonus: +5 from the 3rd answer, increasing by +5 every 3 consecutive answers, up to +15 per answer. Ranked by score, then accuracy.", practiceScoreHint: "Points scale with difficulty and combos. Completing all questions earns up to 50 accuracy-bonus points. Ranked by accuracy, then score.", comboLabel: "Combo {count}", comboCounter: "Combo ×{count}", comboCelebration: "Amazing! {count} in a row!", accuracyBonusNotice: "Accuracy bonus +{bonus} points",
                 rpgZoneCrystalForest: "Crystal Forest", rpgZoneTidalAbyss: "Tidal Abyss", rpgZoneClockworkCity: "Clockwork City", rpgZoneAstralSummit: "Astral Summit",
                 rpgMossSprite: "Moss Sprite", rpgCrystalStag: "Crystal Stag", rpgPrismMoth: "Prism Moth", rpgCrystalQueen: "Crystal Queen", rpgTideCrab: "Tide Crab", rpgReefSerpent: "Reef Serpent", rpgAbyssJelly: "Abyss Jellyfish", rpgLeviathan: "Leviathan", rpgTinBeetle: "Tin Beetle", rpgGearHound: "Gear Hound", rpgBrassAutomaton: "Brass Automaton", rpgClockworkKing: "Clockwork King", rpgCometFox: "Comet Fox", rpgMoonOwl: "Moon Owl", rpgNebulaDragon: "Nebula Dragon", rpgStarSovereign: "Star Sovereign",
                 rpgRelicTitle: "🎁 RPG Equipment Drops", rpgRelicHint: "Regular monsters can drop gear; each regional boss guarantees its unique relic. Duplicate relics convert to coins.", rpgRelicCurrentNone: "No relic equipped.", rpgRelicCurrent: "Equipped: {emoji} {name} | Attack +{bonus}", rpgRelicAttack: "Attack +{bonus}", rpgRelicEquip: "Equip", rpgRelicEquipped: "Equipped", rpgRelicUnequip: "Unequip Relic", rpgRelicBossSource: "Drop source: {boss}", rpgRelicDropped: "Equipment drop: {emoji} {name} (Attack +{bonus})!", rpgRelicDuplicate: "Duplicate {name} converted to {coins} coins.", rpgRelicUnequipped: "Relic unequipped.", rpgRelicEquippedStatus: "Equipped {name}; attack +{bonus}.", rpgRelicNoneLabel: "No relic",
@@ -893,17 +1228,30 @@
             { id: "bg_sunset", type: "background", price: 12, nameKey: "shopSunset", icon: "🌇", value: "sunset", preview: "linear-gradient(90deg,#ed7195,#ffbd69)" },
             { id: "bg_ocean", type: "background", price: 12, nameKey: "shopOcean", icon: "🌊", value: "ocean", preview: "linear-gradient(90deg,#38b2ac,#2b6cb0)" },
             { id: "bg_forest", type: "background", price: 15, nameKey: "shopForest", icon: "🌲", value: "forest", preview: "linear-gradient(90deg,#38a169,#22543d)" },
+            { id: "bg_lavender", type: "background", price: 18, nameKey: "shopLavender", icon: "🌙", value: "lavender", preview: "linear-gradient(90deg,#a78bfa,#f0abfc)" },
+            { id: "bg_aurora", type: "background", price: 22, nameKey: "shopAurora", icon: "🌌", value: "aurora", preview: "linear-gradient(90deg,#0f766e,#6366f1,#c084fc)" },
+            { id: "bg_sakura", type: "background", price: 20, nameKey: "shopSakura", icon: "🌸", value: "sakura", preview: "linear-gradient(90deg,#f9a8d4,#fb7185)" },
+            { id: "bg_galaxy", type: "background", price: 26, nameKey: "shopGalaxy", icon: "🪐", value: "galaxy", preview: "linear-gradient(90deg,#1e1b4b,#7c3aed,#ec4899)" },
+            { id: "bg_candy", type: "background", price: 18, nameKey: "shopCandy", icon: "🍬", value: "candy", preview: "linear-gradient(90deg,#fb7185,#f9a8d4,#93c5fd)" },
             { id: "font_comic", type: "font", price: 8, nameKey: "shopComic", icon: "Aa", value: "comic" },
             { id: "font_serif", type: "font", price: 8, nameKey: "shopSerif", icon: "𝒜", value: "serif" },
             { id: "font_mono", type: "font", price: 8, nameKey: "shopMono", icon: "⌨️", value: "mono" },
+            { id: "font_rounded", type: "font", price: 12, nameKey: "shopRounded", icon: "Aa", value: "rounded" },
+            { id: "font_pixel", type: "font", price: 14, nameKey: "shopPixel", icon: "▦", value: "pixel" },
             { id: "char_panda", type: "character", price: 20, nameKey: "shopPanda", icon: "🐼", value: "panda" },
             { id: "char_cat", type: "character", price: 20, nameKey: "shopCat", icon: "🐱", value: "space-cat" },
-            { id: "char_dragon", type: "character", price: 30, nameKey: "shopDragon", icon: "🐉", value: "mini-dragon" }
+            { id: "char_dragon", type: "character", price: 30, nameKey: "shopDragon", icon: "🐉", value: "mini-dragon" },
+            { id: "char_owl", type: "character", price: 24, nameKey: "shopOwl", icon: "🦉", value: "wise-owl" },
+            { id: "char_turtle", type: "character", price: 22, nameKey: "shopTurtle", icon: "🐢", value: "math-turtle" },
+            { id: "char_unicorn", type: "character", price: 36, nameKey: "shopUnicorn", icon: "🦄", value: "star-unicorn" }
         ];
         const shopCharacters = [
             { id: "panda", nameKey: "shopPanda", emoji: "🐼", points: Number.MAX_SAFE_INTEGER, shopItemId: "char_panda" },
             { id: "space-cat", nameKey: "shopCat", emoji: "🐱", points: Number.MAX_SAFE_INTEGER, shopItemId: "char_cat" },
-            { id: "mini-dragon", nameKey: "shopDragon", emoji: "🐉", points: Number.MAX_SAFE_INTEGER, shopItemId: "char_dragon" }
+            { id: "mini-dragon", nameKey: "shopDragon", emoji: "🐉", points: Number.MAX_SAFE_INTEGER, shopItemId: "char_dragon" },
+            { id: "wise-owl", nameKey: "shopOwl", emoji: "🦉", points: Number.MAX_SAFE_INTEGER, shopItemId: "char_owl" },
+            { id: "math-turtle", nameKey: "shopTurtle", emoji: "🐢", points: Number.MAX_SAFE_INTEGER, shopItemId: "char_turtle" },
+            { id: "star-unicorn", nameKey: "shopUnicorn", emoji: "🦄", points: Number.MAX_SAFE_INTEGER, shopItemId: "char_unicorn" }
         ];
         const allSkins = [...skins, ...shopCharacters];
         const RPG_APPROACH_MAX = 6;
@@ -1006,7 +1354,7 @@
         let pvpRoundWins = [0, 0], pvpRoundNumber = 1, pvpOvertime = false, pvpTransitionTimeout = null;
         let practiceSource = "custom", practiceQueue = [], practiceQueueIndex = 0, practiceAnswered = 0, practiceTarget = 10;
         let practiceOperations = ["addition", "subtraction", "multiplication", "division"];
-        let runCombo = 0, maxRunCombo = 0, challengeCorrect = 0, challengeAttempts = 0, practiceCorrect = 0;
+        let runCombo = 0, maxRunCombo = 0, challengeCorrect = 0, challengeAttempts = 0, practiceCorrect = 0, answerStreak = 0;
         let isShopOpen = false;
         let mistakeNotebook = readMistakeNotebook();
         let accessibilityPrefs = readAccessibilityPrefs();
@@ -1217,7 +1565,7 @@
                     const selected = item.type === "background" ? profile.selectedBackground === item.id : item.type === "font" ? profile.selectedFont === item.id : profile.selectedSkin === item.value;
                     const button = document.createElement("button"); button.type = "button"; button.dataset.shopItem = item.id;
                     button.textContent = selected ? t("shopEquipped") : owned ? t("shopApply") : t("shopBuy", { price: item.price });
-                    button.disabled = selected || gameActive || (!owned && profile.coins < item.price);
+                    button.disabled = selected || (!owned && profile.coins < item.price);
                     card.appendChild(button); grid.appendChild(card);
                 });
                 section.appendChild(grid); list.appendChild(section);
@@ -1393,17 +1741,71 @@
             if (newSkins.length) notices.push(t("skinUnlocked", { items: newSkins.map((skin) => `${skin.emoji}${t(skin.nameKey)}`).join(language === "en" ? ", " : "、") }));
             if (notices.length) showProfileNotice(notices.join("｜"));
         }
+        function ensureComboHud() {
+            let counter = document.getElementById("combo-counter");
+            if (!counter) {
+                counter = document.createElement("div");
+                counter.id = "combo-counter";
+                counter.className = "combo-counter hidden";
+                counter.setAttribute("aria-live", "off");
+                const question = document.getElementById("question");
+                if (question && question.parentNode) question.parentNode.insertBefore(counter, question);
+            }
+            return counter;
+        }
+        function updateComboHud(count) {
+            const counter = ensureComboHud();
+            if (!counter) return;
+            const combo = Math.max(0, Number(count) || 0);
+            counter.textContent = t("comboCounter", { count: combo });
+            counter.classList.toggle("hidden", combo < 2);
+            counter.classList.toggle("is-hot", combo >= 5);
+        }
+        function triggerComboEffects(streak) {
+            const count = Math.max(0, Number(streak) || 0);
+            updateComboHud(count);
+            const gameBox = document.getElementById("game-box");
+            const question = document.getElementById("question");
+            if (gameBox) { gameBox.classList.remove("combo-flash"); void gameBox.offsetWidth; gameBox.classList.add("combo-flash"); }
+            if (question) { question.classList.remove("combo-pop"); void question.offsetWidth; question.classList.add("combo-pop"); }
+            if (count < 3 || !(count === 3 || count === 5 || count % 5 === 0)) return;
+            const toast = document.getElementById("combo-toast") || document.createElement("div");
+            toast.id = "combo-toast";
+            toast.className = "combo-toast";
+            toast.setAttribute("role", "status");
+            toast.setAttribute("aria-live", "polite");
+            toast.textContent = `✨ ${t("comboCelebration", { count })} ✨`;
+            if (!toast.isConnected) document.body.appendChild(toast);
+            toast.classList.remove("is-visible"); void toast.offsetWidth; toast.classList.add("is-visible");
+            window.setTimeout(() => toast.classList.remove("is-visible"), 1250);
+            const burst = document.createElement("div");
+            burst.className = "combo-burst";
+            burst.setAttribute("aria-hidden", "true");
+            for (let i = 0; i < 14; i += 1) {
+                const particle = document.createElement("span");
+                particle.style.setProperty("--combo-angle", `${Math.round(i * 360 / 14)}deg`);
+                particle.style.setProperty("--combo-hue", `${Math.round(i * 360 / 14)}deg`);
+                burst.appendChild(particle);
+            }
+            document.body.appendChild(burst);
+            window.setTimeout(() => burst.remove(), 850);
+            playComboSfx(count);
+        }
         function recordCorrectAnswer() {
             profile.totalCorrect += 1;
             profile.currentStreak += 1;
             profile.bestStreak = Math.max(profile.bestStreak, profile.currentStreak);
+            answerStreak += 1;
             profile.totalPoints += POINTS_PER_CORRECT_ANSWER;
             profile.operationCorrect[getArithmeticType()] += 1;
             if (mode !== "practice") profile.coins += COINS_PER_CORRECT_ANSWER;
             updatePlayerProgress();
+            triggerComboEffects(answerStreak);
         }
         function recordWrongAnswer() {
             profile.currentStreak = 0;
+            answerStreak = 0;
+            updateComboHud(0);
             savePlayerProfile();
         }
         function readMusicVolume() {
@@ -1585,6 +1987,7 @@
             practiceCountEl.value = String(savedPractice.count);
             document.querySelectorAll("#practice-settings input[type=checkbox]").forEach((input) => { input.checked = savedPractice.operations.includes(input.value); });
             renderMistakeNotebook();
+            updateComboHud(answerStreak);
             renderShop(); renderRpgWeapons(); renderRpgRelics(); renderModeLeaderboards();
             applyAccessibilityPrefs();
             const replaying = btnEl.dataset.replay === "true";
@@ -1682,7 +2085,7 @@
         shopPageEl.addEventListener("click", (event) => { if (event.target === shopPageEl) closeShopPage(); });
         document.getElementById("shop-list").addEventListener("click", (event) => {
             const button = event.target.closest("button[data-shop-item]");
-            if (!button || gameActive) return;
+            if (!button || !isShopOpen) return;
             const item = shopItems.find((candidate) => candidate.id === button.dataset.shopItem);
             if (!item) return;
             const owned = profile.ownedShopItems.includes(item.id);
@@ -1695,6 +2098,7 @@
             else if (item.type === "font") profile.selectedFont = item.id;
             else { profile.selectedSkin = item.value; if (!profile.unlockedSkins.includes(item.value)) profile.unlockedSkins.push(item.value); }
             savePlayerProfile(); renderPlayerProfile();
+            if (purchased) playPurchaseSfx();
             document.getElementById("shop-status").textContent = t(purchased ? "shopPurchased" : "shopApplied", { name: t(item.nameKey) });
         });
         diffButtons.forEach((button) => button.addEventListener("click", () => handleDiff(button.dataset.difficulty)));
@@ -1966,6 +2370,13 @@
                 window.setTimeout(() => playTone(frequency, 0.2, "triangle", 0.085), delay);
             });
         }
+        function playComboSfx(streak) {
+            const notes = streak >= 10 ? [783.99, 987.77, 1174.66, 1567.98] : [659.25, 783.99, 987.77];
+            notes.forEach((frequency, index) => window.setTimeout(() => playTone(frequency, 0.2, "triangle", 0.075), 180 + index * 70));
+        }
+        function playPurchaseSfx() {
+            [[659.25, 0], [880, 70], [1174.66, 150]].forEach(([frequency, delay]) => window.setTimeout(() => playTone(frequency, 0.16, "sine", 0.07), delay));
+        }
         function playRpgMonsterStepSfx() {
             if (!soundEnabled || !rpgStepAudioEl || sfxVolume <= 0) return;
             try {
@@ -2108,7 +2519,7 @@
                 practiceAnswered = 0; practiceQueueIndex = 0;
             }
             score = 0; timeLeft = mode === "challenge" ? TIMED_CHALLENGE_SECONDS : (isPvPMode() && pvpFormat === "best3" ? PVP_BEST3_SECONDS : GAME_LENGTH_SECONDS); hp = STARTING_HEARTS; wrongQuestions = [];
-            runCombo = 0; maxRunCombo = 0; challengeCorrect = 0; challengeAttempts = 0; practiceCorrect = 0;
+            runCombo = 0; maxRunCombo = 0; challengeCorrect = 0; challengeAttempts = 0; practiceCorrect = 0; answerStreak = 0; updateComboHud(0);
             if (mode === "rpg") rpgMoveCountdown = RPG_MONSTER_STEP_SECONDS;
             playerScores = [0, 0]; currentBuzzer = null; attemptedPlayers = new Set();
             pvpRoundWins = [0, 0]; pvpRoundNumber = 1; pvpOvertime = false;
